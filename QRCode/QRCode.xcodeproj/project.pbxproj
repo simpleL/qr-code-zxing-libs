@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE0D41F71723D42700B5F315 /* Utilities.mm */; };
+		CE0D41FF1723F06400B5F315 /* Nguyen Ba Phuoc.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */; };
+		CE0D42121723F22700B5F315 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42021723F22700B5F315 /* bitstream.c */; };
+		CE0D42131723F22700B5F315 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42041723F22700B5F315 /* mask.c */; };
+		CE0D42141723F22700B5F315 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42061723F22700B5F315 /* qrencode.c */; };
+		CE0D42151723F22700B5F315 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42081723F22700B5F315 /* qrinput.c */; };
+		CE0D42161723F22700B5F315 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D420A1723F22700B5F315 /* qrspec.c */; };
+		CE0D42171723F22700B5F315 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D420C1723F22700B5F315 /* rscode.c */; };
+		CE0D42181723F22700B5F315 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D420E1723F22700B5F315 /* split.c */; };
+		CE0D42191723F22700B5F315 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42111723F22700B5F315 /* QRCodeGenerator.m */; };
 		CE7D7A361722D092003A7D22 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A351722D092003A7D22 /* images.jpeg */; };
 		CE7D7A381722D11B003A7D22 /* images-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A371722D11B003A7D22 /* images-1.jpeg */; };
 		CE7D7A4D1722D2F4003A7D22 /* images-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A391722D2F3003A7D22 /* images-2.jpeg */; };
@@ -78,6 +87,23 @@
 /* Begin PBXFileReference section */
 		CE0D41F61723D42700B5F315 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		CE0D41F71723D42700B5F315 /* Utilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utilities.mm; sourceTree = "<group>"; };
+		CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nguyen Ba Phuoc.png"; sourceTree = "<group>"; };
+		CE0D42021723F22700B5F315 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		CE0D42031723F22700B5F315 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		CE0D42041723F22700B5F315 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		CE0D42051723F22700B5F315 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		CE0D42061723F22700B5F315 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		CE0D42071723F22700B5F315 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		CE0D42081723F22700B5F315 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		CE0D42091723F22700B5F315 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		CE0D420A1723F22700B5F315 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		CE0D420B1723F22700B5F315 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		CE0D420C1723F22700B5F315 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		CE0D420D1723F22700B5F315 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		CE0D420E1723F22700B5F315 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		CE0D420F1723F22700B5F315 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		CE0D42101723F22700B5F315 /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeGenerator.h; sourceTree = "<group>"; };
+		CE0D42111723F22700B5F315 /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
 		CE7D7A351722D092003A7D22 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		CE7D7A371722D11B003A7D22 /* images-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-1.jpeg"; sourceTree = "<group>"; };
 		CE7D7A391722D2F3003A7D22 /* images-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-2.jpeg"; sourceTree = "<group>"; };
@@ -158,6 +184,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE0D42001723F22700B5F315 /* qrencode */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D42011723F22700B5F315 /* core */,
+				CE0D42101723F22700B5F315 /* QRCodeGenerator.h */,
+				CE0D42111723F22700B5F315 /* QRCodeGenerator.m */,
+			);
+			path = qrencode;
+			sourceTree = "<group>";
+		};
+		CE0D42011723F22700B5F315 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				CE0D42021723F22700B5F315 /* bitstream.c */,
+				CE0D42031723F22700B5F315 /* bitstream.h */,
+				CE0D42041723F22700B5F315 /* mask.c */,
+				CE0D42051723F22700B5F315 /* mask.h */,
+				CE0D42061723F22700B5F315 /* qrencode.c */,
+				CE0D42071723F22700B5F315 /* qrencode.h */,
+				CE0D42081723F22700B5F315 /* qrinput.c */,
+				CE0D42091723F22700B5F315 /* qrinput.h */,
+				CE0D420A1723F22700B5F315 /* qrspec.c */,
+				CE0D420B1723F22700B5F315 /* qrspec.h */,
+				CE0D420C1723F22700B5F315 /* rscode.c */,
+				CE0D420D1723F22700B5F315 /* rscode.h */,
+				CE0D420E1723F22700B5F315 /* split.c */,
+				CE0D420F1723F22700B5F315 /* split.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
 		CEBF432517227E1B00307DE0 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +287,7 @@
 		CEBF436417227E9900307DE0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				CE0D42001723F22700B5F315 /* qrencode */,
 				CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */,
 			);
 			name = Libs;
@@ -274,6 +332,7 @@
 		CEBF59E71722B9D000307DE0 /* testData */ = {
 			isa = PBXGroup;
 			children = (
+				CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */,
 				CE7D7A391722D2F3003A7D22 /* images-2.jpeg */,
 				CE7D7A3A1722D2F3003A7D22 /* images-3.jpeg */,
 				CE7D7A3B1722D2F3003A7D22 /* images-4.jpeg */,
@@ -413,6 +472,7 @@
 				CE7D7A5E1722D2F4003A7D22 /* images-19.jpeg in Resources */,
 				CE7D7A5F1722D2F4003A7D22 /* images-20.jpeg in Resources */,
 				CE7D7A601722D2F4003A7D22 /* images-21.jpeg in Resources */,
+				CE0D41FF1723F06400B5F315 /* Nguyen Ba Phuoc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +489,14 @@
 				CED4707917239F2500115CC1 /* FileManager.mm in Sources */,
 				CED4707C1723A18100115CC1 /* CustomeImageView.m in Sources */,
 				CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */,
+				CE0D42121723F22700B5F315 /* bitstream.c in Sources */,
+				CE0D42131723F22700B5F315 /* mask.c in Sources */,
+				CE0D42141723F22700B5F315 /* qrencode.c in Sources */,
+				CE0D42151723F22700B5F315 /* qrinput.c in Sources */,
+				CE0D42161723F22700B5F315 /* qrspec.c in Sources */,
+				CE0D42171723F22700B5F315 /* rscode.c in Sources */,
+				CE0D42181723F22700B5F315 /* split.c in Sources */,
+				CE0D42191723F22700B5F315 /* QRCodeGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CustomeImageView.h"
 #import "Utilities.h"
+#import "QRCodeGenerator.h"
+
 
 @interface ViewController ()
 
@@ -45,12 +47,18 @@
     Decoder * decoder = [[Decoder alloc] init];
     [decoder setDelegate:self];
     [decoder setReaders:_readers];
+    UIImage * image = [QRCodeGenerator qrImageForString:[NSString stringWithFormat:@"%@", [_textField text]] imageSize:200];//[UIImage imageNamed:[NSString stringWithFormat:@"images-%d.jpeg", [_textField.text intValue]]];
     
-//    [decoder decodeImage:[UIImage imageNamed:@"qrcode-nguyenBaPhuoc.png"]];
-//    [decoder decodeImage:[UIImage imageNamed:@"QRcodeINDIA.gif"]];
-//    [decoder decodeImage:[UIImage imageNamed:@"images.jpeg"]];
-    UIImage * image = [UIImage imageNamed:[NSString stringWithFormat:@"images-%d.jpeg", [_textField.text intValue]]];
-    [decoder decodeImage:image];
+//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.png"];
+//    
+//    
+    NSData *imgData = UIImageJPEGRepresentation(image, 1);
+//    [imgData writeToFile:docPath atomically:NO];
+    
+//    image = [UIImage imageWithContentsOfFile:docPath];
+//    NSLog(@"%@",docPath);
+    [decoder decodeImage:[UIImage imageWithData:imgData]];
     [(CustomeImageView*)self.view setImage:image];
 }
 
@@ -66,7 +74,7 @@
 }
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
 {
-    NSLog(@"fail to decode image");
+    NSLog(@"fail to decode b/c: %@", reason);
     [(CustomeImageView*)self.view setPoints:_points];
 }
 - (void)decoder:(Decoder *)decoder foundPossibleResultPoint:(CGPoint)point
