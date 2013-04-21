@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE7D7A361722D092003A7D22 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A351722D092003A7D22 /* images.jpeg */; };
+		CE7D7A381722D11B003A7D22 /* images-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A371722D11B003A7D22 /* images-1.jpeg */; };
+		CE7D7A4D1722D2F4003A7D22 /* images-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A391722D2F3003A7D22 /* images-2.jpeg */; };
+		CE7D7A4E1722D2F4003A7D22 /* images-3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A3A1722D2F3003A7D22 /* images-3.jpeg */; };
+		CE7D7A4F1722D2F4003A7D22 /* images-4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A3B1722D2F3003A7D22 /* images-4.jpeg */; };
+		CE7D7A501722D2F4003A7D22 /* images-5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A3C1722D2F3003A7D22 /* images-5.jpeg */; };
+		CE7D7A511722D2F4003A7D22 /* images-6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A3D1722D2F3003A7D22 /* images-6.jpeg */; };
+		CE7D7A521722D2F4003A7D22 /* images-7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A3E1722D2F3003A7D22 /* images-7.jpeg */; };
+		CE7D7A531722D2F4003A7D22 /* images-8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A3F1722D2F3003A7D22 /* images-8.jpeg */; };
+		CE7D7A541722D2F4003A7D22 /* images-9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A401722D2F3003A7D22 /* images-9.jpeg */; };
+		CE7D7A551722D2F4003A7D22 /* images-10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A411722D2F3003A7D22 /* images-10.jpeg */; };
+		CE7D7A561722D2F4003A7D22 /* images-11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A421722D2F3003A7D22 /* images-11.jpeg */; };
+		CE7D7A571722D2F4003A7D22 /* images-12.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A431722D2F3003A7D22 /* images-12.jpeg */; };
+		CE7D7A581722D2F4003A7D22 /* images-13.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A441722D2F3003A7D22 /* images-13.jpeg */; };
+		CE7D7A591722D2F4003A7D22 /* images-14.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A451722D2F4003A7D22 /* images-14.jpeg */; };
+		CE7D7A5A1722D2F4003A7D22 /* images-15.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A461722D2F4003A7D22 /* images-15.jpeg */; };
+		CE7D7A5B1722D2F4003A7D22 /* images-16.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A471722D2F4003A7D22 /* images-16.jpeg */; };
+		CE7D7A5C1722D2F4003A7D22 /* images-17.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A481722D2F4003A7D22 /* images-17.jpeg */; };
+		CE7D7A5D1722D2F4003A7D22 /* images-18.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A491722D2F4003A7D22 /* images-18.jpeg */; };
+		CE7D7A5E1722D2F4003A7D22 /* images-19.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A4A1722D2F4003A7D22 /* images-19.jpeg */; };
+		CE7D7A5F1722D2F4003A7D22 /* images-20.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A4B1722D2F4003A7D22 /* images-20.jpeg */; };
+		CE7D7A601722D2F4003A7D22 /* images-21.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A4C1722D2F4003A7D22 /* images-21.jpeg */; };
 		CEBF433517227E1B00307DE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF433417227E1B00307DE0 /* UIKit.framework */; };
 		CEBF433717227E1B00307DE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF433617227E1B00307DE0 /* Foundation.framework */; };
 		CEBF433917227E1B00307DE0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF433817227E1B00307DE0 /* CoreGraphics.framework */; };
@@ -20,9 +42,59 @@
 		CEBF436E17227E9900307DE0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEBF436717227E9900307DE0 /* AppDelegate.mm */; };
 		CEBF436F17227E9900307DE0 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEBF436917227E9900307DE0 /* ViewController.mm */; };
 		CEBF59D61722806000307DE0 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59D51722806000307DE0 /* libZXingWidget.a */; };
+		CEBF59EC1722B9D000307DE0 /* james_goodhouse_profile_qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = CEBF59E81722B9D000307DE0 /* james_goodhouse_profile_qrcode.png */; };
+		CEBF59ED1722B9D000307DE0 /* qr-code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEBF59E91722B9D000307DE0 /* qr-code.jpg */; };
+		CEBF59EE1722B9D000307DE0 /* qrcode-nguyenBaPhuoc.png in Resources */ = {isa = PBXBuildFile; fileRef = CEBF59EA1722B9D000307DE0 /* qrcode-nguyenBaPhuoc.png */; };
+		CEBF59EF1722B9D000307DE0 /* QRcodeINDIA.gif in Resources */ = {isa = PBXBuildFile; fileRef = CEBF59EB1722B9D000307DE0 /* QRcodeINDIA.gif */; };
+		CEBF59F21722BC8200307DE0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59F01722BC8200307DE0 /* AddressBook.framework */; };
+		CEBF59F31722BC8200307DE0 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59F11722BC8200307DE0 /* AddressBookUI.framework */; };
+		CEBF59F51722BC9500307DE0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59F41722BC9500307DE0 /* AudioToolbox.framework */; };
+		CEBF59F91722BCCD00307DE0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59F81722BCCD00307DE0 /* AVFoundation.framework */; };
+		CEBF59FB1722BCDE00307DE0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FA1722BCDE00307DE0 /* CoreMedia.framework */; };
+		CEBF59FD1722BCE500307DE0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FC1722BCE500307DE0 /* CoreVideo.framework */; };
+		CEBF59FF1722BCF300307DE0 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FE1722BCF300307DE0 /* libiconv.dylib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CEBF59E21722A9D200307DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = ZXingWidget;
+		};
+		CEBF59E41722A9D200307DE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
+			remoteInfo = ZXingTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		CE7D7A351722D092003A7D22 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
+		CE7D7A371722D11B003A7D22 /* images-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-1.jpeg"; sourceTree = "<group>"; };
+		CE7D7A391722D2F3003A7D22 /* images-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-2.jpeg"; sourceTree = "<group>"; };
+		CE7D7A3A1722D2F3003A7D22 /* images-3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-3.jpeg"; sourceTree = "<group>"; };
+		CE7D7A3B1722D2F3003A7D22 /* images-4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-4.jpeg"; sourceTree = "<group>"; };
+		CE7D7A3C1722D2F3003A7D22 /* images-5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-5.jpeg"; sourceTree = "<group>"; };
+		CE7D7A3D1722D2F3003A7D22 /* images-6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-6.jpeg"; sourceTree = "<group>"; };
+		CE7D7A3E1722D2F3003A7D22 /* images-7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-7.jpeg"; sourceTree = "<group>"; };
+		CE7D7A3F1722D2F3003A7D22 /* images-8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-8.jpeg"; sourceTree = "<group>"; };
+		CE7D7A401722D2F3003A7D22 /* images-9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-9.jpeg"; sourceTree = "<group>"; };
+		CE7D7A411722D2F3003A7D22 /* images-10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-10.jpeg"; sourceTree = "<group>"; };
+		CE7D7A421722D2F3003A7D22 /* images-11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-11.jpeg"; sourceTree = "<group>"; };
+		CE7D7A431722D2F3003A7D22 /* images-12.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-12.jpeg"; sourceTree = "<group>"; };
+		CE7D7A441722D2F3003A7D22 /* images-13.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-13.jpeg"; sourceTree = "<group>"; };
+		CE7D7A451722D2F4003A7D22 /* images-14.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-14.jpeg"; sourceTree = "<group>"; };
+		CE7D7A461722D2F4003A7D22 /* images-15.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-15.jpeg"; sourceTree = "<group>"; };
+		CE7D7A471722D2F4003A7D22 /* images-16.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-16.jpeg"; sourceTree = "<group>"; };
+		CE7D7A481722D2F4003A7D22 /* images-17.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-17.jpeg"; sourceTree = "<group>"; };
+		CE7D7A491722D2F4003A7D22 /* images-18.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-18.jpeg"; sourceTree = "<group>"; };
+		CE7D7A4A1722D2F4003A7D22 /* images-19.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-19.jpeg"; sourceTree = "<group>"; };
+		CE7D7A4B1722D2F4003A7D22 /* images-20.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-20.jpeg"; sourceTree = "<group>"; };
+		CE7D7A4C1722D2F4003A7D22 /* images-21.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-21.jpeg"; sourceTree = "<group>"; };
 		CEBF433017227E1B00307DE0 /* QRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBF433417227E1B00307DE0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEBF433617227E1B00307DE0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -41,7 +113,18 @@
 		CEBF436817227E9900307DE0 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CEBF436917227E9900307DE0 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
-		CEBF59D51722806000307DE0 /* libZXingWidget.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libZXingWidget.a; path = "QRCode/Libs/zxing/iphone/ZXingWidget/build/Release-iphoneos/libZXingWidget.a"; sourceTree = "<group>"; };
+		CEBF59D51722806000307DE0 /* libZXingWidget.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libZXingWidget.a; path = "QRCode/Libs/zxing/iphone/ZXingWidget/build/Release-iphoneos/libZXingWidget.a"; sourceTree = "<group>"; };
+		CEBF59E81722B9D000307DE0 /* james_goodhouse_profile_qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = james_goodhouse_profile_qrcode.png; sourceTree = "<group>"; };
+		CEBF59E91722B9D000307DE0 /* qr-code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "qr-code.jpg"; sourceTree = "<group>"; };
+		CEBF59EA1722B9D000307DE0 /* qrcode-nguyenBaPhuoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode-nguyenBaPhuoc.png"; sourceTree = "<group>"; };
+		CEBF59EB1722B9D000307DE0 /* QRcodeINDIA.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = QRcodeINDIA.gif; sourceTree = "<group>"; };
+		CEBF59F01722BC8200307DE0 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		CEBF59F11722BC8200307DE0 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		CEBF59F41722BC9500307DE0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CEBF59F81722BCCD00307DE0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CEBF59FA1722BCDE00307DE0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		CEBF59FC1722BCE500307DE0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		CEBF59FE1722BCF300307DE0 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +132,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBF59FF1722BCF300307DE0 /* libiconv.dylib in Frameworks */,
+				CEBF59FD1722BCE500307DE0 /* CoreVideo.framework in Frameworks */,
+				CEBF59FB1722BCDE00307DE0 /* CoreMedia.framework in Frameworks */,
+				CEBF59F91722BCCD00307DE0 /* AVFoundation.framework in Frameworks */,
+				CEBF59F51722BC9500307DE0 /* AudioToolbox.framework in Frameworks */,
+				CEBF59F21722BC8200307DE0 /* AddressBook.framework in Frameworks */,
+				CEBF59F31722BC8200307DE0 /* AddressBookUI.framework in Frameworks */,
 				CEBF59D61722806000307DE0 /* libZXingWidget.a in Frameworks */,
 				CEBF433517227E1B00307DE0 /* UIKit.framework in Frameworks */,
 				CEBF433717227E1B00307DE0 /* Foundation.framework in Frameworks */,
@@ -80,6 +170,13 @@
 		CEBF433317227E1B00307DE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF59FE1722BCF300307DE0 /* libiconv.dylib */,
+				CEBF59FC1722BCE500307DE0 /* CoreVideo.framework */,
+				CEBF59FA1722BCDE00307DE0 /* CoreMedia.framework */,
+				CEBF59F81722BCCD00307DE0 /* AVFoundation.framework */,
+				CEBF59F41722BC9500307DE0 /* AudioToolbox.framework */,
+				CEBF59F01722BC8200307DE0 /* AddressBook.framework */,
+				CEBF59F11722BC8200307DE0 /* AddressBookUI.framework */,
 				CEBF59D51722806000307DE0 /* libZXingWidget.a */,
 				CEBF433417227E1B00307DE0 /* UIKit.framework */,
 				CEBF433617227E1B00307DE0 /* Foundation.framework */,
@@ -91,6 +188,7 @@
 		CEBF433A17227E1B00307DE0 /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF59E71722B9D000307DE0 /* testData */,
 				CEBF436517227E9900307DE0 /* scr */,
 				CEBF437017227F1600307DE0 /* xib */,
 				CEBF435F17227E9900307DE0 /* AppInfo */,
@@ -149,6 +247,48 @@
 			name = xib;
 			sourceTree = "<group>";
 		};
+		CEBF59DE1722A9D200307DE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEBF59E31722A9D200307DE0 /* libZXingWidget.a */,
+				CEBF59E51722A9D200307DE0 /* ZXingTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEBF59E71722B9D000307DE0 /* testData */ = {
+			isa = PBXGroup;
+			children = (
+				CE7D7A391722D2F3003A7D22 /* images-2.jpeg */,
+				CE7D7A3A1722D2F3003A7D22 /* images-3.jpeg */,
+				CE7D7A3B1722D2F3003A7D22 /* images-4.jpeg */,
+				CE7D7A3C1722D2F3003A7D22 /* images-5.jpeg */,
+				CE7D7A3D1722D2F3003A7D22 /* images-6.jpeg */,
+				CE7D7A3E1722D2F3003A7D22 /* images-7.jpeg */,
+				CE7D7A3F1722D2F3003A7D22 /* images-8.jpeg */,
+				CE7D7A401722D2F3003A7D22 /* images-9.jpeg */,
+				CE7D7A411722D2F3003A7D22 /* images-10.jpeg */,
+				CE7D7A421722D2F3003A7D22 /* images-11.jpeg */,
+				CE7D7A431722D2F3003A7D22 /* images-12.jpeg */,
+				CE7D7A441722D2F3003A7D22 /* images-13.jpeg */,
+				CE7D7A451722D2F4003A7D22 /* images-14.jpeg */,
+				CE7D7A461722D2F4003A7D22 /* images-15.jpeg */,
+				CE7D7A471722D2F4003A7D22 /* images-16.jpeg */,
+				CE7D7A481722D2F4003A7D22 /* images-17.jpeg */,
+				CE7D7A491722D2F4003A7D22 /* images-18.jpeg */,
+				CE7D7A4A1722D2F4003A7D22 /* images-19.jpeg */,
+				CE7D7A4B1722D2F4003A7D22 /* images-20.jpeg */,
+				CE7D7A4C1722D2F4003A7D22 /* images-21.jpeg */,
+				CE7D7A371722D11B003A7D22 /* images-1.jpeg */,
+				CE7D7A351722D092003A7D22 /* images.jpeg */,
+				CEBF59E81722B9D000307DE0 /* james_goodhouse_profile_qrcode.png */,
+				CEBF59E91722B9D000307DE0 /* qr-code.jpg */,
+				CEBF59EA1722B9D000307DE0 /* qrcode-nguyenBaPhuoc.png */,
+				CEBF59EB1722B9D000307DE0 /* QRcodeINDIA.gif */,
+			);
+			path = testData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,12 +331,35 @@
 			mainGroup = CEBF432517227E1B00307DE0;
 			productRefGroup = CEBF433117227E1B00307DE0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CEBF59DE1722A9D200307DE0 /* Products */;
+					ProjectRef = CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CEBF432F17227E1B00307DE0 /* QRCode */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CEBF59E31722A9D200307DE0 /* libZXingWidget.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZXingWidget.a;
+			remoteRef = CEBF59E21722A9D200307DE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CEBF59E51722A9D200307DE0 /* ZXingTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZXingTests.octest;
+			remoteRef = CEBF59E41722A9D200307DE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CEBF432E17227E1B00307DE0 /* Resources */ = {
@@ -209,6 +372,32 @@
 				CEBF436A17227E9900307DE0 /* Default-568h@2x.png in Resources */,
 				CEBF436B17227E9900307DE0 /* Default.png in Resources */,
 				CEBF436C17227E9900307DE0 /* Default@2x.png in Resources */,
+				CEBF59EC1722B9D000307DE0 /* james_goodhouse_profile_qrcode.png in Resources */,
+				CEBF59ED1722B9D000307DE0 /* qr-code.jpg in Resources */,
+				CEBF59EE1722B9D000307DE0 /* qrcode-nguyenBaPhuoc.png in Resources */,
+				CEBF59EF1722B9D000307DE0 /* QRcodeINDIA.gif in Resources */,
+				CE7D7A361722D092003A7D22 /* images.jpeg in Resources */,
+				CE7D7A381722D11B003A7D22 /* images-1.jpeg in Resources */,
+				CE7D7A4D1722D2F4003A7D22 /* images-2.jpeg in Resources */,
+				CE7D7A4E1722D2F4003A7D22 /* images-3.jpeg in Resources */,
+				CE7D7A4F1722D2F4003A7D22 /* images-4.jpeg in Resources */,
+				CE7D7A501722D2F4003A7D22 /* images-5.jpeg in Resources */,
+				CE7D7A511722D2F4003A7D22 /* images-6.jpeg in Resources */,
+				CE7D7A521722D2F4003A7D22 /* images-7.jpeg in Resources */,
+				CE7D7A531722D2F4003A7D22 /* images-8.jpeg in Resources */,
+				CE7D7A541722D2F4003A7D22 /* images-9.jpeg in Resources */,
+				CE7D7A551722D2F4003A7D22 /* images-10.jpeg in Resources */,
+				CE7D7A561722D2F4003A7D22 /* images-11.jpeg in Resources */,
+				CE7D7A571722D2F4003A7D22 /* images-12.jpeg in Resources */,
+				CE7D7A581722D2F4003A7D22 /* images-13.jpeg in Resources */,
+				CE7D7A591722D2F4003A7D22 /* images-14.jpeg in Resources */,
+				CE7D7A5A1722D2F4003A7D22 /* images-15.jpeg in Resources */,
+				CE7D7A5B1722D2F4003A7D22 /* images-16.jpeg in Resources */,
+				CE7D7A5C1722D2F4003A7D22 /* images-17.jpeg in Resources */,
+				CE7D7A5D1722D2F4003A7D22 /* images-18.jpeg in Resources */,
+				CE7D7A5E1722D2F4003A7D22 /* images-19.jpeg in Resources */,
+				CE7D7A5F1722D2F4003A7D22 /* images-20.jpeg in Resources */,
+				CE7D7A601722D2F4003A7D22 /* images-21.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +447,7 @@
 		CEBF435517227E1B00307DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -284,14 +473,14 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Libs/zxing/cpp/core/src/ ${SOURCE_ROOT}/Libs/zxing/iphone/ZXingWidget/Classes/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		CEBF435617227E1B00307DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -310,7 +499,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/Libs/zxing/cpp/core/src/ ${SOURCE_ROOT}/Libs/zxing/iphone/ZXingWidget/Classes/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -318,6 +507,9 @@
 		CEBF435817227E1B00307DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QRCode/QRCode-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/QRCode/AppInfo/QRCode-Info.plist";
@@ -334,6 +526,9 @@
 		CEBF435917227E1B00307DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QRCode/QRCode-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/QRCode/AppInfo/QRCode-Info.plist";
