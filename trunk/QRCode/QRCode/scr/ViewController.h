@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QRCodeReader.h"
-#import "ZXingWidgetController.h"
+#import <DecoderDelegate.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<DecoderDelegate>
+{
+    IBOutlet UIButton * _btnStartDecode;
+    NSSet               *_readers;
+    IBOutlet UITextField * _textField;
+}
+-(IBAction)startDecode:(id)sender;
+
 
 @end
