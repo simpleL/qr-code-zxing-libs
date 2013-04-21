@@ -15,10 +15,11 @@
     NSMutableArray      *_points;
     
     IBOutlet UIButton       * _btnStartDecode;
-    IBOutlet UITextField    * _textField;
+    IBOutlet UIButton       * _btnStartEncode;
+    IBOutlet UITextView    * _textView;
     IBOutlet UIImageView    * _imageView;
 }
 -(IBAction)startDecode:(id)sender;
-
+-(IBAction)startEncode:(id)sender;
 
 @end

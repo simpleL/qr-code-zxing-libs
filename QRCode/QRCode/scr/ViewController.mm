@@ -47,18 +47,24 @@
     Decoder * decoder = [[Decoder alloc] init];
     [decoder setDelegate:self];
     [decoder setReaders:_readers];
-    UIImage * image = [QRCodeGenerator qrImageForString:[NSString stringWithFormat:@"%@", [_textField text]] imageSize:200];//[UIImage imageNamed:[NSString stringWithFormat:@"images-%d.jpeg", [_textField.text intValue]]];
     
-//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.png"];
-//    
-//    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.jpg"];
+    
+//    NSLog(@"%@", docPath);
+    UIImage * image = [UIImage imageWithContentsOfFile:docPath];
+    [decoder decodeImage:image];
+}
+
+-(void)startEncode:(id)sender
+{
+    UIImage * image = [QRCodeGenerator qrImageForString:[NSString stringWithFormat:@"%@", [_textView text]] imageSize:200];
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.jpg"];
+    
     NSData *imgData = UIImageJPEGRepresentation(image, 1);
-//    [imgData writeToFile:docPath atomically:NO];
-    
-//    image = [UIImage imageWithContentsOfFile:docPath];
-//    NSLog(@"%@",docPath);
-    [decoder decodeImage:[UIImage imageWithData:imgData]];
+    [imgData writeToFile:docPath atomically:NO];
     [(CustomeImageView*)self.view setImage:image];
 }
 
@@ -80,7 +86,7 @@
 - (void)decoder:(Decoder *)decoder foundPossibleResultPoint:(CGPoint)point
 {
 //    NSLog(@"found possible result point after decoding image");
-    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
+//    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
     [_points addObject:[NSValue valueWithCGPoint:point]];
 }
 

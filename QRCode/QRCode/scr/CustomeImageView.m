@@ -66,7 +66,7 @@
     {
         CGSize size_ = [_image size];
 //        CGContextDrawImage(context, CGRectMake(0, 0, size_.width, size_.height), _image.CGImage);
-        [_image drawInRect:CGRectMake(0, 0, size_.width, size_.height)];
+        [_image drawInRect:CGRectMake(60, 0, size_.width, size_.height)];
     }
     if (_points)
     {
@@ -77,12 +77,12 @@
         {
             CGPoint p = [v CGPointValue];
             
-            CGContextMoveToPoint(context, p.x, p.y);
-            CGContextAddLineToPoint(context, p.x - 1, p.y - 1);
+            CGContextMoveToPoint(context, p.x + 60, p.y);
+            CGContextAddLineToPoint(context, 60 + p.x - 1, p.y - 1);
             CGContextStrokePath(context);
         }
     }
-    NSLog(@"drawing..........");
+//    NSLog(@"drawing..........");
 }
 
 @end
