@@ -68,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CE0D436817242E3D00B5F315 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = ZXingWidget;
+		};
 		CEBF59E21722A9D200307DE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEBF59C517227FE700307DE0 /* ZXingWidget.xcodeproj */;
@@ -377,6 +384,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CE0D436917242E3D00B5F315 /* PBXTargetDependency */,
 			);
 			name = QRCode;
 			productName = QRCode;
@@ -501,6 +509,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE0D436917242E3D00B5F315 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZXingWidget;
+			targetProxy = CE0D436817242E3D00B5F315 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CEBF433D17227E1B00307DE0 /* InfoPlist.strings */ = {
