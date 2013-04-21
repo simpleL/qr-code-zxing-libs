@@ -11,9 +11,12 @@
 
 @interface ViewController : UIViewController<DecoderDelegate>
 {
-    IBOutlet UIButton * _btnStartDecode;
     NSSet               *_readers;
-    IBOutlet UITextField * _textField;
+    NSMutableArray      *_points;
+    
+    IBOutlet UIButton       * _btnStartDecode;
+    IBOutlet UITextField    * _textField;
+    IBOutlet UIImageView    * _imageView;
 }
 -(IBAction)startDecode:(id)sender;
 

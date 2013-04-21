@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE0D41F71723D42700B5F315 /* Utilities.mm */; };
 		CE7D7A361722D092003A7D22 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A351722D092003A7D22 /* images.jpeg */; };
 		CE7D7A381722D11B003A7D22 /* images-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A371722D11B003A7D22 /* images-1.jpeg */; };
 		CE7D7A4D1722D2F4003A7D22 /* images-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE7D7A391722D2F3003A7D22 /* images-2.jpeg */; };
@@ -53,6 +54,8 @@
 		CEBF59FB1722BCDE00307DE0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FA1722BCDE00307DE0 /* CoreMedia.framework */; };
 		CEBF59FD1722BCE500307DE0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FC1722BCE500307DE0 /* CoreVideo.framework */; };
 		CEBF59FF1722BCF300307DE0 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FE1722BCF300307DE0 /* libiconv.dylib */; };
+		CED4707917239F2500115CC1 /* FileManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = CED4707817239F2500115CC1 /* FileManager.mm */; };
+		CED4707C1723A18100115CC1 /* CustomeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CED4707B1723A18100115CC1 /* CustomeImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE0D41F61723D42700B5F315 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		CE0D41F71723D42700B5F315 /* Utilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utilities.mm; sourceTree = "<group>"; };
 		CE7D7A351722D092003A7D22 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		CE7D7A371722D11B003A7D22 /* images-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-1.jpeg"; sourceTree = "<group>"; };
 		CE7D7A391722D2F3003A7D22 /* images-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-2.jpeg"; sourceTree = "<group>"; };
@@ -125,6 +130,10 @@
 		CEBF59FA1722BCDE00307DE0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		CEBF59FC1722BCE500307DE0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		CEBF59FE1722BCF300307DE0 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		CED4707717239F2500115CC1 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		CED4707817239F2500115CC1 /* FileManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileManager.mm; sourceTree = "<group>"; };
+		CED4707A1723A18100115CC1 /* CustomeImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomeImageView.h; sourceTree = "<group>"; };
+		CED4707B1723A18100115CC1 /* CustomeImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomeImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +243,12 @@
 				CEBF436717227E9900307DE0 /* AppDelegate.mm */,
 				CEBF436817227E9900307DE0 /* ViewController.h */,
 				CEBF436917227E9900307DE0 /* ViewController.mm */,
+				CED4707717239F2500115CC1 /* FileManager.h */,
+				CED4707817239F2500115CC1 /* FileManager.mm */,
+				CED4707A1723A18100115CC1 /* CustomeImageView.h */,
+				CED4707B1723A18100115CC1 /* CustomeImageView.m */,
+				CE0D41F61723D42700B5F315 /* Utilities.h */,
+				CE0D41F71723D42700B5F315 /* Utilities.mm */,
 			);
 			path = scr;
 			sourceTree = "<group>";
@@ -411,6 +426,9 @@
 				CEBF434117227E1B00307DE0 /* main.m in Sources */,
 				CEBF436E17227E9900307DE0 /* AppDelegate.mm in Sources */,
 				CEBF436F17227E9900307DE0 /* ViewController.mm in Sources */,
+				CED4707917239F2500115CC1 /* FileManager.mm in Sources */,
+				CED4707C1723A18100115CC1 /* CustomeImageView.m in Sources */,
+				CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
