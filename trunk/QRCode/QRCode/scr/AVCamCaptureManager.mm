@@ -52,6 +52,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/CGImageProperties.h>
 
+#import "Utilities.h"
+
 @interface AVCamCaptureManager (RecorderDelegate) /*<AVCamRecorderDelegate>*/
 @end
 
@@ -81,6 +83,7 @@
 @synthesize deviceDisconnectedObserver;
 @synthesize backgroundRecordingID;
 @synthesize delegate;
+@synthesize capturedImage = _capturedImage;
 
 - (id) init
 {
@@ -142,7 +145,7 @@
 		[notificationCenter addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
 		orientation = AVCaptureVideoOrientationPortrait;
     }
-    
+    _capturedImage = nil;
     return self;
 }
 
@@ -160,7 +163,7 @@
     [audioInput release];
     [stillImageOutput release];
     [recorder release];
-    
+    safeRelease(_capturedImage);
     [super dealloc];
 }
 
@@ -275,11 +278,12 @@
         if (imageDataSampleBuffer != NULL)
         {
             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
-            [library writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:completionBlock];
-            [image release];
-            [library release];
+//            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            safeRelease(_capturedImage);
+            _capturedImage = [[UIImage alloc] initWithData:imageData];
+//            [library writeImageToSavedPhotosAlbum:[_capturedImage CGImage] orientation:(ALAssetOrientation)[_capturedImage imageOrientation] completionBlock:completionBlock];
+//            
+//            [library release];
         }
         else
             completionBlock(nil, error);
@@ -475,54 +479,3 @@ bail:
 }	
 
 @end
-
-
-//#pragma mark -
-//@implementation AVCamCaptureManager (RecorderDelegate)
-//
-//-(void)recorderRecordingDidBegin:(AVCamRecorder *)recorder
-//{
-//    if ([[self delegate] respondsToSelector:@selector(captureManagerRecordingBegan:)]) {
-//        [[self delegate] captureManagerRecordingBegan:self];
-//    }
-//}
-//
-//-(void)recorder:(AVCamRecorder *)recorder recordingDidFinishToOutputFileURL:(NSURL *)outputFileURL error:(NSError *)error
-//{
-//	if ([[self recorder] recordsAudio] && ![[self recorder] recordsVideo]) {
-//		// If the file was created on a device that doesn't support video recording, it can't be saved to the assets 
-//		// library. Instead, save it in the app's Documents directory, whence it can be copied from the device via
-//		// iTunes file sharing.
-//		[self copyFileToDocuments:outputFileURL];
-//
-//		if ([[UIDevice currentDevice] isMultitaskingSupported]) {
-//			[[UIApplication sharedApplication] endBackgroundTask:[self backgroundRecordingID]];
-//		}		
-//
-//		if ([[self delegate] respondsToSelector:@selector(captureManagerRecordingFinished:)]) {
-//			[[self delegate] captureManagerRecordingFinished:self];
-//		}
-//	}
-//	else {	
-//		ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//		[library writeVideoAtPathToSavedPhotosAlbum:outputFileURL
-//									completionBlock:^(NSURL *assetURL, NSError *error) {
-//										if (error) {
-//											if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {
-//												[[self delegate] captureManager:self didFailWithError:error];
-//											}											
-//										}
-//										
-//										if ([[UIDevice currentDevice] isMultitaskingSupported]) {
-//											[[UIApplication sharedApplication] endBackgroundTask:[self backgroundRecordingID]];
-//										}
-//										
-//										if ([[self delegate] respondsToSelector:@selector(captureManagerRecordingFinished:)]) {
-//											[[self delegate] captureManagerRecordingFinished:self];
-//										}
-//									}];
-//		[library release];
-//	}
-//}
-//
-//@end

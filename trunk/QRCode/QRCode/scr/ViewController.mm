@@ -16,6 +16,9 @@
 #import "QRCodeGenerator.h"
 #import "ScanView.h"
 
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <ImageIO/CGImageProperties.h>
+
 #import "AVCamCaptureManager.h"
 
 @interface ViewController (AVCamCaptureManagerDelegate)<AVCamCaptureManagerDelegate>
@@ -33,6 +36,7 @@
         
         [self.view addSubview:_scanView];
         [_scanView setCenter:CGPointMake(160, -240)];
+        _isScanViewEnable = NO;
     }
     return self;
 }
@@ -72,37 +76,6 @@
                 [[[self captureManager] session] startRunning];
             });
             [_captureManager continuousFocusAtPoint:CGPointMake(.5f, .5f)];
-            
-            //            [self updateButtonStates];
-            
-            // Create the focus mode UI overlay
-            //			UILabel *newFocusModeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, viewLayer.bounds.size.width - 20, 20)];
-            //			[newFocusModeLabel setBackgroundColor:[UIColor clearColor]];
-            //			[newFocusModeLabel setTextColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.50]];
-            //			AVCaptureFocusMode initialFocusMode = [[[_captureManager videoInput] device] focusMode];
-            //			[newFocusModeLabel setText:[NSString stringWithFormat:@"focus: %@", [self stringForFocusMode:initialFocusMode]]];
-            //			[view addSubview:newFocusModeLabel];
-            //			[self addObserver:self forKeyPath:@"captureManager.videoInput.device.focusMode" options:NSKeyValueObservingOptionNew context:AVCamFocusModeObserverContext];
-            //			[self setFocusModeLabel:newFocusModeLabel];
-            //            [newFocusModeLabel release];
-            
-            /*
-             // Add a single tap gesture to focus on the point tapped, then lock focus
-             UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToAutoFocus:)];
-             [singleTap setDelegate:self];
-             [singleTap setNumberOfTapsRequired:1];
-             [view addGestureRecognizer:singleTap];
-             
-             // Add a double tap gesture to reset the focus mode to continuous auto focus
-             UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToContinouslyAutoFocus:)];
-             [doubleTap setDelegate:self];
-             [doubleTap setNumberOfTapsRequired:2];
-             [singleTap requireGestureRecognizerToFail:doubleTap];
-             [view addGestureRecognizer:doubleTap];
-             
-             [doubleTap release];
-             [singleTap release];
-             */
         }
     }
     
@@ -171,14 +144,12 @@
     };
     
     [_btnScan setHidden:YES];
+    _isScanViewEnable = NO;
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 
 -(void)startScan:(id)sender
-{
-    // scan image function
-    
-    
+{    
     void (^flyInScanView)(void) = ^(void)
     {
         [_scanView setCenter:CGPointMake(160, 240)];
@@ -186,9 +157,12 @@
     
     void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
     {
-        
+        _isScanViewEnable = YES;
+        if (_isScanViewEnable)
+        {
+            [_captureManager captureStillImage];
+        }        
     };
-    
     [_scanView setHidden:NO];
     [UIView animateWithDuration:.4f animations:flyInScanView completion:finishFlyIn];
 }
@@ -201,12 +175,44 @@
 - (void)decoder:(Decoder *)decoder didDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset withResult:(TwoDDecoderResult *)result
 {
     NSLog(@"%@", [result text]);
+    [_textView setText:[result text]];
     [(CustomeImageView*)self.view setPoints:_points];
+    
+    ALAssetsLibraryWriteImageCompletionBlock completionBlock = ^(NSURL *assetURL, NSError *error)
+    {
+        if (error)
+        {
+            [self captureManager:_captureManager didFailWithError:error];
+        }
+    };
+    
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library writeImageToSavedPhotosAlbum:[_captureManager.capturedImage CGImage] orientation:(ALAssetOrientation)[_captureManager.capturedImage imageOrientation] completionBlock:completionBlock];
+    
+    [library release];
+    
+    void (^runOutScanView)(void) = ^(void)
+    {
+        [_scanView setCenter:CGPointMake(160, -240)];
+    };
+    
+    void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
+    {
+        [_scanView setHidden:finished];
+        [_btnScan setHidden:!finished];
+    };
+    
+    [_btnScan setHidden:YES];
+    _isScanViewEnable = NO;
+    [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
 {
     NSLog(@"fail to decode b/c: %@", reason);
-    [(CustomeImageView*)self.view setPoints:_points];
+    if (_isScanViewEnable)
+    {
+        [_captureManager captureStillImage];
+    }
 }
 - (void)decoder:(Decoder *)decoder foundPossibleResultPoint:(CGPoint)point
 {
@@ -230,6 +236,10 @@
                                                   otherButtonTitles:nil];
         [alertView show];
         [alertView release];
+        if (_isScanViewEnable)
+        {
+            [_captureManager captureStillImage];
+        }
     });
 }
 
@@ -251,9 +261,17 @@
 
 - (void)captureManagerStillImageCaptured:(AVCamCaptureManager *)captureManager
 {
-//    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-//        [[self stillButton] setEnabled:YES];
-//    });
+    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
+        UIImage * image = _captureManager.capturedImage;
+        
+        safeRelease(_points);
+        _points = [[NSMutableArray alloc] init];
+        
+        Decoder * decoder = [[Decoder alloc] init];
+        [decoder setDelegate:self];
+        [decoder setReaders:_readers];
+        [decoder decodeImage:image];
+    });
 }
 
 - (void)captureManagerDeviceConfigurationChanged:(AVCamCaptureManager *)captureManager

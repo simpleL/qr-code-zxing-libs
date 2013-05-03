@@ -27,6 +27,7 @@
     IBOutlet UIButton           * _btnScan;
     IBOutlet ScanView           * _scanView;
     IBOutlet UIBarButtonItem    * _btnCancel;
+    BOOL                        _isScanViewEnable;
 }
 
 @property (nonatomic,retain) AVCamCaptureManager *captureManager;
