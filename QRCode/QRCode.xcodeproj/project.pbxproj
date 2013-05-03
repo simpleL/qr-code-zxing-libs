@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630D0CCD173365E200AF74A3 /* AVCamCaptureManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 630D0CCA173365E200AF74A3 /* AVCamCaptureManager.mm */; };
+		630D0CCE173365E200AF74A3 /* AVCamUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 630D0CCC173365E200AF74A3 /* AVCamUtilities.mm */; };
+		630D0CD1173366A300AF74A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD0173366A300AF74A3 /* QuartzCore.framework */; };
+		630D0CD3173366AE00AF74A3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD2173366AE00AF74A3 /* MediaPlayer.framework */; };
+		630D0CD5173366BE00AF74A3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD4173366BE00AF74A3 /* MobileCoreServices.framework */; };
+		630D0CD7173366C600AF74A3 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD6173366C600AF74A3 /* AssetsLibrary.framework */; };
+		630D0CD9173366CE00AF74A3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD8173366CE00AF74A3 /* ImageIO.framework */; };
+		630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630D0CDB1733694D00AF74A3 /* ScanView.m */; };
 		CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE0D41F71723D42700B5F315 /* Utilities.mm */; };
 		CE0D41FF1723F06400B5F315 /* Nguyen Ba Phuoc.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */; };
 		CE0D42121723F22700B5F315 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42021723F22700B5F315 /* bitstream.c */; };
@@ -92,6 +100,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630D0CC9173365E200AF74A3 /* AVCamCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamCaptureManager.h; sourceTree = "<group>"; };
+		630D0CCA173365E200AF74A3 /* AVCamCaptureManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVCamCaptureManager.mm; sourceTree = "<group>"; };
+		630D0CCB173365E200AF74A3 /* AVCamUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamUtilities.h; sourceTree = "<group>"; };
+		630D0CCC173365E200AF74A3 /* AVCamUtilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVCamUtilities.mm; sourceTree = "<group>"; };
+		630D0CD0173366A300AF74A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		630D0CD2173366AE00AF74A3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		630D0CD4173366BE00AF74A3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		630D0CD6173366C600AF74A3 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		630D0CD8173366CE00AF74A3 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		630D0CDA1733694D00AF74A3 /* ScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanView.h; sourceTree = "<group>"; };
+		630D0CDB1733694D00AF74A3 /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
 		CE0D41F61723D42700B5F315 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		CE0D41F71723D42700B5F315 /* Utilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utilities.mm; sourceTree = "<group>"; };
 		CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nguyen Ba Phuoc.png"; sourceTree = "<group>"; };
@@ -174,6 +193,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630D0CD9173366CE00AF74A3 /* ImageIO.framework in Frameworks */,
+				630D0CD7173366C600AF74A3 /* AssetsLibrary.framework in Frameworks */,
+				630D0CD5173366BE00AF74A3 /* MobileCoreServices.framework in Frameworks */,
+				630D0CD3173366AE00AF74A3 /* MediaPlayer.framework in Frameworks */,
+				630D0CD1173366A300AF74A3 /* QuartzCore.framework in Frameworks */,
 				CEBF59FF1722BCF300307DE0 /* libiconv.dylib in Frameworks */,
 				CEBF59FD1722BCE500307DE0 /* CoreVideo.framework in Frameworks */,
 				CEBF59FB1722BCDE00307DE0 /* CoreMedia.framework in Frameworks */,
@@ -243,6 +267,11 @@
 		CEBF433317227E1B00307DE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				630D0CD8173366CE00AF74A3 /* ImageIO.framework */,
+				630D0CD6173366C600AF74A3 /* AssetsLibrary.framework */,
+				630D0CD4173366BE00AF74A3 /* MobileCoreServices.framework */,
+				630D0CD2173366AE00AF74A3 /* MediaPlayer.framework */,
+				630D0CD0173366A300AF74A3 /* QuartzCore.framework */,
 				CEBF59FE1722BCF300307DE0 /* libiconv.dylib */,
 				CEBF59FC1722BCE500307DE0 /* CoreVideo.framework */,
 				CEBF59FA1722BCDE00307DE0 /* CoreMedia.framework */,
@@ -312,8 +341,14 @@
 				CED4707817239F2500115CC1 /* FileManager.mm */,
 				CED4707A1723A18100115CC1 /* CustomeImageView.h */,
 				CED4707B1723A18100115CC1 /* CustomeImageView.m */,
+				630D0CDA1733694D00AF74A3 /* ScanView.h */,
+				630D0CDB1733694D00AF74A3 /* ScanView.m */,
 				CE0D41F61723D42700B5F315 /* Utilities.h */,
 				CE0D41F71723D42700B5F315 /* Utilities.mm */,
+				630D0CC9173365E200AF74A3 /* AVCamCaptureManager.h */,
+				630D0CCA173365E200AF74A3 /* AVCamCaptureManager.mm */,
+				630D0CCB173365E200AF74A3 /* AVCamUtilities.h */,
+				630D0CCC173365E200AF74A3 /* AVCamUtilities.mm */,
 			);
 			path = scr;
 			sourceTree = "<group>";
@@ -505,6 +540,9 @@
 				CE0D42171723F22700B5F315 /* rscode.c in Sources */,
 				CE0D42181723F22700B5F315 /* split.c in Sources */,
 				CE0D42191723F22700B5F315 /* QRCodeGenerator.m in Sources */,
+				630D0CCD173365E200AF74A3 /* AVCamCaptureManager.mm in Sources */,
+				630D0CCE173365E200AF74A3 /* AVCamUtilities.mm in Sources */,
+				630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
