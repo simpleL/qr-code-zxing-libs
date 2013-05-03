@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <DecoderDelegate.h>
 
+@class ScanView;
+@class AVCamCaptureManager;
+@class AVCaptureVideoPreviewLayer;
+
 @interface ViewController : UIViewController<DecoderDelegate>
 {
     NSSet               *_readers;
@@ -16,10 +20,22 @@
     
     IBOutlet UIButton       * _btnStartDecode;
     IBOutlet UIButton       * _btnStartEncode;
-    IBOutlet UITextView    * _textView;
+    IBOutlet UITextView     * _textView;
     IBOutlet UIImageView    * _imageView;
+    
+    
+    IBOutlet UIButton           * _btnScan;
+    IBOutlet ScanView           * _scanView;
+    IBOutlet UIBarButtonItem    * _btnCancel;
 }
+
+@property (nonatomic,retain) AVCamCaptureManager *captureManager;
+@property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
+
+
 -(IBAction)startDecode:(id)sender;
 -(IBAction)startEncode:(id)sender;
+-(IBAction)cancelScan:(id)sender;
+-(IBAction)startScan:(id)sender;
 
 @end
