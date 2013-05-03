@@ -52,6 +52,7 @@
 @protocol AVCamCaptureManagerDelegate;
 
 @interface AVCamCaptureManager : NSObject {
+    UIImage * _capturedImage;
 }
 
 @property (nonatomic,retain) AVCaptureSession *session;
@@ -64,6 +65,8 @@
 @property (nonatomic,assign) id deviceDisconnectedObserver;
 @property (nonatomic,assign) UIBackgroundTaskIdentifier backgroundRecordingID;
 @property (nonatomic,assign) id <AVCamCaptureManagerDelegate> delegate;
+
+@property (nonatomic, readonly) UIImage * capturedImage;
 
 - (BOOL) setupSession;
 //- (void) startRecording;
