@@ -218,7 +218,7 @@
 {
 //    NSLog(@"found possible result point after decoding image");
 //    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
-    [_points addObject:[NSValue valueWithCGPoint:point]];
+//    [_points addObject:[NSValue valueWithCGPoint:point]];
 }
 
 @end

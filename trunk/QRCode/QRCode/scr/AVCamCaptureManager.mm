@@ -279,7 +279,9 @@
         {
             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
 //            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            NSLog(@"%d", [_capturedImage retainCount]);
             safeRelease(_capturedImage);
+            NSLog(@"%d", [_capturedImage retainCount]);
             _capturedImage = [[UIImage alloc] initWithData:imageData];
 //            [library writeImageToSavedPhotosAlbum:[_capturedImage CGImage] orientation:(ALAssetOrientation)[_capturedImage imageOrientation] completionBlock:completionBlock];
 //            
