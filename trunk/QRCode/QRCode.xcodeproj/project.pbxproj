@@ -152,7 +152,7 @@
 		CE7D7A4A1722D2F4003A7D22 /* images-19.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-19.jpeg"; sourceTree = "<group>"; };
 		CE7D7A4B1722D2F4003A7D22 /* images-20.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-20.jpeg"; sourceTree = "<group>"; };
 		CE7D7A4C1722D2F4003A7D22 /* images-21.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "images-21.jpeg"; sourceTree = "<group>"; };
-		CEBF433017227E1B00307DE0 /* QRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEBF433017227E1B00307DE0 /* 0160.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 0160.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBF433417227E1B00307DE0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEBF433617227E1B00307DE0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CEBF433817227E1B00307DE0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -259,7 +259,7 @@
 		CEBF433117227E1B00307DE0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEBF433017227E1B00307DE0 /* QRCode.app */,
+				CEBF433017227E1B00307DE0 /* 0160.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -423,7 +423,7 @@
 			);
 			name = QRCode;
 			productName = QRCode;
-			productReference = CEBF433017227E1B00307DE0 /* QRCode.app */;
+			productReference = CEBF433017227E1B00307DE0 /* 0160.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -658,7 +658,7 @@
 					"\"$(SRCROOT)/QRCode/Libs/zxing/symbian/ZXingBarcodeReader/camerawrapper/epoc32/release/armv5/lib\"",
 					"\"$(SRCROOT)/QRCode/Libs/zxing/symbian/ZXingBarcodeReader/camerawrapper/epoc32/release/winscw/udeb\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 0160;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -677,7 +677,7 @@
 					"\"$(SRCROOT)/QRCode/Libs/zxing/symbian/ZXingBarcodeReader/camerawrapper/epoc32/release/armv5/lib\"",
 					"\"$(SRCROOT)/QRCode/Libs/zxing/symbian/ZXingBarcodeReader/camerawrapper/epoc32/release/winscw/udeb\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = 0160;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
