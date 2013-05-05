@@ -25,7 +25,15 @@
 
 @end
 
+@interface ViewController (AVCaptureVideoDataOutputSampleBufferDelegate)<AVCaptureVideoDataOutputSampleBufferDelegate>
+-(void)decodeImage:(UIImage*)image;
+- (void)setupCaptureSession;
+@end
+
 @implementation ViewController
+
+@synthesize shouldDecode;
+@synthesize session = _session;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,54 +45,89 @@
         [self.view addSubview:_scanView];
         [_scanView setCenter:CGPointMake(160, -240)];
         _isScanViewEnable = NO;
+        _decoder = nil;
+        _points = nil;
+        // Do any additional setup after loading the view, typically from a nib.
+        QRCodeReader * reader = [[QRCodeReader alloc] init];
+        _readers = [[NSSet alloc] initWithObjects:reader,nil];
+        [reader release];
+        
+        safeRelease(_decoder);
+        _decoder = [[Decoder alloc] init];
+        [_decoder setDelegate:self];
+        [_decoder setReaders:_readers];
     }
     return self;
 }
 
+-(void)dealloc
+{
+    safeRelease(_decoder);
+    [super dealloc];
+}
+
 - (void)viewDidLoad
 {
-    if ([self captureManager] == nil) {
-        AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
-        [self setCaptureManager:manager];
-        [manager release];
-        
-        [[self captureManager] setDelegate:self];
-        
-        if ([[self captureManager] setupSession]) {
-            // Create video preview layer and add it to the UI
-            AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
-            UIView *view = _scanView;
-            CALayer *viewLayer = [view layer];
-            [viewLayer setMasksToBounds:YES];
-            
-            CGRect bounds = [view bounds];
-            [newCaptureVideoPreviewLayer setFrame:bounds];
-            
-            if ([[newCaptureVideoPreviewLayer connection] isVideoOrientationSupported]) {
-                [[newCaptureVideoPreviewLayer connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
-            }
-            
-            [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-            
-            [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
-            
-            [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
-            [newCaptureVideoPreviewLayer release];
-            
-            // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [[[self captureManager] session] startRunning];
-            });
-            [_captureManager continuousFocusAtPoint:CGPointMake(.5f, .5f)];
-        }
+//    if ([self captureManager] == nil) {
+//        AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
+//        [self setCaptureManager:manager];
+//        [manager release];
+//        
+//        [[self captureManager] setDelegate:self];
+//        
+//        if ([[self captureManager] setupSession]) {
+//            // Create video preview layer and add it to the UI
+//            AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
+//            UIView *view = _scanView;
+//            CALayer *viewLayer = [view layer];
+//            [viewLayer setMasksToBounds:YES];
+//            
+//            CGRect bounds = [view bounds];
+//            [newCaptureVideoPreviewLayer setFrame:bounds];
+//            
+//            if ([[newCaptureVideoPreviewLayer connection] isVideoOrientationSupported]) {
+//                [[newCaptureVideoPreviewLayer connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
+//            }
+//            
+//            [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+//            
+//            [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
+//            
+//            [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
+//            [newCaptureVideoPreviewLayer release];
+//            
+//            // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                [[[self captureManager] session] startRunning];
+//            });
+//            [_captureManager continuousFocusAtPoint:CGPointMake(.5f, .5f)];
+//        }
+//    }
+    [self setupCaptureSession];
+    
+    // Create video preview layer and add it to the UI
+    AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
+    
+    CALayer *viewLayer = [_scanView layer];
+    [viewLayer setMasksToBounds:YES];
+    
+    CGRect bounds = [_scanView bounds];
+    [newCaptureVideoPreviewLayer setFrame:bounds];
+    
+    if ([[newCaptureVideoPreviewLayer connection] isVideoOrientationSupported]) {
+        [[newCaptureVideoPreviewLayer connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
     }
     
+    [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    
+    [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
+    
+    [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
+    [newCaptureVideoPreviewLayer release];
+        
+    self.shouldDecode = NO;
+    
     [super viewDidLoad];
-    _points = nil;
-	// Do any additional setup after loading the view, typically from a nib.
-    QRCodeReader * reader = [[QRCodeReader alloc] init];
-    _readers = [[NSSet alloc] initWithObjects:reader,nil];
-    [reader release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,6 +188,8 @@
     
     [_btnScan setHidden:YES];
     _isScanViewEnable = NO;
+    [_session stopRunning];
+    self.shouldDecode = NO;
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 
@@ -160,9 +205,11 @@
         _isScanViewEnable = YES;
         if (_isScanViewEnable)
         {
-            [_captureManager captureStillImage];
-        }        
+//            [_captureManager captureStillImage];            
+            self.shouldDecode = YES;
+        }
     };
+    [_session startRunning];
     [_scanView setHidden:NO];
     [UIView animateWithDuration:.4f animations:flyInScanView completion:finishFlyIn];
 }
@@ -178,18 +225,18 @@
     [_textView setText:[result text]];
     [(CustomeImageView*)self.view setPoints:_points];
     
-    ALAssetsLibraryWriteImageCompletionBlock completionBlock = ^(NSURL *assetURL, NSError *error)
-    {
-        if (error)
-        {
-            [self captureManager:_captureManager didFailWithError:error];
-        }
-    };
-    
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    [library writeImageToSavedPhotosAlbum:[_captureManager.capturedImage CGImage] orientation:(ALAssetOrientation)[_captureManager.capturedImage imageOrientation] completionBlock:completionBlock];
-    
-    [library release];
+//    ALAssetsLibraryWriteImageCompletionBlock completionBlock = ^(NSURL *assetURL, NSError *error)
+//    {
+//        if (error)
+//        {
+//            [self captureManager:_captureManager didFailWithError:error];
+//        }
+//    };
+//    
+//    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//    [library writeImageToSavedPhotosAlbum:[_captureManager.capturedImage CGImage] orientation:(ALAssetOrientation)[_captureManager.capturedImage imageOrientation] completionBlock:completionBlock];
+//    
+//    [library release];
     
     void (^runOutScanView)(void) = ^(void)
     {
@@ -204,6 +251,8 @@
     
     [_btnScan setHidden:YES];
     _isScanViewEnable = NO;
+    [_session stopRunning];
+    self.shouldDecode = NO;
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
@@ -211,7 +260,8 @@
     NSLog(@"fail to decode b/c: %@", reason);
     if (_isScanViewEnable)
     {
-        [_captureManager captureStillImage];
+//        [_captureManager captureStillImage];
+        self.shouldDecode = YES;
     }
 }
 - (void)decoder:(Decoder *)decoder foundPossibleResultPoint:(CGPoint)point
@@ -281,4 +331,129 @@
 
 @end
 
+
+@implementation ViewController (AVCaptureVideoDataOutputSampleBufferDelegate)
+
+// Create and configure a capture session and start it running
+- (void)setupCaptureSession
+{
+    NSError *error = nil;
+    
+    // Create the session
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    
+    // Configure the session to produce lower resolution video frames, if your
+    // processing algorithm can cope. We'll specify medium quality for the
+    // chosen device.
+    session.sessionPreset = AVCaptureSessionPresetMedium;
+    
+    // Find a suitable AVCaptureDevice
+    AVCaptureDevice *device = [AVCaptureDevice
+                               defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    // Create a device input with the device and add it to the session.
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device
+                                                                        error:&error];
+    if (!input) {
+        // Handling the error appropriately.
+    }
+    [session addInput:input];
+    
+    // Create a VideoDataOutput and add it to the session
+    AVCaptureVideoDataOutput *output = [[[AVCaptureVideoDataOutput alloc] init] autorelease];
+    [session addOutput:output];
+    
+    // Configure your output.
+    dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
+    [output setSampleBufferDelegate:self queue:queue];
+    dispatch_release(queue);
+    
+    // Specify the pixel format
+    output.videoSettings =
+    [NSDictionary dictionaryWithObject:
+     [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
+                                forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    
+    
+    // If you wish to cap the frame rate to a known value, such as 15 fps, set
+    // minFrameDuration.
+    //    output.minFrameDuration = CMTimeMake(1, 15);
+    AVCaptureConnection * connection = [output connectionWithMediaType:AVMediaTypeVideo];
+    [connection setVideoMinFrameDuration:CMTimeMake(1, 30)];
+    
+    // Assign session to an ivar.
+    [self setSession:session];
+}
+
+// Delegate routine that is called when a sample buffer was written
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection
+{
+    NSLog(@"captured");
+    if (self.shouldDecode)
+    {
+        // Create a UIImage from the sample buffer data
+        UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
+        if (!image)
+        {
+            NSLog(@"nil");
+        }else
+        {
+            //        [((CustomView*)self.view) setImage:image];
+            self.shouldDecode = NO;
+            [self decodeImage:image];
+        }
+    }
+}
+
+// Create a UIImage from sample buffer data
+- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
+{
+    // Get a CMSampleBuffer's Core Video image buffer for the media data
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    // Lock the base address of the pixel buffer
+    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+    
+    // Get the number of bytes per row for the pixel buffer
+    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+    
+    // Get the number of bytes per row for the pixel buffer
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    // Get the pixel buffer width and height
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    
+    // Create a device-dependent RGB color space
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    // Create a bitmap graphics context with the sample buffer data
+    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    // Create a Quartz image from the pixel data in the bitmap graphics context
+    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+    // Unlock the pixel buffer
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
+    // Free up the context and color space
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    
+    // Create an image object from the Quartz image
+    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+    
+    // Release the Quartz image
+    CGImageRelease(quartzImage);
+    
+    return (image);
+}
+
+-(void)decodeImage:(id)image
+{        
+    safeRelease(_points);
+    _points = [[NSMutableArray alloc] init];
+    [_decoder decodeImage:image];
+}
+
+@end
 

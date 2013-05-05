@@ -12,11 +12,14 @@
 @class ScanView;
 @class AVCamCaptureManager;
 @class AVCaptureVideoPreviewLayer;
+@class AVCaptureSession;
+@class Decoder;
 
 @interface ViewController : UIViewController<DecoderDelegate>
 {
     NSSet               *_readers;
     NSMutableArray      *_points;
+    Decoder             *_decoder;
     
     IBOutlet UIButton       * _btnStartDecode;
     IBOutlet UIButton       * _btnStartEncode;
@@ -28,7 +31,12 @@
     IBOutlet ScanView           * _scanView;
     IBOutlet UIBarButtonItem    * _btnCancel;
     BOOL                        _isScanViewEnable;
+    
+    AVCaptureSession            *_session;
 }
+
+@property (nonatomic, retain) AVCaptureSession * session;
+@property BOOL shouldDecode;
 
 @property (nonatomic,retain) AVCamCaptureManager *captureManager;
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
