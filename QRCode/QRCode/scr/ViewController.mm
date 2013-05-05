@@ -16,14 +16,12 @@
 #import "QRCodeGenerator.h"
 #import "ScanView.h"
 
+#import <zxing/ReaderException.h>
+
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/CGImageProperties.h>
 
 #import "AVCamCaptureManager.h"
-
-@interface ViewController (AVCamCaptureManagerDelegate)<AVCamCaptureManagerDelegate>
-
-@end
 
 @interface ViewController (AVCaptureVideoDataOutputSampleBufferDelegate)<AVCaptureVideoDataOutputSampleBufferDelegate>
 -(void)decodeImage:(UIImage*)image;
@@ -68,41 +66,8 @@
 
 - (void)viewDidLoad
 {
-//    if ([self captureManager] == nil) {
-//        AVCamCaptureManager *manager = [[AVCamCaptureManager alloc] init];
-//        [self setCaptureManager:manager];
-//        [manager release];
-//        
-//        [[self captureManager] setDelegate:self];
-//        
-//        if ([[self captureManager] setupSession]) {
-//            // Create video preview layer and add it to the UI
-//            AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[[self captureManager] session]];
-//            UIView *view = _scanView;
-//            CALayer *viewLayer = [view layer];
-//            [viewLayer setMasksToBounds:YES];
-//            
-//            CGRect bounds = [view bounds];
-//            [newCaptureVideoPreviewLayer setFrame:bounds];
-//            
-//            if ([[newCaptureVideoPreviewLayer connection] isVideoOrientationSupported]) {
-//                [[newCaptureVideoPreviewLayer connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
-//            }
-//            
-//            [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-//            
-//            [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
-//            
-//            [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
-//            [newCaptureVideoPreviewLayer release];
-//            
-//            // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//                [[[self captureManager] session] startRunning];
-//            });
-//            [_captureManager continuousFocusAtPoint:CGPointMake(.5f, .5f)];
-//        }
-//    }
+    [super viewDidLoad];
+    
     [self setupCaptureSession];
     
     // Create video preview layer and add it to the UI
@@ -123,17 +88,17 @@
     [viewLayer insertSublayer:newCaptureVideoPreviewLayer below:[[viewLayer sublayers] objectAtIndex:0]];
     
     [self setCaptureVideoPreviewLayer:newCaptureVideoPreviewLayer];
+    
     [newCaptureVideoPreviewLayer release];
         
-    self.shouldDecode = NO;
-    
-    [super viewDidLoad];
+    self.shouldDecode = NO;    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - override methods
@@ -190,6 +155,7 @@
     _isScanViewEnable = NO;
     [_session stopRunning];
     self.shouldDecode = NO;
+    safeRelease(_decoder);
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 
@@ -204,11 +170,16 @@
     {
         _isScanViewEnable = YES;
         if (_isScanViewEnable)
-        {
-//            [_captureManager captureStillImage];            
+        {           
             self.shouldDecode = YES;
         }
     };
+    // create new decoder
+    safeRelease(_decoder);
+    _decoder = [[Decoder alloc] init];
+    [_decoder setDelegate:self];
+    [_decoder setReaders:_readers];
+    
     [_session startRunning];
     [_scanView setHidden:NO];
     [UIView animateWithDuration:.4f animations:flyInScanView completion:finishFlyIn];
@@ -221,22 +192,7 @@
 }
 - (void)decoder:(Decoder *)decoder didDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset withResult:(TwoDDecoderResult *)result
 {
-    NSLog(@"%@", [result text]);
     [_textView setText:[result text]];
-    [(CustomeImageView*)self.view setPoints:_points];
-    
-//    ALAssetsLibraryWriteImageCompletionBlock completionBlock = ^(NSURL *assetURL, NSError *error)
-//    {
-//        if (error)
-//        {
-//            [self captureManager:_captureManager didFailWithError:error];
-//        }
-//    };
-//    
-//    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//    [library writeImageToSavedPhotosAlbum:[_captureManager.capturedImage CGImage] orientation:(ALAssetOrientation)[_captureManager.capturedImage imageOrientation] completionBlock:completionBlock];
-//    
-//    [library release];
     
     void (^runOutScanView)(void) = ^(void)
     {
@@ -253,14 +209,17 @@
     _isScanViewEnable = NO;
     [_session stopRunning];
     self.shouldDecode = NO;
+    safeRelease(_decoder);
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
 {
-    NSLog(@"fail to decode b/c: %@", reason);
     if (_isScanViewEnable)
     {
-//        [_captureManager captureStillImage];
+        safeRelease(_decoder);
+        _decoder = [[Decoder alloc] init];
+        [_decoder setDelegate:self];
+        [_decoder setReaders:_readers];
         self.shouldDecode = YES;
     }
 }
@@ -269,64 +228,6 @@
 //    NSLog(@"found possible result point after decoding image");
 //    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
 //    [_points addObject:[NSValue valueWithCGPoint:point]];
-}
-
-@end
-
-
-@implementation ViewController (AVCamCaptureManagerDelegate)
-
-- (void)captureManager:(AVCamCaptureManager *)captureManager didFailWithError:(NSError *)error
-{
-    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
-                                                            message:[error localizedFailureReason]
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"OK button title")
-                                                  otherButtonTitles:nil];
-        [alertView show];
-        [alertView release];
-        if (_isScanViewEnable)
-        {
-            [_captureManager captureStillImage];
-        }
-    });
-}
-
-- (void)captureManagerRecordingBegan:(AVCamCaptureManager *)captureManager
-{
-//    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-//        [[self recordButton] setTitle:NSLocalizedString(@"Stop", @"Toggle recording button stop title")];
-//        [[self recordButton] setEnabled:YES];
-//    });
-}
-
-- (void)captureManagerRecordingFinished:(AVCamCaptureManager *)captureManager
-{
-//    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-//        [[self recordButton] setTitle:NSLocalizedString(@"Record", @"Toggle recording button record title")];
-//        [[self recordButton] setEnabled:YES];
-//    });
-}
-
-- (void)captureManagerStillImageCaptured:(AVCamCaptureManager *)captureManager
-{
-    CFRunLoopPerformBlock(CFRunLoopGetMain(), kCFRunLoopCommonModes, ^(void) {
-        UIImage * image = _captureManager.capturedImage;
-        
-        safeRelease(_points);
-        _points = [[NSMutableArray alloc] init];
-        
-        Decoder * decoder = [[Decoder alloc] init];
-        [decoder setDelegate:self];
-        [decoder setReaders:_readers];
-        [decoder decodeImage:image];
-    });
-}
-
-- (void)captureManagerDeviceConfigurationChanged:(AVCamCaptureManager *)captureManager
-{
-//	[self updateButtonStates];
 }
 
 @end
@@ -390,7 +291,7 @@
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
-    NSLog(@"captured");
+//    NSLog(@"captured");
     if (self.shouldDecode)
     {
         // Create a UIImage from the sample buffer data
@@ -400,9 +301,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             NSLog(@"nil");
         }else
         {
-            //        [((CustomView*)self.view) setImage:image];
             self.shouldDecode = NO;
-            [self decodeImage:image];
+            try {
+                [self decodeImage:image];
+            } catch (zxing::ReaderException * e)
+            {
+                NSLog(@"%@", [NSString stringWithUTF8String:e->what()]);
+            }        
         }
     }
 }
@@ -450,9 +355,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 -(void)decodeImage:(id)image
 {        
-    safeRelease(_points);
-    _points = [[NSMutableArray alloc] init];
-    [_decoder decodeImage:image];
+//    safeRelease(_points);
+//    _points = [[NSMutableArray alloc] init];
+    [_decoder decodeImage:image]; 
 }
 
 @end
