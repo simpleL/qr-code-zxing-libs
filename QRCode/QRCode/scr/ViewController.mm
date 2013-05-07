@@ -15,6 +15,7 @@
 #import "Utilities.h"
 #import "QRCodeGenerator.h"
 #import "ScanView.h"
+#import "QRCodeView.h"
 
 #import <zxing/ReaderException.h>
 
@@ -22,6 +23,20 @@
 #import <ImageIO/CGImageProperties.h>
 
 #import "AVCamCaptureManager.h"
+
+#define BUTTON_TAG_START_SCAN           1
+#define BUTTON_TAG_CANCEL_SCAN          2
+#define BUTTON_TAG_MY_INFO              3
+#define BUTTON_TAG_CONTACT_LIST         4
+#define BUTTON_TAG_MY_INFO_BACK         5
+#define BUTTON_TAG_MY_INFO_SAVE         6
+#define BUTTON_TAG_RESULT_CANCEL        7
+#define BUTTON_TAG_RESULT_SAVE          8
+#define BUTTON_TAG_CONTACT_INFO_BACK    9
+#define BUTTON_TAG_CONTACT_INFO_QRIMAGE 10
+#define BUTTON_TAG_QRCODE_BACK          11
+#define BUTTON_TAG_QRCODE_SWITCH        12
+
 
 @interface ViewController (AVCaptureVideoDataOutputSampleBufferDelegate)<AVCaptureVideoDataOutputSampleBufferDelegate>
 -(void)decodeImage:(UIImage*)image;
@@ -39,6 +54,7 @@
     if (self)
     {
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        _lastButtonPressedTag = 0;
         
         [self.view addSubview:_scanView];
         [_scanView setCenter:CGPointMake(160, -240)];
@@ -139,45 +155,55 @@
     [(CustomeImageView*)self.view setImage:image];
 }
 
--(void)cancelScan:(id)sender
+-(void)buttonClicked:(id)sender
 {
-    void (^runOutScanView)(void) = ^(void)
+    UIView * btn = (UIView*)sender;
+    // --------------------------START SCAN
+    if (btn.tag == BUTTON_TAG_START_SCAN)
     {
-        [_scanView setCenter:CGPointMake(160, -240)];
-    };
-    
-    void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
-    {
-        [_scanView setHidden:finished];
-        [_btnScan setHidden:!finished];
-    };
-    
-    [_btnScan setHidden:YES];
-    _isScanViewEnable = NO;
-    [_session stopRunning];
-    self.shouldDecode = NO;
-//    safeRelease(_decoder);
-    [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
-}
-
--(void)startScan:(id)sender
-{    
-    void (^flyInScanView)(void) = ^(void)
-    {
-        [_scanView setCenter:CGPointMake(160, 240)];
-    };
-    
-    void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
-    {
-//TODO: uncomment these
-//        _isScanViewEnable = YES;
-//        if (_isScanViewEnable)
-//        {           
-//            self.shouldDecode = YES;
-//        }
+        void (^flyInScanView)(void) = ^(void)
+        {
+            [_scanView setCenter:CGPointMake(160, 240)];
+        };
         
-        // -----------------------------create temporary result
+        void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
+        {
+//TODO: uncomment these
+//            _isScanViewEnable = YES;
+//            if (_isScanViewEnable)
+//            {
+//                self.shouldDecode = YES;
+//            }
+            
+            // -----------------------------create temporary result
 //TODO: remove the code below
+            void (^runOutScanView)(void) = ^(void)
+            {
+                [_scanView setCenter:CGPointMake(160, -240)];
+            };
+            
+            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
+            {
+                [_scanView setHidden:finished];
+                [_btnScan setEnabled:finished];
+            };
+            
+            [_btnScan setEnabled:NO];
+            _isScanViewEnable = NO;
+            [_session stopRunning];
+            self.shouldDecode = NO;
+            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+            
+            // ------------------------------end temporary
+        };        
+        [_session startRunning];
+        [_scanView setHidden:NO];
+        [UIView animateWithDuration:.4f animations:flyInScanView completion:finishFlyIn];
+    }
+    
+    // --------------------------CANCEL SCAN
+    if (btn.tag == BUTTON_TAG_CANCEL_SCAN)
+    {
         void (^runOutScanView)(void) = ^(void)
         {
             [_scanView setCenter:CGPointMake(160, -240)];
@@ -186,26 +212,21 @@
         void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
         {
             [_scanView setHidden:finished];
-            [_btnScan setHidden:!finished];
+            [_btnScan setEnabled:finished];
         };
         
-        [_btnScan setHidden:YES];
         _isScanViewEnable = NO;
         [_session stopRunning];
         self.shouldDecode = NO;
         [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
-        
-        // ------------------------------end temporary
-    };
-    // create new decoder
-//    safeRelease(_decoder);
-//    _decoder = [[Decoder alloc] init];
-//    [_decoder setDelegate:self];
-//    [_decoder setReaders:_readers];
+    }
     
-    [_session startRunning];
-    [_scanView setHidden:NO];
-    [UIView animateWithDuration:.4f animations:flyInScanView completion:finishFlyIn];
+    // --------------------------SAVE RESULT
+    
+    // --------------------------DISCARD RESULT
+    
+    // set last tag pressed button
+    _lastButtonPressedTag = btn.tag;
 }
 
 #pragma mark - Implements decoder delegate
@@ -225,10 +246,10 @@
     void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
     {
         [_scanView setHidden:finished];
-        [_btnScan setHidden:!finished];
+        [_btnScan setEnabled:!finished];
     };
     
-    [_btnScan setHidden:YES];
+    [_btnScan setEnabled:YES];
     _isScanViewEnable = NO;
     [_session stopRunning];
     self.shouldDecode = NO;

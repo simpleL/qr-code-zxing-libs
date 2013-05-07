@@ -15,6 +15,7 @@
 		630D0CD7173366C600AF74A3 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD6173366C600AF74A3 /* AssetsLibrary.framework */; };
 		630D0CD9173366CE00AF74A3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD8173366CE00AF74A3 /* ImageIO.framework */; };
 		630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630D0CDB1733694D00AF74A3 /* ScanView.m */; };
+		6351441A1739747600E2D1F8 /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635144191739747600E2D1F8 /* QRCodeView.m */; };
 		CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE0D41F71723D42700B5F315 /* Utilities.mm */; };
 		CE0D41FF1723F06400B5F315 /* Nguyen Ba Phuoc.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */; };
 		CE0D42121723F22700B5F315 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42021723F22700B5F315 /* bitstream.c */; };
@@ -111,6 +112,8 @@
 		630D0CD8173366CE00AF74A3 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		630D0CDA1733694D00AF74A3 /* ScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanView.h; sourceTree = "<group>"; };
 		630D0CDB1733694D00AF74A3 /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
+		635144181739747600E2D1F8 /* QRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
+		635144191739747600E2D1F8 /* QRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
 		CE0D41F61723D42700B5F315 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		CE0D41F71723D42700B5F315 /* Utilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utilities.mm; sourceTree = "<group>"; };
 		CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nguyen Ba Phuoc.png"; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				630D0CCA173365E200AF74A3 /* AVCamCaptureManager.mm */,
 				630D0CCB173365E200AF74A3 /* AVCamUtilities.h */,
 				630D0CCC173365E200AF74A3 /* AVCamUtilities.mm */,
+				635144181739747600E2D1F8 /* QRCodeView.h */,
+				635144191739747600E2D1F8 /* QRCodeView.m */,
 			);
 			path = scr;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				630D0CCD173365E200AF74A3 /* AVCamCaptureManager.mm in Sources */,
 				630D0CCE173365E200AF74A3 /* AVCamUtilities.mm in Sources */,
 				630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */,
+				6351441A1739747600E2D1F8 /* QRCodeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
