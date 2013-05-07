@@ -248,6 +248,7 @@ ZXingWidgetControllerCallback(Decoder* _decoder) : decoder(_decoder) {}
                              withObject:[decoderResult copy]
                           waitUntilDone:NO];
       [decoderResult release];
+        decoderResult = NULL;
       returnCode = YES;
     } else {
       [self performSelectorOnMainThread:@selector(failedToDecodeImage:)

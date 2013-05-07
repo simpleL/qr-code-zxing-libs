@@ -33,6 +33,7 @@
     BOOL                        _isScanViewEnable;
     
     AVCaptureSession            *_session;
+    UIImage * tem;
 }
 
 @property (nonatomic, retain) AVCaptureSession * session;
