@@ -61,6 +61,7 @@
 -(void)dealloc
 {
     safeRelease(_decoder);
+    safeRelease(_readers);
     [super dealloc];
 }
 
@@ -155,7 +156,7 @@
     _isScanViewEnable = NO;
     [_session stopRunning];
     self.shouldDecode = NO;
-    safeRelease(_decoder);
+//    safeRelease(_decoder);
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 
@@ -168,17 +169,39 @@
     
     void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
     {
-        _isScanViewEnable = YES;
-        if (_isScanViewEnable)
-        {           
-            self.shouldDecode = YES;
-        }
+//TODO: uncomment these
+//        _isScanViewEnable = YES;
+//        if (_isScanViewEnable)
+//        {           
+//            self.shouldDecode = YES;
+//        }
+        
+        // -----------------------------create temporary result
+//TODO: remove the code below
+        void (^runOutScanView)(void) = ^(void)
+        {
+            [_scanView setCenter:CGPointMake(160, -240)];
+        };
+        
+        void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
+        {
+            [_scanView setHidden:finished];
+            [_btnScan setHidden:!finished];
+        };
+        
+        [_btnScan setHidden:YES];
+        _isScanViewEnable = NO;
+        [_session stopRunning];
+        self.shouldDecode = NO;
+        [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+        
+        // ------------------------------end temporary
     };
     // create new decoder
-    safeRelease(_decoder);
-    _decoder = [[Decoder alloc] init];
-    [_decoder setDelegate:self];
-    [_decoder setReaders:_readers];
+//    safeRelease(_decoder);
+//    _decoder = [[Decoder alloc] init];
+//    [_decoder setDelegate:self];
+//    [_decoder setReaders:_readers];
     
     [_session startRunning];
     [_scanView setHidden:NO];
@@ -209,17 +232,17 @@
     _isScanViewEnable = NO;
     [_session stopRunning];
     self.shouldDecode = NO;
-    safeRelease(_decoder);
+//    safeRelease(_decoder);
     [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
 }
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
 {
     if (_isScanViewEnable)
     {
-        safeRelease(_decoder);
-        _decoder = [[Decoder alloc] init];
-        [_decoder setDelegate:self];
-        [_decoder setReaders:_readers];
+//        safeRelease(_decoder);
+//        _decoder = [[Decoder alloc] init];
+//        [_decoder setDelegate:self];
+//        [_decoder setReaders:_readers];
         self.shouldDecode = YES;
     }
 }
@@ -257,6 +280,8 @@
                                                                         error:&error];
     if (!input) {
         // Handling the error appropriately.
+        [session release];
+        return;
     }
     [session addInput:input];
     
@@ -284,6 +309,7 @@
     
     // Assign session to an ivar.
     [self setSession:session];
+    [session release];
 }
 
 // Delegate routine that is called when a sample buffer was written

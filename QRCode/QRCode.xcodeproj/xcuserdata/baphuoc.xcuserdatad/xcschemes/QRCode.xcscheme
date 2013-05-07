@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-               BuildableName = "QRCode.app"
+               BuildableName = "0160.app"
                BlueprintName = "QRCode"
                ReferencedContainer = "container:QRCode.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-            BuildableName = "QRCode.app"
+            BuildableName = "0160.app"
             BlueprintName = "QRCode"
             ReferencedContainer = "container:QRCode.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-            BuildableName = "QRCode.app"
+            BuildableName = "0160.app"
             BlueprintName = "QRCode"
             ReferencedContainer = "container:QRCode.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-            BuildableName = "QRCode.app"
+            BuildableName = "0160.app"
             BlueprintName = "QRCode"
             ReferencedContainer = "container:QRCode.xcodeproj">
          </BuildableReference>
