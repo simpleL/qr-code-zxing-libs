@@ -14,6 +14,7 @@
 @class AVCaptureVideoPreviewLayer;
 @class AVCaptureSession;
 @class Decoder;
+@class QRCodeView;
 
 @interface ViewController : UIViewController<DecoderDelegate>
 {
@@ -21,19 +22,46 @@
     NSMutableArray      *_points;
     Decoder             *_decoder;
     
-    IBOutlet UIButton       * _btnStartDecode;
-    IBOutlet UIButton       * _btnStartEncode;
-    IBOutlet UITextView     * _textView;
-    IBOutlet UIImageView    * _imageView;
+    int      _lastButtonPressedTag;
     
+    // main view
+    IBOutlet UITextView         *_textView; // this will not needed any more
+    IBOutlet UIBarButtonItem    *_btnScan;
+    IBOutlet UIBarButtonItem    *_btnMyInfos;
+    IBOutlet UIBarButtonItem    *_btnContactList;
     
-    IBOutlet UIButton           * _btnScan;
-    IBOutlet ScanView           * _scanView;
-    IBOutlet UIBarButtonItem    * _btnCancel;
+    // my informations view
+    IBOutlet UIView             *_myInfoView;
+    IBOutlet UIBarButtonItem    *_btnMyInfoBack;
+    IBOutlet UIBarButtonItem    *_btnMyInfoSave;
+    
+    // Scan view
+    IBOutlet ScanView           *_scanView;
+    IBOutlet UIBarButtonItem    *_btnCancel;
     BOOL                        _isScanViewEnable;
     
+    // scan result view
+    IBOutlet UIView             *_scanResultView;
+    IBOutlet UIBarButtonItem    *_btnScanResultCancel;
+    IBOutlet UIBarButtonItem    *_btnScanResultSave;
+    
+    // contact info view
+    IBOutlet UIView             *_contactInfoView;
+    IBOutlet UIBarButtonItem    *_btnContactInfoBack;
+    IBOutlet UIBarButtonItem    *_btnContactInfoQRImage;
+    IBOutlet UITableView        *_tblContactInfo;
+    
+    // QRCode view
+    IBOutlet QRCodeView         *_qrcodeView;
+    IBOutlet UIBarButtonItem    *_btnQRCodeBack;
+    IBOutlet UIBarButtonItem    *_btnQRCodeSwitch;
+    
+    // contact list view
+    IBOutlet UIView             *_contactListView;
+    IBOutlet UISearchBar        *_serBarContactListSearch;
+    
+    
     AVCaptureSession            *_session;
-    UIImage * tem;
 }
 
 @property (nonatomic, retain) AVCaptureSession * session;
@@ -42,10 +70,5 @@
 @property (nonatomic,retain) AVCamCaptureManager *captureManager;
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
-
--(IBAction)startDecode:(id)sender;
--(IBAction)startEncode:(id)sender;
--(IBAction)cancelScan:(id)sender;
--(IBAction)startScan:(id)sender;
-
+-(IBAction)buttonClicked:(id)sender;
 @end
