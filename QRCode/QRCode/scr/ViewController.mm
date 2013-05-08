@@ -61,7 +61,8 @@ typedef enum
 @end
 
 @interface ViewController (listContactView)<UITableViewDataSource, UISearchBarDelegate>
-
+-(void)initGesture;
+-(void)swipeGesture;
 @end
 
 #pragma mark - IMPLEMENTATION
@@ -80,6 +81,7 @@ typedef enum
         screenH = [[UIScreen mainScreen] bounds].size.height;
         _lastButtonPressedTag = 0;
         [self preloadHUD];
+        [self initGesture];
         _decoder = nil;
         _points = nil;
         // Do any additional setup after loading the view, typically from a nib.
@@ -549,5 +551,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 @implementation ViewController (listContactView)
 
+-(void)initGesture
+{
+    _swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture)];
+    [self.view addGestureRecognizer:_swipe];
+}
+
+-(void)swipeGesture
+{
+    [self startFlyOutTo:FlyDirectionRight view:_contactListView completed:nil];
+}
 
 @end
