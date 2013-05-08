@@ -38,13 +38,35 @@
 #define BUTTON_TAG_QRCODE_SWITCH        12
 
 
+typedef enum
+{
+    FlyDirectionLeft,
+    FlyDirectionRight,
+    FlyDirectionTop,
+    FlyDirectionBottom
+}FlyDirection;
+#define FLY_FINISHED void (^)(BOOL finished)
+
+
+#pragma mark - PROTOTYPE DECLARATION
 @interface ViewController (AVCaptureVideoDataOutputSampleBufferDelegate)<AVCaptureVideoDataOutputSampleBufferDelegate>
 -(void)decodeImage:(UIImage*)image;
 - (void)setupCaptureSession;
 @end
 
-@implementation ViewController
+@interface ViewController (privateMethods)
+-(void)preloadHUD;
+-(void)startFlyIn:(UIView*)theView  completed:(FLY_FINISHED)completion;
+-(void)startFlyOutTo:(FlyDirection)direction view:(UIView*)theView  completed:(FLY_FINISHED)completion;
+@end
 
+@interface ViewController (listContactView)<UITableViewDataSource, UISearchBarDelegate>
+
+@end
+
+#pragma mark - IMPLEMENTATION
+@implementation ViewController
+@synthesize screenH, screenW;
 @synthesize shouldDecode;
 @synthesize session = _session;
 
@@ -54,11 +76,10 @@
     if (self)
     {
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        screenW = [[UIScreen mainScreen] bounds].size.width;
+        screenH = [[UIScreen mainScreen] bounds].size.height;
         _lastButtonPressedTag = 0;
-        
-        [self.view addSubview:_scanView];
-        [_scanView setCenter:CGPointMake(160, -240)];
-        _isScanViewEnable = NO;
+        [self preloadHUD];
         _decoder = nil;
         _points = nil;
         // Do any additional setup after loading the view, typically from a nib.
@@ -158,57 +179,46 @@
 -(void)buttonClicked:(id)sender
 {
     UIView * btn = (UIView*)sender;
-    // --------------------------START SCAN
+    
     if (btn.tag == BUTTON_TAG_START_SCAN)
-    {
-        void (^flyInScanView)(void) = ^(void)
-        {
-            [_scanView setCenter:CGPointMake(160, 240)];
-        };
-        
+    {        
         void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
         {
 //TODO: uncomment these
-//            _isScanViewEnable = YES;
-//            if (_isScanViewEnable)
+            _isScanViewEnable = YES;
+            if (_isScanViewEnable)
+            {
+                self.shouldDecode = YES;
+            }
+            
+//            // -----------------------------create temporary result
+////TODO: remove the code below
+//            void (^runOutScanView)(void) = ^(void)
 //            {
-//                self.shouldDecode = YES;
-//            }
-            
-            // -----------------------------create temporary result
-//TODO: remove the code below
-            void (^runOutScanView)(void) = ^(void)
-            {
-                [_scanView setCenter:CGPointMake(160, -240)];
-            };
-            
-            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
-            {
-                [_scanView setHidden:finished];
-                [_btnScan setEnabled:finished];
-            };
-            
-            [_btnScan setEnabled:NO];
-            _isScanViewEnable = NO;
-            [_session stopRunning];
-            self.shouldDecode = NO;
-            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
-            
-            // ------------------------------end temporary
-        };        
+//                [_scanView setCenter:CGPointMake(160, -240)];
+//            };
+//            
+//            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
+//            {
+//                [_scanView setHidden:finished];
+//                [_btnScan setEnabled:finished];
+//            };
+//            
+//            [_btnScan setEnabled:NO];
+//            _isScanViewEnable = NO;
+//            [_session stopRunning];
+//            self.shouldDecode = NO;
+//            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+//
+//            // ------------------------------end temporary
+        };
         [_session startRunning];
-        [_scanView setHidden:NO];
-        [UIView animateWithDuration:.4f animations:flyInScanView completion:finishFlyIn];
+        [_scanView setHidden:NO];        
+        [self startFlyIn:_scanView completed:finishFlyIn];
     }
     
-    // --------------------------CANCEL SCAN
     if (btn.tag == BUTTON_TAG_CANCEL_SCAN)
-    {
-        void (^runOutScanView)(void) = ^(void)
-        {
-            [_scanView setCenter:CGPointMake(160, -240)];
-        };
-        
+    {        
         void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
         {
             [_scanView setHidden:finished];
@@ -218,44 +228,87 @@
         _isScanViewEnable = NO;
         [_session stopRunning];
         self.shouldDecode = NO;
-        [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+        [self startFlyOutTo:FlyDirectionTop view:_scanView completed:finishRunOut];
     }
     
-    // --------------------------SAVE RESULT
+    if (btn.tag == BUTTON_TAG_CONTACT_INFO_BACK)
+    {
+        
+    }
     
-    // --------------------------DISCARD RESULT
+    if (btn.tag == BUTTON_TAG_CONTACT_INFO_QRIMAGE)
+    {
+        
+    }
+    
+    if (btn.tag == BUTTON_TAG_CONTACT_LIST)
+    {
+        [self startFlyIn:_contactListView completed:nil];
+    }
+    
+    if (btn.tag == BUTTON_TAG_MY_INFO)
+    {                
+        [self startFlyIn:_myInfoView completed:nil];
+    }
+    
+    if (btn.tag == BUTTON_TAG_MY_INFO_BACK)
+    {
+        [self startFlyOutTo:FlyDirectionLeft view:_myInfoView completed:nil];
+    }
+    
+    if (btn.tag == BUTTON_TAG_MY_INFO_SAVE)
+    {
+        // this function do nothing
+//        [self startFlyIn:_contactInfoView completed:nil];
+    }
+    
+    if (btn.tag == BUTTON_TAG_QRCODE_BACK)
+    {
+        
+    }
+    
+    if (btn.tag == BUTTON_TAG_QRCODE_SWITCH)
+    {
+        
+    }
+    
+    if (btn.tag == BUTTON_TAG_RESULT_CANCEL)
+    {
+        
+    }
+    
+    if (btn.tag == BUTTON_TAG_RESULT_SAVE)
+    {
+        
+    }
     
     // set last tag pressed button
     _lastButtonPressedTag = btn.tag;
 }
 
-#pragma mark - Implements decoder delegate
+#pragma mark - Decoder delegate implementation
 - (void)decoder:(Decoder *)decoder willDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset
 {
 //    NSLog(@"will decode image");
 }
+
 - (void)decoder:(Decoder *)decoder didDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset withResult:(TwoDDecoderResult *)result
 {
     [_textView setText:[result text]];
     
-    void (^runOutScanView)(void) = ^(void)
-    {
-        [_scanView setCenter:CGPointMake(160, -240)];
-    };
-    
     void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
     {
         [_scanView setHidden:finished];
-        [_btnScan setEnabled:!finished];
+        [_btnScan setEnabled:finished];
     };
     
-    [_btnScan setEnabled:YES];
+    [_btnScan setEnabled:NO];
     _isScanViewEnable = NO;
     [_session stopRunning];
     self.shouldDecode = NO;
-//    safeRelease(_decoder);
-    [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+    [self startFlyOutTo:FlyDirectionTop view:_scanView completed:finishRunOut];
 }
+
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
 {
     if (_isScanViewEnable)
@@ -267,6 +320,7 @@
         self.shouldDecode = YES;
     }
 }
+
 - (void)decoder:(Decoder *)decoder foundPossibleResultPoint:(CGPoint)point
 {
 //    NSLog(@"found possible result point after decoding image");
@@ -277,6 +331,7 @@
 @end
 
 
+#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate implementation
 @implementation ViewController (AVCaptureVideoDataOutputSampleBufferDelegate)
 
 // Create and configure a capture session and start it running
@@ -409,3 +464,90 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 @end
 
+
+@implementation ViewController (privateMethods)
+
+-(void)startFlyIn:(UIView *)theView completed:(void (^)(BOOL))completion
+{
+    void (^flyIn)(void) = ^(void)
+    {        
+        [theView setCenter:CGPointMake(screenW/2, screenH/2)];
+        [theView setAlpha:1];
+    };
+    [UIView animateWithDuration:.4f animations:flyIn completion:completion];
+}
+
+-(void)startFlyOutTo:(FlyDirection)direction view:(UIView *)theView completed:(void (^)(BOOL))completion
+{
+    void (^flyOut)(void) = ^(void)
+    {
+        switch (direction) {
+            case FlyDirectionBottom:
+            {
+                [theView setCenter:CGPointMake(screenW/2, 3*screenH/2)];
+            }
+                break;
+            case FlyDirectionLeft:
+            {
+                [theView setCenter:CGPointMake(-screenW/2, screenH/2)];
+            }
+                break;
+            case FlyDirectionRight:
+            {
+                [theView setCenter:CGPointMake(3*screenW/2, screenH/2)];
+            }
+                break;
+            case FlyDirectionTop:
+            {
+                [theView setCenter:CGPointMake(screenW/2, -screenH/2)];
+            }
+                break;
+            default:
+                break;
+        }
+        [theView setAlpha:0];
+    };
+    [UIView animateWithDuration:.4f animations:flyOut completion:completion];
+}
+
+-(void)preloadHUD
+{    
+    // my info view
+    [self.view addSubview:_myInfoView];
+    [_myInfoView setCenter:CGPointMake(-screenW/2, screenH/2)];
+    [_myInfoView setAlpha:0];
+    
+    // scan view
+    [self.view addSubview:_scanView];
+    [_scanView setCenter:CGPointMake(screenW/2, -screenH/2)];
+    [_scanView setAlpha:0];
+    _isScanViewEnable = NO;
+    
+    // scan result view
+    [self.view addSubview:_scanResultView];
+    [_scanResultView setCenter:CGPointMake(screenW/2, 3*screenH/2)];
+    [_scanResultView setAlpha:0];
+    
+    // contact info view
+    [self.view addSubview:_contactInfoView];
+    [_contactInfoView setCenter:CGPointMake(3*screenW/2, screenH/2)];
+    [_contactInfoView setAlpha:0];
+    
+    // QRCode view
+    [self.view addSubview:_qrcodeView];
+    [_qrcodeView setCenter:CGPointMake(3*screenW/2, screenH/2)];
+    [_qrcodeView setAlpha:0];
+    
+    // contact list view
+    [self.view addSubview:_contactListView];
+    [_contactListView setCenter:CGPointMake(3*screenW/2, screenH/2)];
+    [_contactListView setAlpha:0];
+}
+
+@end
+
+
+@implementation ViewController (listContactView)
+
+
+@end
