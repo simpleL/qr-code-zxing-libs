@@ -64,6 +64,7 @@
     AVCaptureSession            *_session;
 }
 
+@property (readonly) float screenW, screenH;
 @property (nonatomic, retain) AVCaptureSession * session;
 @property BOOL shouldDecode;
 
