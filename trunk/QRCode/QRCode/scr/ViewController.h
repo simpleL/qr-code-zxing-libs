@@ -57,9 +57,9 @@
     IBOutlet UIBarButtonItem    *_btnQRCodeSwitch;
     
     // contact list view
-    IBOutlet UIView             *_contactListView;
-    IBOutlet UISearchBar        *_serBarContactListSearch;
-    
+    IBOutlet UIView                 *_contactListView;
+    IBOutlet UISearchBar            *_serBarContactListSearch;
+    IBOutlet UIGestureRecognizer    *_swipe;
     
     AVCaptureSession            *_session;
 }
