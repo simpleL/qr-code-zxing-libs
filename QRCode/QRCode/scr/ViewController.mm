@@ -37,6 +37,9 @@
 #define BUTTON_TAG_QRCODE_BACK          11
 #define BUTTON_TAG_QRCODE_SWITCH        12
 
+#define kIndex @"INDEX"
+#define kName  @"NAME"
+
 
 typedef enum
 {
@@ -45,7 +48,7 @@ typedef enum
     FlyDirectionTop,
     FlyDirectionBottom
 }FlyDirection;
-#define FLY_FINISHED void (^)(BOOL finished)
+#define FLY_FINISHED void(^)(BOOL)
 
 
 #pragma mark - PROTOTYPE DECLARATION
@@ -60,9 +63,10 @@ typedef enum
 -(void)startFlyOutTo:(FlyDirection)direction view:(UIView*)theView  completed:(FLY_FINISHED)completion;
 @end
 
-@interface ViewController (listContactView)<UITableViewDataSource, UISearchBarDelegate>
+@interface ViewController (listContactView)<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 -(void)initGesture;
 -(void)swipeGesture;
+-(NSArray*)searchWith:(NSString*)searchString;
 @end
 
 #pragma mark - IMPLEMENTATION
@@ -84,6 +88,10 @@ typedef enum
         [self initGesture];
         _decoder = nil;
         _points = nil;
+        
+        _searchData = nil;
+        _contactsData = nil;
+        
         // Do any additional setup after loading the view, typically from a nib.
         QRCodeReader * reader = [[QRCodeReader alloc] init];
         _readers = [[NSSet alloc] initWithObjects:reader,nil];
@@ -187,32 +195,35 @@ typedef enum
         void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
         {
 //TODO: uncomment these
-            _isScanViewEnable = YES;
-            if (_isScanViewEnable)
-            {
-                self.shouldDecode = YES;
-            }
+//            _isScanViewEnable = YES;
+//            if (_isScanViewEnable)
+//            {
+//                self.shouldDecode = YES;
+//            }
             
-//            // -----------------------------create temporary result
-////TODO: remove the code below
-//            void (^runOutScanView)(void) = ^(void)
-//            {
-//                [_scanView setCenter:CGPointMake(160, -240)];
-//            };
-//            
-//            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
-//            {
-//                [_scanView setHidden:finished];
-//                [_btnScan setEnabled:finished];
-//            };
-//            
-//            [_btnScan setEnabled:NO];
-//            _isScanViewEnable = NO;
-//            [_session stopRunning];
-//            self.shouldDecode = NO;
-//            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
-//
-//            // ------------------------------end temporary
+            // -----------------------------create temporary result
+//TODO: remove the code below
+            void (^runOutScanView)(void) = ^(void)
+            {
+                [_scanView setCenter:CGPointMake(160, -240)];
+            };
+            
+            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
+            {
+                [_scanView setHidden:finished];
+                [_btnScan setEnabled:finished];
+            };
+            
+            [_btnScan setEnabled:NO];
+            _isScanViewEnable = NO;
+            [_session stopRunning];
+            self.shouldDecode = NO;
+            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+
+            
+            [self startFlyIn:_scanResultView completed:nil];
+            
+            // ------------------------------end temporary
         };
         [_session startRunning];
         [_scanView setHidden:NO];        
@@ -235,17 +246,30 @@ typedef enum
     
     if (btn.tag == BUTTON_TAG_CONTACT_INFO_BACK)
     {
+        void (^finished)(BOOL)  = ^(BOOL finished){
+            if (_contactListView.alpha > 0)
+            {
+                [self.searchDisplayController.searchResultsTableView setHidden:NO];
+            }        
+        };       
         
+        [self startFlyOutTo:FlyDirectionRight view:_contactInfoView completed:finished];
     }
     
     if (btn.tag == BUTTON_TAG_CONTACT_INFO_QRIMAGE)
     {
-        
+        [self startFlyIn:_qrcodeView completed:nil];
     }
     
     if (btn.tag == BUTTON_TAG_CONTACT_LIST)
     {
-        [self startFlyIn:_contactListView completed:nil];
+        void (^finished)(BOOL)  = ^(BOOL finished){
+            if (_contactListView.alpha > 0)
+            {
+                [self.searchDisplayController.searchResultsTableView setHidden:NO];
+            }
+        };
+        [self startFlyIn:_contactListView completed:finished];
     }
     
     if (btn.tag == BUTTON_TAG_MY_INFO)
@@ -266,7 +290,7 @@ typedef enum
     
     if (btn.tag == BUTTON_TAG_QRCODE_BACK)
     {
-        
+        [self startFlyOutTo:FlyDirectionRight view:_qrcodeView completed:nil];
     }
     
     if (btn.tag == BUTTON_TAG_QRCODE_SWITCH)
@@ -276,12 +300,16 @@ typedef enum
     
     if (btn.tag == BUTTON_TAG_RESULT_CANCEL)
     {
-        
+        [self startFlyOutTo:FlyDirectionBottom view:_scanResultView completed:nil];
     }
     
     if (btn.tag == BUTTON_TAG_RESULT_SAVE)
     {
-        
+        void (^finished)(BOOL)  = ^(BOOL finished){
+            //TODO: load scanned contact info to the view
+            [self startFlyIn:_contactInfoView completed:nil];
+        };
+        [self startFlyOutTo:FlyDirectionBottom view:_scanResultView completed:finished];
     }
     
     // set last tag pressed button
@@ -476,6 +504,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [theView setCenter:CGPointMake(screenW/2, screenH/2)];
         [theView setAlpha:1];
     };
+    [theView setHidden:NO];
     [UIView animateWithDuration:.4f animations:flyIn completion:completion];
 }
 
@@ -507,9 +536,19 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             default:
                 break;
         }
-        [theView setAlpha:0];
+        [theView setAlpha:0];        
+    };    
+    
+    void(^completed)(BOOL) = ^(BOOL finished)
+    {
+        [theView setHidden:YES];
+        if (completion)
+        {
+            completion(finished);
+        }        
     };
-    [UIView animateWithDuration:.4f animations:flyOut completion:completion];
+    
+    [UIView animateWithDuration:.4f animations:flyOut completion:completed];
 }
 
 -(void)preloadHUD
@@ -530,6 +569,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [_scanResultView setCenter:CGPointMake(screenW/2, 3*screenH/2)];
     [_scanResultView setAlpha:0];
     
+    // contact list view
+    [self.view addSubview:_contactListView];
+    [_contactListView setCenter:CGPointMake(3*screenW/2, screenH/2)];
+    [_contactListView setAlpha:0];
+    
     // contact info view
     [self.view addSubview:_contactInfoView];
     [_contactInfoView setCenter:CGPointMake(3*screenW/2, screenH/2)];
@@ -539,11 +583,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.view addSubview:_qrcodeView];
     [_qrcodeView setCenter:CGPointMake(3*screenW/2, screenH/2)];
     [_qrcodeView setAlpha:0];
-    
-    // contact list view
-    [self.view addSubview:_contactListView];
-    [_contactListView setCenter:CGPointMake(3*screenW/2, screenH/2)];
-    [_contactListView setAlpha:0];
 }
 
 @end
@@ -560,6 +599,79 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 -(void)swipeGesture
 {
     [self startFlyOutTo:FlyDirectionRight view:_contactListView completed:nil];
+    [self.searchDisplayController.searchResultsTableView setHidden:YES];
+    [self.searchDisplayController.searchBar resignFirstResponder];
+}
+
+-(NSArray *)searchWith:(NSString *)searchString
+{  
+    NSMutableArray * results = [[[NSMutableArray alloc] init] autorelease];
+    
+    // create temporary results
+    for (int i=0; i<searchString.length; i++)
+    {
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:[NSNumber numberWithInt:i] forKey:kIndex];
+        [dict setObject:[NSString stringWithFormat:@"name %d", i] forKey:kName];
+        [results addObject:dict];
+    }
+    
+    return results;
+}
+
+#pragma mark - search bar controller delegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (_searchData)
+    {
+        return _searchData.count;
+    }else if(_contactsData)
+    {
+        return _contactsData.count;
+    }
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_searchData)
+    {
+        // Dequeue or create a cell of the appropriate type.
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchResultIdentifier"];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchResultIdentifier"] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        // Configure the cell.
+        NSDictionary * info = [_searchData objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[info objectForKey:kName]];
+        return cell;
+    }else if(_contactsData)
+    {
+        return nil;
+    }
+    return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.searchDisplayController.searchBar resignFirstResponder];
+    [self.searchDisplayController.searchResultsTableView setHidden:YES];
+    [self startFlyIn:_contactInfoView completed:nil];
+    //TODO: load contact info into new view
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    safeRelease(_searchData);
+    _searchData = [[self searchWith:searchString] retain];
+    return YES;
 }
 
 @end
