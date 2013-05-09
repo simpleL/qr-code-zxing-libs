@@ -63,7 +63,7 @@ typedef enum
 -(void)startFlyOutTo:(FlyDirection)direction view:(UIView*)theView  completed:(FLY_FINISHED)completion;
 @end
 
-@interface ViewController (listContactView)<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController (listContactView)<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 -(void)initGesture;
 -(void)swipeGesture;
 -(NSArray*)searchWith:(NSString*)searchString;
@@ -606,7 +606,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 -(NSArray *)searchWith:(NSString *)searchString
 {  
     NSMutableArray * results = [[[NSMutableArray alloc] init] autorelease];
-    
+            
     // create temporary results
     for (int i=0; i<searchString.length; i++)
     {
@@ -616,6 +616,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [results addObject:dict];
     }
     
+    //nothing of searching, just return nil
+    if (results.count == 0)
+    {
+        return nil;
+    }
     return results;
 }
 
@@ -672,6 +677,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     safeRelease(_searchData);
     _searchData = [[self searchWith:searchString] retain];
     return YES;
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    safeRelease(_searchData);
 }
 
 @end
