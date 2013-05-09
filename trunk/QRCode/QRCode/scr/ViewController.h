@@ -61,6 +61,10 @@
     IBOutlet UISearchBar            *_serBarContactListSearch;
     IBOutlet UIGestureRecognizer    *_swipe;
     
+    // list name of contacts
+    NSArray                  *_searchData;    
+    NSMutableDictionary             *_contactsData;
+    
     AVCaptureSession            *_session;
 }
 
