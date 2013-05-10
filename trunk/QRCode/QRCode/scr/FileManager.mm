@@ -10,23 +10,34 @@
 
 @implementation FileManager
 
--(id)init
+-(NSMutableDictionary *)loadFromPath:(NSString*)path
 {
-    self  = [super init];
-    
-    return self;
+    NSMutableDictionary * dict = nil;
+    if (path)
+    {
+        dict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
+    }    
+    return dict;
 }
 
--(NSArray *)loadFromPath:(NSString*)path extension:(NSString*)ext
+-(void)writeDictToFile:(NSDictionary*)dict atPath:(NSString*)path andName:(NSString*)name
 {
-    NSMutableArray * array = [[[NSMutableArray alloc] init] autorelease];
-    return array;
+    if (dict && path && name)
+    {
+        [dict writeToFile:[NSString stringWithFormat:@"%@\\%@", path, name] atomically:NO];
+    }
 }
 
-+(NSArray *)loadFromPath:(NSString*)path extension:(NSString*)ext
++(NSMutableDictionary *)loadFromPath:(NSString*)path
 {
     FileManager * fileManager = [[[FileManager alloc] init] autorelease];
-    return [fileManager loadFromPath:path extension:ext];
+    return [fileManager loadFromPath:path];
+}
+
++(void)writeDictToFile:(NSDictionary *)dict atPath:(NSString *)path andName:(NSString *)name
+{
+    FileManager * fileManager = [[[FileManager alloc] init] autorelease];
+    [fileManager writeDictToFile:dict atPath:path andName:name];
 }
 
 @end

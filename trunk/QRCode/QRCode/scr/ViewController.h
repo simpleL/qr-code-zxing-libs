@@ -44,6 +44,8 @@
     IBOutlet UIView             *_scanResultView;
     IBOutlet UIBarButtonItem    *_btnScanResultCancel;
     IBOutlet UIBarButtonItem    *_btnScanResultSave;
+    IBOutlet UIImageView        *_imgScanResultCapturedImage;
+    IBOutlet UITextView         *_txtScanResultText;
     
     // contact info view
     IBOutlet UIView             *_contactInfoView;
