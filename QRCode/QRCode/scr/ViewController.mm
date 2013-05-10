@@ -40,6 +40,12 @@
 #define kIndex @"INDEX"
 #define kName  @"NAME"
 
+#define kFullName       @"FullName"
+#define kAddress        @"Address"
+#define kPhoneNumber    @"PhoneNumber"
+#define kEmail          @"Email"
+#define kPersonalSite   @"PersonalSite"
+
 
 typedef enum
 {
@@ -61,6 +67,8 @@ typedef enum
 -(void)preloadHUD;
 -(void)startFlyIn:(UIView*)theView  completed:(FLY_FINISHED)completion;
 -(void)startFlyOutTo:(FlyDirection)direction view:(UIView*)theView  completed:(FLY_FINISHED)completion;
+-(void)setDataToResultView:(NSMutableDictionary*)dict andImage:(UIImage*)image;
+-(NSString*)remove:(NSString*)s1 from:(NSString*)s2;
 @end
 
 @interface ViewController (listContactView)<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -149,6 +157,7 @@ typedef enum
     
 }
 
+
 #pragma mark - override methods
 // disable autorotation
 -(BOOL)shouldAutorotate
@@ -174,16 +183,43 @@ typedef enum
     [decoder decodeImage:image];
 }
 
--(void)startEncode:(id)sender
+-(UIImage*)startEncodeTemporaryInfo
 {
-    UIImage * image = [QRCodeGenerator qrImageForString:[NSString stringWithFormat:@"%@", [_textView text]] imageSize:200];
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"Nguyen van A" forKey:kFullName];
+    [dict setObject:@"Trinh Dinh Thao" forKey:kAddress];
+    [dict setObject:@"01689971684" forKey:kPhoneNumber];
+    [dict setObject:@"common.start@gmail.com" forKey:kEmail];
+    [dict setObject:@"baphuoc.com.vn" forKey:kPersonalSite];
     
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.jpg"];
+    NSString * txtData = [NSString stringWithFormat:@"%@", dict];
+    txtData = [self remove:@"\n" from:txtData];
     
-    NSData *imgData = UIImageJPEGRepresentation(image, 1);
-    [imgData writeToFile:docPath atomically:NO];
-    [(CustomeImageView*)self.view setImage:image];
+    NSArray * arr = [txtData componentsSeparatedByString:@"\""];
+    
+    txtData = @"";
+    for (int i=0; i<arr.count; i++)
+    {        
+        if (i%2==0)
+        {
+            txtData = [NSString stringWithFormat:@"%@%@", txtData, [self remove:@" " from:[arr objectAtIndex:i]]];
+        }else
+        {
+            txtData = [NSString stringWithFormat:@"%@\"%@\"", txtData, [arr objectAtIndex:i]];
+        }
+    }   
+    
+    
+    NSData * data = UIImageJPEGRepresentation([QRCodeGenerator qrImageForString:txtData imageSize:240], 1);
+    return [UIImage imageWithData:data];
+    
+//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.plist"];
+//    [dict writeToFile:docPath atomically:NO];
+    
+//    NSData *imgData = UIImageJPEGRepresentation(image, 1);
+//    [imgData writeToFile:docPath atomically:NO];
+//    [(CustomeImageView*)self.view setImage:image];
 }
 
 -(void)buttonClicked:(id)sender
@@ -212,6 +248,9 @@ typedef enum
             {
                 [_scanView setHidden:finished];
                 [_btnScan setEnabled:finished];
+                UIImage * image = [self startEncodeTemporaryInfo];
+                [self decodeImage:image];
+//                [_imgScanResultCapturedImage setImage:image];
             };
             
             [_btnScan setEnabled:NO];
@@ -323,9 +362,7 @@ typedef enum
 }
 
 - (void)decoder:(Decoder *)decoder didDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset withResult:(TwoDDecoderResult *)result
-{
-    [_textView setText:[result text]];
-    
+{    
     void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
     {
         [_scanView setHidden:finished];
@@ -337,6 +374,18 @@ typedef enum
     [_session stopRunning];
     self.shouldDecode = NO;
     [self startFlyOutTo:FlyDirectionTop view:_scanView completed:finishRunOut];
+    //TODO: convert result into dictionary and set it to scanResult view
+//    NSError * e;
+//    NSData * data = [result.text dataUsingEncoding:NSUTF8StringEncoding];
+//    NSMutableDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.plist"];
+    [result.text writeToFile:docPath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithContentsOfFile:docPath];
+    [self setDataToResultView:dict andImage:image];
+    
+    [self startFlyIn:_scanResultView completed:nil];
 }
 
 - (void)decoder:(Decoder *)decoder failedToDecodeImage:(UIImage *)image usingSubset:(UIImage *)subset reason:(NSString *)reason
@@ -583,6 +632,27 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.view addSubview:_qrcodeView];
     [_qrcodeView setCenter:CGPointMake(3*screenW/2, screenH/2)];
     [_qrcodeView setAlpha:0];
+}
+
+-(void)setDataToResultView:(NSMutableDictionary*)dict andImage:(UIImage*)image
+{
+    //TODO: set dict informations to scan result view
+    [_imgScanResultCapturedImage setImage:image];
+    [_txtScanResultText setText:[NSString stringWithFormat:@"%@", dict]];
+}
+
+-(NSString *)remove:(NSString *)s1 from:(NSString *)s2
+{
+    NSArray * arr = [s2 componentsSeparatedByString:s1];
+    NSString * sr = @"";
+    for (NSString * i in arr)
+    {
+        if (![i isEqualToString:@" "])
+        {
+            sr = [NSString stringWithFormat:@"%@%@", sr, i];
+        }
+    }
+    return sr;
 }
 
 @end

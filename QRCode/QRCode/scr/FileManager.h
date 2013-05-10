@@ -10,7 +10,9 @@
 
 @interface FileManager : NSObject
 
--(id)init;
--(NSArray*)loadFromPath:(NSString*)path extension:(NSString*)ext;
-+(NSArray*)loadFromPath:(NSString*)path extension:(NSString*)ext;
+-(NSMutableDictionary*)loadFromPath:(NSString*)path;
+-(void)writeDictToFile:(NSDictionary*)dict atPath:(NSString*)path andName:(NSString*)name;
+
++(NSMutableDictionary*)loadFromPath:(NSString*)path;
++(void)writeDictToFile:(NSDictionary*)dict atPath:(NSString*)path andName:(NSString*)name;
 @end
