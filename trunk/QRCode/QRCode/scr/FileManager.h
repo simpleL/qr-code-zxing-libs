@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#define kContactInfo    @"Info"
+#define kImageName      @"ImageName"
+#define kContactsData   @"ContactsData"
+
 @interface FileManager : NSObject
 
--(NSMutableDictionary*)loadFromPath:(NSString*)path;
--(void)writeDictToFile:(NSDictionary*)dict atPath:(NSString*)path andName:(NSString*)name;
++(NSString*)getDocumentPath;
++(NSString*)saveCapturedImage:(UIImage*)image;
++(void)saveDictionary:(NSDictionary*)dict;
++(NSMutableArray*)getContactsData;
 
-+(NSMutableDictionary*)loadFromPath:(NSString*)path;
-+(void)writeDictToFile:(NSDictionary*)dict atPath:(NSString*)path andName:(NSString*)name;
 @end
