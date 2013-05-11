@@ -8,36 +8,53 @@
 
 #import "FileManager.h"
 
+#define kContactsFileListName   @"myContactsList.plist"
+
 @implementation FileManager
 
--(NSMutableDictionary *)loadFromPath:(NSString*)path
++(NSString *)getDocumentPath
 {
-    NSMutableDictionary * dict = nil;
-    if (path)
-    {
-        dict = [[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
-    }    
-    return dict;
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
+    return [paths objectAtIndex:0];
 }
 
--(void)writeDictToFile:(NSDictionary*)dict atPath:(NSString*)path andName:(NSString*)name
+// return name of image
++(NSString*)saveCapturedImage:(UIImage *)image
 {
-    if (dict && path && name)
+    if (image==nil)
     {
-        [dict writeToFile:[NSString stringWithFormat:@"%@\\%@", path, name] atomically:NO];
+        return nil;
+    }
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Australia/Sydney"]];
+    
+    NSString * fileName = [NSString stringWithFormat:@"%@.jpeg",[formatter stringFromDate:now]];
+    NSString * docPath = [[FileManager getDocumentPath] stringByAppendingPathComponent:fileName];
+    [UIImageJPEGRepresentation(image, 1) writeToFile:docPath atomically:NO];
+    return fileName;
+}
+
++(void)saveDictionary:(NSDictionary *)dict
+{
+    if (dict)
+    {
+        NSString * docPath = [[FileManager getDocumentPath] stringByAppendingPathComponent:kContactsFileListName];
+        [dict writeToFile:docPath atomically:NO];
     }
 }
 
-+(NSMutableDictionary *)loadFromPath:(NSString*)path
++(NSMutableArray *)getContactsData
 {
-    FileManager * fileManager = [[[FileManager alloc] init] autorelease];
-    return [fileManager loadFromPath:path];
-}
-
-+(void)writeDictToFile:(NSDictionary *)dict atPath:(NSString *)path andName:(NSString *)name
-{
-    FileManager * fileManager = [[[FileManager alloc] init] autorelease];
-    [fileManager writeDictToFile:dict atPath:path andName:name];
+    NSString * docPath = [[FileManager getDocumentPath] stringByAppendingPathComponent:kContactsFileListName];
+    NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:docPath];
+    if (dict)
+    {
+        return [dict objectForKey:kContactsData];
+    }
+    return nil;
 }
 
 @end

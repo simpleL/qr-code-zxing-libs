@@ -16,6 +16,7 @@
 #import "QRCodeGenerator.h"
 #import "ScanView.h"
 #import "QRCodeView.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import <zxing/ReaderException.h>
 
@@ -23,6 +24,7 @@
 #import <ImageIO/CGImageProperties.h>
 
 #import "AVCamCaptureManager.h"
+#import "FileManager.h"
 
 #define BUTTON_TAG_START_SCAN           1
 #define BUTTON_TAG_CANCEL_SCAN          2
@@ -45,7 +47,6 @@
 #define kPhoneNumber    @"PhoneNumber"
 #define kEmail          @"Email"
 #define kPersonalSite   @"PersonalSite"
-
 
 typedef enum
 {
@@ -74,6 +75,7 @@ typedef enum
 @interface ViewController (listContactView)<UISearchDisplayDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 -(void)initGesture;
 -(void)swipeGesture;
+-(void)tapGesture;
 -(NSArray*)searchWith:(NSString*)searchString;
 @end
 
@@ -92,13 +94,19 @@ typedef enum
         screenW = [[UIScreen mainScreen] bounds].size.width;
         screenH = [[UIScreen mainScreen] bounds].size.height;
         _lastButtonPressedTag = 0;
+        _dictScanReulst =  nil;
+        _searchData = nil;
+        _contactsData = [FileManager getContactsData];
+        if (_contactsData==nil)
+        {
+            _contactsData = [[NSMutableArray alloc] init];
+        }else
+            [_contactsData retain];
+        
         [self preloadHUD];
         [self initGesture];
         _decoder = nil;
         _points = nil;
-        
-        _searchData = nil;
-        _contactsData = nil;
         
         // Do any additional setup after loading the view, typically from a nib.
         QRCodeReader * reader = [[QRCodeReader alloc] init];
@@ -117,6 +125,7 @@ typedef enum
 {
     safeRelease(_decoder);
     safeRelease(_readers);
+    safeRelease(_contactsData);
     [super dealloc];
 }
 
@@ -184,14 +193,15 @@ typedef enum
 }
 
 -(UIImage*)startEncodeTemporaryInfo
-{
+{    
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     [dict setObject:@"Nguyen van A" forKey:kFullName];
     [dict setObject:@"Trinh Dinh Thao" forKey:kAddress];
     [dict setObject:@"01689971684" forKey:kPhoneNumber];
     [dict setObject:@"common.start@gmail.com" forKey:kEmail];
     [dict setObject:@"baphuoc.com.vn" forKey:kPersonalSite];
-    
+
+    // optimize data
     NSString * txtData = [NSString stringWithFormat:@"%@", dict];
     txtData = [self remove:@"\n" from:txtData];
     
@@ -207,16 +217,30 @@ typedef enum
         {
             txtData = [NSString stringWithFormat:@"%@\"%@\"", txtData, [arr objectAtIndex:i]];
         }
-    }   
-    
-    
+    }
+    // return the result
     NSData * data = UIImageJPEGRepresentation([QRCodeGenerator qrImageForString:txtData imageSize:240], 1);
     return [UIImage imageWithData:data];
     
+    //------------------------------------ generate temporary contact list
+//    NSMutableArray * array = [[NSMutableArray alloc] init];
+//    for (int i=0; i<100; i++)
+//    {
+//        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+//        [dict setObject:[NSString stringWithFormat:@"Nguyen so %d", i+1] forKey:kName];
+//        [dict setObject:@"Trinh Dinh Thao" forKey:kAddress];
+//        [dict setObject:@"01689971684" forKey:kPhoneNumber];
+//        [dict setObject:@"common.start@gmail.com" forKey:kEmail];
+//        [dict setObject:@"baphuoc.com.vn" forKey:kPersonalSite];
+//        [array addObject:dict];
+//    }
+//    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+//    [dict setObject:array forKey:@"testFileSize"];
 //    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.plist"];
+//    NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:kContactsFileListName];
 //    [dict writeToFile:docPath atomically:NO];
-    
+//    return nil;
+    //------------------------------------ end generate temporary contact list
 //    NSData *imgData = UIImageJPEGRepresentation(image, 1);
 //    [imgData writeToFile:docPath atomically:NO];
 //    [(CustomeImageView*)self.view setImage:image];
@@ -340,6 +364,7 @@ typedef enum
     if (btn.tag == BUTTON_TAG_RESULT_CANCEL)
     {
         [self startFlyOutTo:FlyDirectionBottom view:_scanResultView completed:nil];
+        safeRelease(_dictScanReulst);
     }
     
     if (btn.tag == BUTTON_TAG_RESULT_SAVE)
@@ -347,8 +372,24 @@ typedef enum
         void (^finished)(BOOL)  = ^(BOOL finished){
             //TODO: load scanned contact info to the view
             [self startFlyIn:_contactInfoView completed:nil];
+            [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@", _dictScanReulst]];
         };
         [self startFlyOutTo:FlyDirectionBottom view:_scanResultView completed:finished];
+        
+        // save the picture
+        NSString * imgName = [FileManager saveCapturedImage:_imgScanResultCapturedImage.image];
+        // add new dict into contact list
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:_dictScanReulst forKey:kContactInfo];
+        [dict setObject:imgName forKey:kImageName];
+        [_contactsData addObject:dict];
+        
+        // save the contacts list to file
+        NSMutableDictionary * contacts = [[NSMutableDictionary alloc] init];
+        [contacts setObject:_contactsData forKey:kContactsData];
+        [FileManager saveDictionary:contacts];
+        safeRelease(contacts);
+        safeRelease(dict);
     }
     
     // set last tag pressed button
@@ -375,9 +416,6 @@ typedef enum
     self.shouldDecode = NO;
     [self startFlyOutTo:FlyDirectionTop view:_scanView completed:finishRunOut];
     //TODO: convert result into dictionary and set it to scanResult view
-//    NSError * e;
-//    NSData * data = [result.text dataUsingEncoding:NSUTF8StringEncoding];
-//    NSMutableDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * docPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"test.plist"];
     [result.text writeToFile:docPath atomically:NO encoding:NSUTF8StringEncoding error:nil];
@@ -632,6 +670,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.view addSubview:_qrcodeView];
     [_qrcodeView setCenter:CGPointMake(3*screenW/2, screenH/2)];
     [_qrcodeView setAlpha:0];
+    
+    
+    _txtContactInfoDescription.layer.borderWidth = 0.5f;
+    _txtContactInfoDescription.layer.borderColor = [[UIColor grayColor] CGColor];
+    _txtContactInfoDescription.layer.cornerRadius = 5.f;
+    
+    _txtContactInfoDetails.layer.borderWidth = 0.5f;
+    _txtContactInfoDetails.layer.borderColor = [[UIColor grayColor] CGColor];
+    _txtContactInfoDetails.layer.cornerRadius = 5.f;
 }
 
 -(void)setDataToResultView:(NSMutableDictionary*)dict andImage:(UIImage*)image
@@ -639,6 +686,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     //TODO: set dict informations to scan result view
     [_imgScanResultCapturedImage setImage:image];
     [_txtScanResultText setText:[NSString stringWithFormat:@"%@", dict]];
+    
+    // keep the scan result dictionary
+    _dictScanReulst = [dict  retain];
 }
 
 -(NSString *)remove:(NSString *)s1 from:(NSString *)s2
@@ -664,6 +714,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     _swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture)];
     [self.view addGestureRecognizer:_swipe];
+    [_viewContactInfoContainer addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture)]];
 }
 
 -(void)swipeGesture
@@ -671,6 +722,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self startFlyOutTo:FlyDirectionRight view:_contactListView completed:nil];
     [self.searchDisplayController.searchResultsTableView setHidden:YES];
     [self.searchDisplayController.searchBar resignFirstResponder];
+}
+
+-(void)tapGesture
+{
+    [_txtContactInfoDescription resignFirstResponder];
+    [UIView animateWithDuration:0.25f animations:^(void)
+     {
+         [_viewContactInfoContainer setCenter:CGPointMake(160, 218)];
+     }];
 }
 
 -(NSArray *)searchWith:(NSString *)searchString
@@ -682,7 +742,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     {
         NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
         [dict setObject:[NSNumber numberWithInt:i] forKey:kIndex];
-        [dict setObject:[NSString stringWithFormat:@"name %d", i] forKey:kName];
+        [dict setObject:[NSString stringWithFormat:@"name %d", i] forKey:kFullName];
         [results addObject:dict];
     }
     
@@ -702,34 +762,39 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_searchData)
-    {
-        return _searchData.count;
-    }else if(_contactsData)
+    if (tableView == _tableContacts)
     {
         return _contactsData.count;
+    }
+    else if (tableView == self.searchDisplayController.searchResultsTableView && _searchData)
+    {
+        return _searchData.count;
     }
     return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_searchData)
+    // Dequeue or create a cell of the appropriate type.
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchResultIdentifier"];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchResultIdentifier"] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView && _searchData)
     {
-        // Dequeue or create a cell of the appropriate type.
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchResultIdentifier"];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchResultIdentifier"] autorelease];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        
         // Configure the cell.
         NSDictionary * info = [_searchData objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",[info objectForKey:kName]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[info objectForKey:kFullName]];
         return cell;
-    }else if(_contactsData)
+    }
+    else if(tableView == _tableContacts)
     {
-        return nil;
+        // Configure the cell.
+        NSDictionary * info = [[_contactsData objectAtIndex:indexPath.row] objectForKey:kContactInfo];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[info objectForKey:kFullName]];
+        return cell;
     }
     return nil;
 }
@@ -740,6 +805,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.searchDisplayController.searchResultsTableView setHidden:YES];
     [self startFlyIn:_contactInfoView completed:nil];
     //TODO: load contact info into new view
+    if (tableView == _tableContacts)
+    {
+        NSDictionary * dict = [_contactsData objectAtIndex:indexPath.row];
+        [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@",[dict objectForKey:kContactInfo]]];
+    }
+    else if (tableView == self.searchDisplayController.searchResultsTableView && _searchData)
+    {
+    }
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -752,6 +825,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     safeRelease(_searchData);
+}
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [UIView animateWithDuration:0.25f animations:^(void)
+    {        
+        [_viewContactInfoContainer setCenter:CGPointMake(160, 42)];
+    }];
+    return YES;
 }
 
 @end

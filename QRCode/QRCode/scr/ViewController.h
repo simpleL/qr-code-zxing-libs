@@ -16,16 +16,15 @@
 @class Decoder;
 @class QRCodeView;
 
-@interface ViewController : UIViewController<DecoderDelegate>
+@interface ViewController : UIViewController<DecoderDelegate, UITextViewDelegate>
 {
     NSSet               *_readers;
     NSMutableArray      *_points;
     Decoder             *_decoder;
     
-    int      _lastButtonPressedTag;
+    int     _lastButtonPressedTag;
     
     // main view
-    IBOutlet UITextView         *_textView; // this will not needed any more
     IBOutlet UIBarButtonItem    *_btnScan;
     IBOutlet UIBarButtonItem    *_btnMyInfos;
     IBOutlet UIBarButtonItem    *_btnContactList;
@@ -46,12 +45,15 @@
     IBOutlet UIBarButtonItem    *_btnScanResultSave;
     IBOutlet UIImageView        *_imgScanResultCapturedImage;
     IBOutlet UITextView         *_txtScanResultText;
+    NSMutableDictionary         *_dictScanReulst;
     
     // contact info view
     IBOutlet UIView             *_contactInfoView;
     IBOutlet UIBarButtonItem    *_btnContactInfoBack;
     IBOutlet UIBarButtonItem    *_btnContactInfoQRImage;
-    IBOutlet UITableView        *_tblContactInfo;
+    IBOutlet UIView             *_viewContactInfoContainer;
+    IBOutlet UITextView         *_txtContactInfoDetails;
+    IBOutlet UITextView         *_txtContactInfoDescription;
     
     // QRCode view
     IBOutlet QRCodeView         *_qrcodeView;
@@ -62,10 +64,11 @@
     IBOutlet UIView                 *_contactListView;
     IBOutlet UISearchBar            *_serBarContactListSearch;
     IBOutlet UIGestureRecognizer    *_swipe;
+    IBOutlet UITableView            *_tableContacts;
     
     // list name of contacts
     NSArray                  *_searchData;    
-    NSMutableDictionary             *_contactsData;
+    NSMutableArray           *_contactsData;
     
     AVCaptureSession            *_session;
 }
