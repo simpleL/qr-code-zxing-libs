@@ -16,6 +16,7 @@
 		630D0CD9173366CE00AF74A3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630D0CD8173366CE00AF74A3 /* ImageIO.framework */; };
 		630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630D0CDB1733694D00AF74A3 /* ScanView.m */; };
 		6351441A1739747600E2D1F8 /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635144191739747600E2D1F8 /* QRCodeView.m */; };
+		63F5814F174A81D8004F8D61 /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F5814E174A81D8004F8D61 /* CustomScrollView.m */; };
 		CE0D41F81723D42700B5F315 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE0D41F71723D42700B5F315 /* Utilities.mm */; };
 		CE0D41FF1723F06400B5F315 /* Nguyen Ba Phuoc.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */; };
 		CE0D42121723F22700B5F315 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CE0D42021723F22700B5F315 /* bitstream.c */; };
@@ -114,6 +115,9 @@
 		630D0CDB1733694D00AF74A3 /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
 		635144181739747600E2D1F8 /* QRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
 		635144191739747600E2D1F8 /* QRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
+		63F5814D174A81D8004F8D61 /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
+		63F5814E174A81D8004F8D61 /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
+		63F58151174A85D7004F8D61 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CE0D41F61723D42700B5F315 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		CE0D41F71723D42700B5F315 /* Utilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utilities.mm; sourceTree = "<group>"; };
 		CE0D41FE1723F06400B5F315 /* Nguyen Ba Phuoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nguyen Ba Phuoc.png"; sourceTree = "<group>"; };
@@ -354,6 +358,9 @@
 				630D0CCC173365E200AF74A3 /* AVCamUtilities.mm */,
 				635144181739747600E2D1F8 /* QRCodeView.h */,
 				635144191739747600E2D1F8 /* QRCodeView.m */,
+				63F5814D174A81D8004F8D61 /* CustomScrollView.h */,
+				63F5814E174A81D8004F8D61 /* CustomScrollView.m */,
+				63F58151174A85D7004F8D61 /* Constants.h */,
 			);
 			path = scr;
 			sourceTree = "<group>";
@@ -549,6 +556,7 @@
 				630D0CCE173365E200AF74A3 /* AVCamUtilities.mm in Sources */,
 				630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */,
 				6351441A1739747600E2D1F8 /* QRCodeView.m in Sources */,
+				63F5814F174A81D8004F8D61 /* CustomScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 @class AVCaptureSession;
 @class Decoder;
 @class QRCodeView;
+@class CustomScrollView;
 
 @interface ViewController : UIViewController<DecoderDelegate, UITextViewDelegate>
 {
@@ -28,11 +29,13 @@
     IBOutlet UIBarButtonItem    *_btnScan;
     IBOutlet UIBarButtonItem    *_btnMyInfos;
     IBOutlet UIBarButtonItem    *_btnContactList;
+    IBOutlet UIImageView        *_imgMyInfo;
     
     // my informations view
     IBOutlet UIView             *_myInfoView;
     IBOutlet UIBarButtonItem    *_btnMyInfoBack;
     IBOutlet UIBarButtonItem    *_btnMyInfoSave;
+    IBOutlet CustomScrollView   *_scrollInfoView;
     
     // Scan view
     IBOutlet ScanView           *_scanView;
@@ -80,5 +83,6 @@
 @property (nonatomic,retain) AVCamCaptureManager *captureManager;
 @property (nonatomic,retain) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
+-(UIImage*)endcode:(NSDictionary*)dict;
 -(IBAction)buttonClicked:(id)sender;
 @end

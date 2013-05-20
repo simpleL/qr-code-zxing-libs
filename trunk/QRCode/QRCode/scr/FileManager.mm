@@ -9,6 +9,7 @@
 #import "FileManager.h"
 
 #define kContactsFileListName   @"myContactsList.plist"
+#define kMyContactInfo          @"myContactInfo.plish"
 
 @implementation FileManager
 
@@ -55,6 +56,22 @@
         return [dict objectForKey:kContactsData];
     }
     return nil;
+}
+
++(void)saveMyContactInfo:(NSDictionary *)dict
+{
+    if (dict)
+    {
+        NSString * docPath = [[FileManager getDocumentPath] stringByAppendingPathComponent:kMyContactInfo];
+        [dict writeToFile:docPath atomically:NO];
+    }
+}
+
++(NSMutableDictionary *)getMyContactInfo
+{
+    NSString * docPath = [[FileManager getDocumentPath] stringByAppendingPathComponent:kMyContactInfo];
+    NSMutableDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:docPath];
+    return dict;
 }
 
 @end

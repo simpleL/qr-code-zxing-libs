@@ -1,0 +1,18 @@
+//
+//  Constants.h
+//  QRCode
+//
+//  Created by ba phuoc on 5/20/13.
+//  Copyright (c) 2013 Nguyen Ba Phuoc. All rights reserved.
+//
+
+#ifndef QRCode_Constants_h
+#define QRCode_Constants_h
+
+#define kFullName       @"1"
+#define kAddress        @"2"
+#define kPhoneNumber    @"3"
+#define kEmail          @"4"
+#define kPersonalSite   @"5"
+
+#endif

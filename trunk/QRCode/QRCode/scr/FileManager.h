@@ -19,4 +19,7 @@
 +(void)saveDictionary:(NSDictionary*)dict;
 +(NSMutableArray*)getContactsData;
 
++(void)saveMyContactInfo:(NSDictionary *)dict;
++(NSMutableDictionary*)getMyContactInfo;
+
 @end
