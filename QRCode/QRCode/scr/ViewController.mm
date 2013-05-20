@@ -12,6 +12,7 @@
 #import <TwoDDecoderResult.h>
 #import <QuartzCore/QuartzCore.h>
 #import "CustomeImageView.h"
+#import "CustomScrollView.h"
 #import "Utilities.h"
 #import "QRCodeGenerator.h"
 #import "ScanView.h"
@@ -25,6 +26,8 @@
 
 #import "AVCamCaptureManager.h"
 #import "FileManager.h"
+
+#import "Constants.h"
 
 #define BUTTON_TAG_START_SCAN           1
 #define BUTTON_TAG_CANCEL_SCAN          2
@@ -41,12 +44,6 @@
 
 #define kIndex @"INDEX"
 #define kName  @"NAME"
-
-#define kFullName       @"FullName"
-#define kAddress        @"Address"
-#define kPhoneNumber    @"PhoneNumber"
-#define kEmail          @"Email"
-#define kPersonalSite   @"PersonalSite"
 
 typedef enum
 {
@@ -132,6 +129,14 @@ typedef enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // load my info
+    NSMutableDictionary * dict = [FileManager getMyContactInfo];
+    UIImage * img = [self endcode:dict];
+    if (img)
+    {
+        [_imgMyInfo setImage:img];
+    }
     
     [self setupCaptureSession];
     
@@ -246,6 +251,34 @@ typedef enum
 //    [(CustomeImageView*)self.view setImage:image];
 }
 
+-(UIImage *)endcode:(NSDictionary *)dict
+{
+    if (dict==nil)
+    {
+        return nil;
+    }
+    // optimize data
+    NSString * txtData = [NSString stringWithFormat:@"%@", dict];
+    txtData = [self remove:@"\n" from:txtData];
+    
+    NSArray * arr = [txtData componentsSeparatedByString:@"\""];
+    
+    txtData = @"";
+    for (int i=0; i<arr.count; i++)
+    {
+        if (i%2==0)
+        {
+            txtData = [NSString stringWithFormat:@"%@%@", txtData, [self remove:@" " from:[arr objectAtIndex:i]]];
+        }else
+        {
+            txtData = [NSString stringWithFormat:@"%@\"%@\"", txtData, [arr objectAtIndex:i]];
+        }
+    }
+    // return the result
+    NSData * data = UIImageJPEGRepresentation([QRCodeGenerator qrImageForString:txtData imageSize:240], 1);
+    return [UIImage imageWithData:data];
+}
+
 -(void)buttonClicked:(id)sender
 {
     UIView * btn = (UIView*)sender;
@@ -255,38 +288,38 @@ typedef enum
         void (^finishFlyIn)(BOOL finished) = ^(BOOL finished)
         {
 //TODO: uncomment these
-//            _isScanViewEnable = YES;
-//            if (_isScanViewEnable)
-//            {
-//                self.shouldDecode = YES;
-//            }
+            _isScanViewEnable = YES;
+            if (_isScanViewEnable)
+            {
+                self.shouldDecode = YES;
+            }
             
             // -----------------------------create temporary result
-//TODO: remove the code below
-            void (^runOutScanView)(void) = ^(void)
-            {
-                [_scanView setCenter:CGPointMake(160, -240)];
-            };
-            
-            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
-            {
-                [_scanView setHidden:finished];
-                [_btnScan setEnabled:finished];
-                UIImage * image = [self startEncodeTemporaryInfo];
-                [self decodeImage:image];
-//                [_imgScanResultCapturedImage setImage:image];
-            };
-            
-            [_btnScan setEnabled:NO];
-            _isScanViewEnable = NO;
-            [_session stopRunning];
-            self.shouldDecode = NO;
-            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
-
-            
-            [self startFlyIn:_scanResultView completed:nil];
-            
-            // ------------------------------end temporary
+////TODO: remove the code below
+//            void (^runOutScanView)(void) = ^(void)
+//            {
+//                [_scanView setCenter:CGPointMake(160, -240)];
+//            };
+//            
+//            void (^finishRunOut)(BOOL finished) = ^(BOOL finished)
+//            {
+//                [_scanView setHidden:finished];
+//                [_btnScan setEnabled:finished];
+//                UIImage * image = [self startEncodeTemporaryInfo];
+//                [self decodeImage:image];
+////                [_imgScanResultCapturedImage setImage:image];
+//            };
+//            
+//            [_btnScan setEnabled:NO];
+//            _isScanViewEnable = NO;
+//            [_session stopRunning];
+//            self.shouldDecode = NO;
+//            [UIView animateWithDuration:.4f animations:runOutScanView completion:finishRunOut];
+//
+//            
+//            [self startFlyIn:_scanResultView completed:nil];
+//            
+//            // ------------------------------end temporary
         };
         [_session startRunning];
         [_scanView setHidden:NO];        
@@ -343,6 +376,13 @@ typedef enum
     if (btn.tag == BUTTON_TAG_MY_INFO_BACK)
     {
         [self startFlyOutTo:FlyDirectionLeft view:_myInfoView completed:nil];
+        NSMutableDictionary * dict = [_scrollInfoView getDict];
+        [FileManager saveMyContactInfo:dict];
+        UIImage * img = [self endcode:dict];
+        if (img)
+        {
+            [_imgMyInfo setImage:img];
+        }
     }
     
     if (btn.tag == BUTTON_TAG_MY_INFO_SAVE)
@@ -421,8 +461,13 @@ typedef enum
     [result.text writeToFile:docPath atomically:NO encoding:NSUTF8StringEncoding error:nil];
     
     NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithContentsOfFile:docPath];
-    [self setDataToResultView:dict andImage:image];
-    
+    if (dict)
+    {
+        [self setDataToResultView:dict andImage:image];
+    }else
+    {
+        NSLog(@"%@", result.text);
+    }
     [self startFlyIn:_scanResultView completed:nil];
 }
 
