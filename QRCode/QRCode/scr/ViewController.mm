@@ -93,7 +93,7 @@ typedef enum
         _lastButtonPressedTag = 0;
         _dictScanReulst =  nil;
         _searchData = nil;
-        _contactsData = [FileManager getContactsData];
+        _contactsData = [[FileManager getContactsData] mutableCopy];
         if (_contactsData==nil)
         {
             _contactsData = [[NSMutableArray alloc] init];
@@ -101,6 +101,9 @@ typedef enum
             [_contactsData retain];
         
         [self preloadHUD];
+        if(self.searchDisplayController.searchResultsTableView.editing){NSLog(@"YES");}else{NSLog(@"NO");}
+        [self.searchDisplayController.searchResultsTableView setEditing:NO];
+        if(self.searchDisplayController.searchResultsTableView.editing){NSLog(@"YES");}else{NSLog(@"NO");}
         [self initGesture];
         _decoder = nil;
         _points = nil;
@@ -423,6 +426,7 @@ typedef enum
         [dict setObject:_dictScanReulst forKey:kContactInfo];
         [dict setObject:imgName forKey:kImageName];
         [_contactsData addObject:dict];
+        [_tableContacts reloadData];
         
         // save the contacts list to file
         NSMutableDictionary * contacts = [[NSMutableDictionary alloc] init];
@@ -466,7 +470,9 @@ typedef enum
         [self setDataToResultView:dict andImage:image];
     }else
     {
-        NSLog(@"%@", result.text);
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:result.text forKey:@"unknowFormat"];
+        [self setDataToResultView:dict andImage:image];
     }
     [self startFlyIn:_scanResultView completed:nil];
 }
@@ -730,7 +736,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     //TODO: set dict informations to scan result view
     [_imgScanResultCapturedImage setImage:image];
-    [_txtScanResultText setText:[NSString stringWithFormat:@"%@", dict]];
+    NSString * s = @"";
+    for (NSString * k in dict.allKeys)
+    {
+        s = [NSString stringWithFormat:@"%@%@\n", s, [dict objectForKey:k]];
+    }
+    
+    [_txtScanResultText setText:s];
     
     // keep the scan result dictionary
     _dictScanReulst = [dict  retain];
@@ -783,12 +795,21 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     NSMutableArray * results = [[[NSMutableArray alloc] init] autorelease];
             
     // create temporary results
-    for (int i=0; i<searchString.length; i++)
+    for (int i=0; i<_contactsData.count; i++)
     {
-        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-        [dict setObject:[NSNumber numberWithInt:i] forKey:kIndex];
-        [dict setObject:[NSString stringWithFormat:@"name %d", i] forKey:kFullName];
-        [results addObject:dict];
+        NSDictionary * dict = [[_contactsData objectAtIndex:i] objectForKey:kContactInfo];
+        NSString * name = [[dict objectForKey:kFullName] copy];
+        
+        BOOL isExist = ([[name lowercaseString] rangeOfString:[searchString lowercaseString]].location!=NSNotFound)||([[searchString lowercaseString] rangeOfString:[name lowercaseString]].location!=NSNotFound);
+        if (isExist)
+        {
+            NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:[NSNumber numberWithInt:i] forKey:kIndex];
+            [dic setObject:name forKey:kFullName]; 
+            [results addObject:dic];
+            safeRelease(dic);
+        }
+        safeRelease(name);
     }
     
     //nothing of searching, just return nil
@@ -845,18 +866,24 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.searchDisplayController.searchBar resignFirstResponder];
-    [self.searchDisplayController.searchResultsTableView setHidden:YES];
-    [self startFlyIn:_contactInfoView completed:nil];
+{    
     //TODO: load contact info into new view
     if (tableView == _tableContacts)
     {
         NSDictionary * dict = [_contactsData objectAtIndex:indexPath.row];
-        [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@",[dict objectForKey:kContactInfo]]];
+        [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@",[dict objectForKey:kContactInfo]]];        
+        [self startFlyIn:_contactInfoView completed:nil];
     }
     else if (tableView == self.searchDisplayController.searchResultsTableView && _searchData)
     {
+        int ind = [[[_searchData objectAtIndex:indexPath.row] objectForKey:kIndex] integerValue];
+        NSDictionary * dict = [_contactsData objectAtIndex:ind];
+        [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@",[dict objectForKey:kContactInfo]]];
+        
+        [self.searchDisplayController.searchBar resignFirstResponder];
+        [self.searchDisplayController.searchResultsTableView setHidden:YES];
+        [self startFlyIn:_contactInfoView completed:nil];
+        NSLog(@"search table view");
     }
 }
 
@@ -879,6 +906,34 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [_viewContactInfoContainer setCenter:CGPointMake(160, 42)];
     }];
     return YES;
+}
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
+{
+    [tableView setEditing:NO];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == _tableContacts)
+    {
+        if (editingStyle == UITableViewCellEditingStyleDelete)
+        {
+            NSDictionary * dict = [[_contactsData objectAtIndex:indexPath.row] retain];
+            [_contactsData removeObjectAtIndex:indexPath.row];
+            [_tableContacts reloadData];
+            
+            //TODO: delete the image on disk
+            NSString * fileName = [dict objectForKey:kImageName];
+            
+            // overide data on disk
+            NSMutableDictionary * contacts = [[NSMutableDictionary alloc] init];
+            [contacts setObject:_contactsData forKey:kContactsData];
+            [FileManager saveDictionary:contacts];
+            safeRelease(contacts);
+            safeRelease(dict);
+        }
+    }
 }
 
 @end

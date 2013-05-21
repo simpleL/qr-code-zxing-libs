@@ -7,9 +7,9 @@
 //
 
 #import "FileManager.h"
+#import "Constants.h"
 
-#define kContactsFileListName   @"myContactsList.plist"
-#define kMyContactInfo          @"myContactInfo.plish"
+
 
 @implementation FileManager
 
