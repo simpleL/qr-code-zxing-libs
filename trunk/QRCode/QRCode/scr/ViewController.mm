@@ -90,6 +90,8 @@ typedef enum
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
         screenW = [[UIScreen mainScreen] bounds].size.width;
         screenH = [[UIScreen mainScreen] bounds].size.height;
+        _showCaptured = TRUE;
+        _currentSelectedIndex = 0;
         _lastButtonPressedTag = 0;
         _dictScanReulst =  nil;
         _searchData = nil;
@@ -358,6 +360,33 @@ typedef enum
     if (btn.tag == BUTTON_TAG_CONTACT_INFO_QRIMAGE)
     {
         [self startFlyIn:_qrcodeView completed:nil];
+        //TODO: show the captured image
+        if (!_showCaptured)
+        {
+            NSDictionary * dict = [_contactsData objectAtIndex:_currentSelectedIndex];
+            if (dict)
+            {
+                NSString * fileName = [dict objectForKey:kImageName];
+                if (fileName)
+                {
+                    UIImage * image = [FileManager getCapturedImage:fileName];
+                    [_imgViewQRCode setImage:image];
+                }
+            }
+        }else
+        {
+            NSDictionary * dict = [_contactsData objectAtIndex:_currentSelectedIndex];
+            if (dict)
+            {
+                NSDictionary * info = [dict objectForKey:kContactInfo];
+                if (info)
+                {
+                    UIImage * image = [self endcode:info];
+                    [_imgViewQRCode setImage:image];
+                }
+            }
+        }
+        _showCaptured = !_showCaptured;
     }
     
     if (btn.tag == BUTTON_TAG_CONTACT_LIST)
@@ -401,7 +430,32 @@ typedef enum
     
     if (btn.tag == BUTTON_TAG_QRCODE_SWITCH)
     {
-        
+        if (!_showCaptured)
+        {
+            NSDictionary * dict = [_contactsData objectAtIndex:_currentSelectedIndex];
+            if (dict)
+            {
+                NSString * fileName = [dict objectForKey:kImageName];
+                if (fileName)
+                {
+                    UIImage * image = [FileManager getCapturedImage:fileName];
+                    [_imgViewQRCode setImage:image];
+                }
+            }
+        }else
+        {
+            NSDictionary * dict = [_contactsData objectAtIndex:_currentSelectedIndex];
+            if (dict)
+            {
+                NSDictionary * info = [dict objectForKey:kContactInfo];
+                if (info)
+                {
+                    UIImage * image = [self endcode:info];
+                    [_imgViewQRCode setImage:image];
+                }
+            }
+        }
+        _showCaptured = !_showCaptured;
     }
     
     if (btn.tag == BUTTON_TAG_RESULT_CANCEL)
@@ -426,6 +480,7 @@ typedef enum
         [dict setObject:_dictScanReulst forKey:kContactInfo];
         [dict setObject:imgName forKey:kImageName];
         [_contactsData addObject:dict];
+        _currentSelectedIndex = _contactsData.count-1;
         [_tableContacts reloadData];
         
         // save the contacts list to file
@@ -871,12 +926,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if (tableView == _tableContacts)
     {
         NSDictionary * dict = [_contactsData objectAtIndex:indexPath.row];
+        _currentSelectedIndex = indexPath.row;
         [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@",[dict objectForKey:kContactInfo]]];        
         [self startFlyIn:_contactInfoView completed:nil];
     }
     else if (tableView == self.searchDisplayController.searchResultsTableView && _searchData)
     {
         int ind = [[[_searchData objectAtIndex:indexPath.row] objectForKey:kIndex] integerValue];
+        _currentSelectedIndex = ind;
         NSDictionary * dict = [_contactsData objectAtIndex:ind];
         [_txtContactInfoDetails setText:[NSString stringWithFormat:@"%@",[dict objectForKey:kContactInfo]]];
         
