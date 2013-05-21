@@ -9,6 +9,13 @@
 #ifndef QRCode_Constants_h
 #define QRCode_Constants_h
 
+#define kContactsFileListName   @"myContactsList.plist"
+#define kMyContactInfo          @"myContactInfo.plish"
+
+#define kContactInfo    @"Info"
+#define kImageName      @"ImageName"
+#define kContactsData   @"ContactsData"
+
 #define kFullName       @"1"
 #define kAddress        @"2"
 #define kPhoneNumber    @"3"

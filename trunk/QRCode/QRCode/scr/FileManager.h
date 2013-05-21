@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define kContactInfo    @"Info"
-#define kImageName      @"ImageName"
-#define kContactsData   @"ContactsData"
-
 @interface FileManager : NSObject
 
 +(NSString*)getDocumentPath;
