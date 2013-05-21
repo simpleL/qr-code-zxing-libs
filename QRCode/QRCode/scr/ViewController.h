@@ -62,6 +62,8 @@
     IBOutlet QRCodeView         *_qrcodeView;
     IBOutlet UIBarButtonItem    *_btnQRCodeBack;
     IBOutlet UIBarButtonItem    *_btnQRCodeSwitch;
+    IBOutlet UIImageView        *_imgViewQRCode;
+    BOOL                        _showCaptured;
     
     // contact list view
     IBOutlet UIView                 *_contactListView;
@@ -72,6 +74,7 @@
     // list name of contacts
     NSArray                  *_searchData;    
     NSMutableArray           *_contactsData;
+    int                      _currentSelectedIndex;
     
     AVCaptureSession            *_session;
 }

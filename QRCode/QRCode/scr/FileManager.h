@@ -12,6 +12,7 @@
 
 +(NSString*)getDocumentPath;
 +(NSString*)saveCapturedImage:(UIImage*)image;
++(UIImage*)getCapturedImage:(NSString*)fileName;
 +(void)saveDictionary:(NSDictionary*)dict;
 +(NSMutableArray*)getContactsData;
 
