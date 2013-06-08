@@ -17,7 +17,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="YcI-2T-aG7"/>
                                     <barButtonItem title="Scan" id="Y3b-4F-GkV">
                                         <connections>
-                                            <segue destination="uVl-WR-gTZ" kind="push" id="qlO-OI-zAg"/>
+                                            <segue destination="Iwy-ep-fEj" kind="push" id="vY5-wp-iFY"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="My Informations" id="uSw-oF-TYT">
@@ -47,20 +47,84 @@
             </objects>
             <point key="canvasLocation" x="511" y="35"/>
         </scene>
-        <!--Scan Result View Controller - Scan Result-->
-        <scene sceneID="bmD-3U-dQ7">
+        <!--Scan View Controller-->
+        <scene sceneID="4RA-rG-Qzi">
             <objects>
-                <viewController id="uVl-WR-gTZ" customClass="ScanResultViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iCt-pc-1fQ">
+                <viewController storyboardIdentifier="scanViewController" id="Iwy-ep-fEj" customClass="ScanViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jcR-Kd-Wte">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8W-cR-V3d">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="179" id="2Ak-Qx-zHf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Click = Found QR image">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnClicked:" destination="Iwy-ep-fEj" eventType="touchUpInside" id="Lbs-wF-cH3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="a8W-cR-V3d" firstAttribute="leading" secondItem="jcR-Kd-Wte" secondAttribute="leading" constant="88" id="mV6-bj-idi"/>
+                            <constraint firstAttribute="bottom" secondItem="a8W-cR-V3d" secondAttribute="bottom" constant="167" id="ocr-l9-Uw2"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan Result" id="4aZ-Ye-s5L"/>
+                    <navigationItem key="navigationItem" id="Na0-1F-aLY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nu2-vM-sdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LKD-1I-kmU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="-648"/>
+            <point key="canvasLocation" x="1042" y="-671"/>
+        </scene>
+        <!--Scan Result View Controller-->
+        <scene sceneID="ujR-RS-ahS">
+            <objects>
+                <viewController storyboardIdentifier="resultViewController" id="mTp-6T-PI9" customClass="ScanResultViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xcw-7S-60W">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-F5-EYp">
+                                <items>
+                                    <barButtonItem title="Save" id="NAC-mW-UO3">
+                                        <connections>
+                                            <action selector="btnClicked:" destination="mTp-6T-PI9" id="K7o-QL-Ppi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JNF-Bm-b8c"/>
+                                    <barButtonItem title="Continue scanning" id="P0B-VI-hoZ">
+                                        <connections>
+                                            <action selector="btnClicked:" destination="mTp-6T-PI9" id="gb0-g7-yfd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o3E-F5-EYp" firstAttribute="bottom" secondItem="Xcw-7S-60W" secondAttribute="bottom" type="default" id="Dyn-tS-2eh"/>
+                            <constraint firstItem="o3E-F5-EYp" firstAttribute="trailing" secondItem="Xcw-7S-60W" secondAttribute="trailing" type="default" id="Ek8-R0-Lkq"/>
+                            <constraint firstItem="o3E-F5-EYp" firstAttribute="leading" secondItem="Xcw-7S-60W" secondAttribute="leading" type="default" id="JMx-a6-kpE"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="btnContinueScan" destination="P0B-VI-hoZ" id="xsc-dd-RMW"/>
+                        <outlet property="btnSave" destination="NAC-mW-UO3" id="NTB-pL-rMW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dlf-qq-CpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="-671"/>
         </scene>
         <!--Contac List Table View Controller - Contact List-->
         <scene sceneID="PIj-2q-2CU">
@@ -361,6 +425,17 @@
         </class>
         <class className="ScanResultViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ScanResultViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnClicked:"/>
+                <relationship kind="outlet" name="btnContinueScan" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="btnSave" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="ScanViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScanViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnClicked:"/>
+            </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

@@ -10,11 +10,9 @@
 
 @interface ScanViewController : UIViewController
 {
-    UINavigationController * nav;
-    
+    UINavigationController * nav;    
 }
 
 +(BOOL)isFound;
 -(IBAction)btnClicked:(id)sender;
-
 @end

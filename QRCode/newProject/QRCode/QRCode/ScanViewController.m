@@ -7,6 +7,7 @@
 //
 
 #import "ScanViewController.h"
+#import "ScanResultViewController.h"
 
 @interface ScanViewController ()
 
@@ -49,26 +50,44 @@ static BOOL isFound = NO;
     return isFound;
 }
 
+-(void)btnClicked:(id)sender
+{
+    [nav popViewControllerAnimated:YES];
+    isFound = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Custom initialization
-    self.navigationController.navigationBarHidden = YES;
 }
 
--(void)btnClicked:(id)sender
+-(void)viewDidAppear:(BOOL)animated
 {
-    UIBarButtonItem * item = (UIBarButtonItem*)sender;
+    [super viewDidAppear:animated];
     nav = self.navigationController;
-    [nav popViewControllerAnimated:YES];
-    if (item.tag==12)
+//    [nav popViewControllerAnimated:YES];    
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //TODO: stop the camera stream
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [UIView animateWithDuration:4 delay:3 options:UIViewAnimationOptionTransitionNone animations:^{} completion:^(BOOL finished)
     {
-        NSLog(@"Found QRCode");
-        isFound = YES;
-    }else
-    {
-        isFound = NO;
-    }
+        if (finished && isFound)
+        {
+            UIStoryboard * storyBoard = self.storyboard;
+            UIViewController * result = [storyBoard instantiateViewControllerWithIdentifier:@"resultViewController"];
+            [nav pushViewController:result animated:YES];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning

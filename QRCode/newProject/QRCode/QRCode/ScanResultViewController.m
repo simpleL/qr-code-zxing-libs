@@ -15,12 +15,14 @@
 
 @implementation ScanResultViewController
 
+@synthesize btnSave, btnContinueScan;
+
 -(id)init
 {
     self = [super init];
     if (self)
     {
-        isNewPush = YES;
+        isContinueScan = NO;
     }
     return self;
 }
@@ -30,7 +32,7 @@
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        isNewPush = YES;
+        isContinueScan = NO;
     }
     return self;
 }
@@ -40,38 +42,48 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        isNewPush = YES;
+        isContinueScan = NO;
     }
     return self;
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)btnClicked:(id)sender
 {
-    // show the scan view
-    if (isNewPush)
+    UIBarButtonItem * btn = (UIBarButtonItem*)sender;    
+    if (btn == btnSave)
     {
-        isNewPush = NO;
-        ScanViewController * scanView = [[[ScanViewController alloc] init] autorelease];
-        [self.navigationController pushViewController:scanView animated:YES];
-    }else
-    {
-        self.navigationController.navigationBarHidden = NO;
-        if (![ScanViewController isFound])
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        NSLog(@"save the result");
     }
+    if (btn == btnContinueScan)
+    {        
+        isContinueScan = YES;
+    }
+    [nav popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    nav = self.navigationController;
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [UIView animateWithDuration:4 delay:3 options:UIViewAnimationOptionTransitionNone animations:^{} completion:^(BOOL finished)
+     {
+         if (finished && isContinueScan)
+         {
+             UIStoryboard * storyBoard = self.storyboard;
+             UIViewController * result = [storyBoard instantiateViewControllerWithIdentifier:@"scanViewController"];
+             [nav pushViewController:result animated:YES];
+         }
+     }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
