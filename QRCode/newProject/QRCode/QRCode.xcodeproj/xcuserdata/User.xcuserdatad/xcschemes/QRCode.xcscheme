@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0450"
+   LastUpgradeVersion = "0460"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-               BuildableName = "0160.app"
+               BlueprintIdentifier = "CEF696C5176312F60015796A"
+               BuildableName = "QRCode.app"
                BlueprintName = "QRCode"
                ReferencedContainer = "container:QRCode.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-            BuildableName = "0160.app"
+            BlueprintIdentifier = "CEF696C5176312F60015796A"
+            BuildableName = "QRCode.app"
             BlueprintName = "QRCode"
             ReferencedContainer = "container:QRCode.xcodeproj">
          </BuildableReference>
@@ -51,8 +51,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-            BuildableName = "0160.app"
+            BlueprintIdentifier = "CEF696C5176312F60015796A"
+            BuildableName = "QRCode.app"
             BlueprintName = "QRCode"
             ReferencedContainer = "container:QRCode.xcodeproj">
          </BuildableReference>
@@ -69,8 +69,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CEBF432F17227E1B00307DE0"
-            BuildableName = "0160.app"
+            BlueprintIdentifier = "CEF696C5176312F60015796A"
+            BuildableName = "QRCode.app"
             BlueprintName = "QRCode"
             ReferencedContainer = "container:QRCode.xcodeproj">
          </BuildableReference>
