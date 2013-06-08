@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEF696CA176312F60015796A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696C9176312F60015796A /* UIKit.framework */; };
+		CEF696CC176312F60015796A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CB176312F60015796A /* Foundation.framework */; };
+		CEF696CE176312F60015796A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CD176312F60015796A /* CoreGraphics.framework */; };
+		CEF696D4176312F60015796A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF696D2176312F60015796A /* InfoPlist.strings */; };
+		CEF696D6176312F60015796A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696D5176312F60015796A /* main.m */; };
+		CEF696DA176312F60015796A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696D9176312F60015796A /* AppDelegate.m */; };
+		CEF696DC176312F60015796A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF696DB176312F60015796A /* Default.png */; };
+		CEF696DE176312F60015796A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF696DD176312F60015796A /* Default@2x.png */; };
+		CEF696E0176312F60015796A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF696DF176312F60015796A /* Default-568h@2x.png */; };
+		CEF696E3176312F60015796A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF696E1176312F60015796A /* MainStoryboard_iPhone.storyboard */; };
+		CEF696E6176312F60015796A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF696E4176312F60015796A /* MainStoryboard_iPad.storyboard */; };
+		CEF696E9176312F60015796A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696E8176312F60015796A /* ViewController.m */; };
+		CEF696F3176315FD0015796A /* ContacListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696F2176315FD0015796A /* ContacListTableViewController.m */; };
+		CEF696F8176317040015796A /* ContactListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696F7176317040015796A /* ContactListTableViewCell.m */; };
+		CEFE02F41763613E006D5BD9 /* email_3232.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFE02F01763613E006D5BD9 /* email_3232.png */; };
+		CEFE02F51763613E006D5BD9 /* home_3232.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFE02F11763613E006D5BD9 /* home_3232.png */; };
+		CEFE02F61763613E006D5BD9 /* phone_3232.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFE02F21763613E006D5BD9 /* phone_3232.png */; };
+		CEFE02F71763613E006D5BD9 /* user_4848.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFE02F31763613E006D5BD9 /* user_4848.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CEF696C6176312F60015796A /* QRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEF696C9176312F60015796A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CEF696CB176312F60015796A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CEF696CD176312F60015796A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CEF696D1176312F60015796A /* QRCode-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QRCode-Info.plist"; sourceTree = "<group>"; };
+		CEF696D3176312F60015796A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEF696D5176312F60015796A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEF696D7176312F60015796A /* QRCode-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QRCode-Prefix.pch"; sourceTree = "<group>"; };
+		CEF696D8176312F60015796A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CEF696D9176312F60015796A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CEF696DB176312F60015796A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CEF696DD176312F60015796A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CEF696DF176312F60015796A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CEF696E2176312F60015796A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		CEF696E5176312F60015796A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		CEF696E7176312F60015796A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CEF696E8176312F60015796A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CEF696F1176315FD0015796A /* ContacListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContacListTableViewController.h; sourceTree = "<group>"; };
+		CEF696F2176315FD0015796A /* ContacListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContacListTableViewController.m; sourceTree = "<group>"; };
+		CEF696F6176317030015796A /* ContactListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewCell.h; sourceTree = "<group>"; };
+		CEF696F7176317040015796A /* ContactListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListTableViewCell.m; sourceTree = "<group>"; };
+		CEFE02F01763613E006D5BD9 /* email_3232.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_3232.png; sourceTree = "<group>"; };
+		CEFE02F11763613E006D5BD9 /* home_3232.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_3232.png; sourceTree = "<group>"; };
+		CEFE02F21763613E006D5BD9 /* phone_3232.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_3232.png; sourceTree = "<group>"; };
+		CEFE02F31763613E006D5BD9 /* user_4848.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_4848.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEF696C3176312F60015796A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEF696CA176312F60015796A /* UIKit.framework in Frameworks */,
+				CEF696CC176312F60015796A /* Foundation.framework in Frameworks */,
+				CEF696CE176312F60015796A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEF696BD176312F60015796A = {
+			isa = PBXGroup;
+			children = (
+				CEF696CF176312F60015796A /* QRCode */,
+				CEF696C8176312F60015796A /* Frameworks */,
+				CEF696C7176312F60015796A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEF696C7176312F60015796A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEF696C6176312F60015796A /* QRCode.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEF696C8176312F60015796A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEF696C9176312F60015796A /* UIKit.framework */,
+				CEF696CB176312F60015796A /* Foundation.framework */,
+				CEF696CD176312F60015796A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEF696CF176312F60015796A /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE02EF1763613E006D5BD9 /* usingIcons */,
+				CEF696F5176316230015796A /* src */,
+				CEF696F41763160F0015796A /* UI */,
+				CEF696D8176312F60015796A /* AppDelegate.h */,
+				CEF696D9176312F60015796A /* AppDelegate.m */,
+				CEF696E7176312F60015796A /* ViewController.h */,
+				CEF696E8176312F60015796A /* ViewController.m */,
+				CEF696D0176312F60015796A /* Supporting Files */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		CEF696D0176312F60015796A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CEF696D1176312F60015796A /* QRCode-Info.plist */,
+				CEF696D2176312F60015796A /* InfoPlist.strings */,
+				CEF696D5176312F60015796A /* main.m */,
+				CEF696D7176312F60015796A /* QRCode-Prefix.pch */,
+				CEF696DB176312F60015796A /* Default.png */,
+				CEF696DD176312F60015796A /* Default@2x.png */,
+				CEF696DF176312F60015796A /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEF696F41763160F0015796A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CEF696E1176312F60015796A /* MainStoryboard_iPhone.storyboard */,
+				CEF696E4176312F60015796A /* MainStoryboard_iPad.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		CEF696F5176316230015796A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				CEF696F1176315FD0015796A /* ContacListTableViewController.h */,
+				CEF696F2176315FD0015796A /* ContacListTableViewController.m */,
+				CEF696F6176317030015796A /* ContactListTableViewCell.h */,
+				CEF696F7176317040015796A /* ContactListTableViewCell.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		CEFE02EF1763613E006D5BD9 /* usingIcons */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE02F01763613E006D5BD9 /* email_3232.png */,
+				CEFE02F11763613E006D5BD9 /* home_3232.png */,
+				CEFE02F21763613E006D5BD9 /* phone_3232.png */,
+				CEFE02F31763613E006D5BD9 /* user_4848.png */,
+			);
+			name = usingIcons;
+			path = resources/usingIcons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEF696C5176312F60015796A /* QRCode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEF696EC176312F60015796A /* Build configuration list for PBXNativeTarget "QRCode" */;
+			buildPhases = (
+				CEF696C2176312F60015796A /* Sources */,
+				CEF696C3176312F60015796A /* Frameworks */,
+				CEF696C4176312F60015796A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QRCode;
+			productName = QRCode;
+			productReference = CEF696C6176312F60015796A /* QRCode.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEF696BE176312F60015796A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Nguyen Ba Phuoc";
+			};
+			buildConfigurationList = CEF696C1176312F60015796A /* Build configuration list for PBXProject "QRCode" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEF696BD176312F60015796A;
+			productRefGroup = CEF696C7176312F60015796A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEF696C5176312F60015796A /* QRCode */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEF696C4176312F60015796A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEF696D4176312F60015796A /* InfoPlist.strings in Resources */,
+				CEF696DC176312F60015796A /* Default.png in Resources */,
+				CEF696DE176312F60015796A /* Default@2x.png in Resources */,
+				CEF696E0176312F60015796A /* Default-568h@2x.png in Resources */,
+				CEF696E3176312F60015796A /* MainStoryboard_iPhone.storyboard in Resources */,
+				CEF696E6176312F60015796A /* MainStoryboard_iPad.storyboard in Resources */,
+				CEFE02F41763613E006D5BD9 /* email_3232.png in Resources */,
+				CEFE02F51763613E006D5BD9 /* home_3232.png in Resources */,
+				CEFE02F61763613E006D5BD9 /* phone_3232.png in Resources */,
+				CEFE02F71763613E006D5BD9 /* user_4848.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEF696C2176312F60015796A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEF696D6176312F60015796A /* main.m in Sources */,
+				CEF696DA176312F60015796A /* AppDelegate.m in Sources */,
+				CEF696E9176312F60015796A /* ViewController.m in Sources */,
+				CEF696F3176315FD0015796A /* ContacListTableViewController.m in Sources */,
+				CEF696F8176317040015796A /* ContactListTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CEF696D2176312F60015796A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEF696D3176312F60015796A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CEF696E1176312F60015796A /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEF696E2176312F60015796A /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		CEF696E4176312F60015796A /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEF696E5176312F60015796A /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CEF696EA176312F60015796A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CEF696EB176312F60015796A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEF696ED176312F60015796A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QRCode/QRCode-Prefix.pch";
+				INFOPLIST_FILE = "QRCode/QRCode-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CEF696EE176312F60015796A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QRCode/QRCode-Prefix.pch";
+				INFOPLIST_FILE = "QRCode/QRCode-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEF696C1176312F60015796A /* Build configuration list for PBXProject "QRCode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEF696EA176312F60015796A /* Debug */,
+				CEF696EB176312F60015796A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEF696EC176312F60015796A /* Build configuration list for PBXNativeTarget "QRCode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEF696ED176312F60015796A /* Debug */,
+				CEF696EE176312F60015796A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEF696BE176312F60015796A /* Project object */;
+}
