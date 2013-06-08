@@ -10,6 +10,11 @@
 
 @interface ScanResultViewController : UIViewController
 {
-    BOOL        isNewPush;
+    UINavigationController * nav;
+    BOOL                    isContinueScan;
 }
+@property (nonatomic, retain) IBOutlet UIBarButtonItem * btnSave, *btnContinueScan;
+
+-(IBAction)btnClicked:(id)sender;
+
 @end
