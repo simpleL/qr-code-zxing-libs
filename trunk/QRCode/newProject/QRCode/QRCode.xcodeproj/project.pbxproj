@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEC50E0317636C6700AC818E /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0117636C6700AC818E /* ScanViewController.m */; };
+		CEC50E0717636CC400AC818E /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0617636CC400AC818E /* ScanView.m */; };
+		CEC50E0A17636E6000AC818E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0917636E6000AC818E /* ScanResultViewController.m */; };
+		CEC50E0C17637E0B00AC818E /* ScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC50E0B17637E0B00AC818E /* ScanViewController.xib */; };
 		CEF696CA176312F60015796A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696C9176312F60015796A /* UIKit.framework */; };
 		CEF696CC176312F60015796A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CB176312F60015796A /* Foundation.framework */; };
 		CEF696CE176312F60015796A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CD176312F60015796A /* CoreGraphics.framework */; };
@@ -28,6 +32,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CEC50E0017636C6700AC818E /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		CEC50E0117636C6700AC818E /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
+		CEC50E0517636CC400AC818E /* ScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanView.h; sourceTree = "<group>"; };
+		CEC50E0617636CC400AC818E /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
+		CEC50E0817636E6000AC818E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
+		CEC50E0917636E6000AC818E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		CEC50E0B17637E0B00AC818E /* ScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanViewController.xib; sourceTree = "<group>"; };
 		CEF696C6176312F60015796A /* QRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF696C9176312F60015796A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF696CB176312F60015796A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,6 +139,7 @@
 		CEF696F41763160F0015796A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CEC50E0B17637E0B00AC818E /* ScanViewController.xib */,
 				CEF696E1176312F60015796A /* MainStoryboard_iPhone.storyboard */,
 				CEF696E4176312F60015796A /* MainStoryboard_iPad.storyboard */,
 			);
@@ -141,6 +153,12 @@
 				CEF696F2176315FD0015796A /* ContacListTableViewController.m */,
 				CEF696F6176317030015796A /* ContactListTableViewCell.h */,
 				CEF696F7176317040015796A /* ContactListTableViewCell.m */,
+				CEC50E0017636C6700AC818E /* ScanViewController.h */,
+				CEC50E0117636C6700AC818E /* ScanViewController.m */,
+				CEC50E0517636CC400AC818E /* ScanView.h */,
+				CEC50E0617636CC400AC818E /* ScanView.m */,
+				CEC50E0817636E6000AC818E /* ScanResultViewController.h */,
+				CEC50E0917636E6000AC818E /* ScanResultViewController.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -218,6 +236,7 @@
 				CEFE02F51763613E006D5BD9 /* home_3232.png in Resources */,
 				CEFE02F61763613E006D5BD9 /* phone_3232.png in Resources */,
 				CEFE02F71763613E006D5BD9 /* user_4848.png in Resources */,
+				CEC50E0C17637E0B00AC818E /* ScanViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +252,9 @@
 				CEF696E9176312F60015796A /* ViewController.m in Sources */,
 				CEF696F3176315FD0015796A /* ContacListTableViewController.m in Sources */,
 				CEF696F8176317040015796A /* ContactListTableViewCell.m in Sources */,
+				CEC50E0317636C6700AC818E /* ScanViewController.m in Sources */,
+				CEC50E0717636CC400AC818E /* ScanView.m in Sources */,
+				CEC50E0A17636E6000AC818E /* ScanResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
