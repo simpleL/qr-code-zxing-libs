@@ -12,4 +12,10 @@
 {
 }
 
+@property (nonatomic, retain) NSString * fullName;
+@property (nonatomic, retain) NSString * phoneNumber;
+@property (nonatomic, retain) NSString * email;
+@property (nonatomic, retain) NSString * personalSite;
+@property (nonatomic, retain) NSString * address;
+
 @end

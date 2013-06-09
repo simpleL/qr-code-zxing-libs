@@ -19,4 +19,8 @@
 +(void)saveMyContactInfo:(NSDictionary *)dict;
 +(NSMutableDictionary*)getMyContactInfo;
 
+
++(void)insertNewContact:(NSDictionary*)dict withImage:(UIImage*)image;
++(void)deleteAtIndex:(int)index;
+
 @end

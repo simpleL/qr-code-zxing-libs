@@ -10,6 +10,12 @@
 		CEC50E0317636C6700AC818E /* ScanViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0117636C6700AC818E /* ScanViewController.mm */; };
 		CEC50E0717636CC400AC818E /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0617636CC400AC818E /* ScanView.m */; };
 		CEC50E0A17636E6000AC818E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0917636E6000AC818E /* ScanResultViewController.m */; };
+		CEE249F01764BDDB0052C76A /* InputNewContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE249EF1764BDDB0052C76A /* InputNewContactViewController.m */; };
+		CEE249FB1764C4E40052C76A /* InputContactSegue.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEE249FA1764C4E40052C76A /* InputContactSegue.mm */; };
+		CEE249FF1764CE380052C76A /* ContactDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE249FE1764CE380052C76A /* ContactDetailsTableViewCell.m */; };
+		CEE24A021764D1BF0052C76A /* InputInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A011764D1BF0052C76A /* InputInfoTableViewCell.m */; };
+		CEE24A091764DF5A0052C76A /* MyContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A081764DF590052C76A /* MyContactInfoViewController.m */; };
+		CEE24A0C1764DFA50052C76A /* MyContactInfoSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A0B1764DFA40052C76A /* MyContactInfoSegue.m */; };
 		CEEF6C6B176451390029BD76 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */; };
 		CEEF6CE917647C360029BD76 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6CD917647C360029BD76 /* bitstream.c */; };
 		CEEF6CEA17647C360029BD76 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6CDB17647C360029BD76 /* mask.c */; };
@@ -43,7 +49,7 @@
 		CEF696E0176312F60015796A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF696DF176312F60015796A /* Default-568h@2x.png */; };
 		CEF696E3176312F60015796A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF696E1176312F60015796A /* MainStoryboard_iPhone.storyboard */; };
 		CEF696E6176312F60015796A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF696E4176312F60015796A /* MainStoryboard_iPad.storyboard */; };
-		CEF696E9176312F60015796A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696E8176312F60015796A /* ViewController.m */; };
+		CEF696E9176312F60015796A /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF696E8176312F60015796A /* ViewController.mm */; };
 		CEF696F3176315FD0015796A /* ContacListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696F2176315FD0015796A /* ContacListTableViewController.m */; };
 		CEF696F8176317040015796A /* ContactListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696F7176317040015796A /* ContactListTableViewCell.m */; };
 		CEFE02F41763613E006D5BD9 /* email_3232.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFE02F01763613E006D5BD9 /* email_3232.png */; };
@@ -83,6 +89,18 @@
 		CEC50E0617636CC400AC818E /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
 		CEC50E0817636E6000AC818E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		CEC50E0917636E6000AC818E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		CEE249EE1764BDDB0052C76A /* InputNewContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNewContactViewController.h; sourceTree = "<group>"; };
+		CEE249EF1764BDDB0052C76A /* InputNewContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNewContactViewController.m; sourceTree = "<group>"; };
+		CEE249F91764C4E40052C76A /* InputContactSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputContactSegue.h; sourceTree = "<group>"; };
+		CEE249FA1764C4E40052C76A /* InputContactSegue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InputContactSegue.mm; sourceTree = "<group>"; };
+		CEE249FD1764CE380052C76A /* ContactDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsTableViewCell.h; sourceTree = "<group>"; };
+		CEE249FE1764CE380052C76A /* ContactDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsTableViewCell.m; sourceTree = "<group>"; };
+		CEE24A001764D1BF0052C76A /* InputInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputInfoTableViewCell.h; sourceTree = "<group>"; };
+		CEE24A011764D1BF0052C76A /* InputInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputInfoTableViewCell.m; sourceTree = "<group>"; };
+		CEE24A071764DF580052C76A /* MyContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyContactInfoViewController.h; sourceTree = "<group>"; };
+		CEE24A081764DF590052C76A /* MyContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactInfoViewController.m; sourceTree = "<group>"; };
+		CEE24A0A1764DFA40052C76A /* MyContactInfoSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyContactInfoSegue.h; sourceTree = "<group>"; };
+		CEE24A0B1764DFA40052C76A /* MyContactInfoSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactInfoSegue.m; sourceTree = "<group>"; };
 		CEEF6C69176451390029BD76 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		CEEF6CD917647C360029BD76 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
@@ -137,7 +155,7 @@
 		CEF696E2176312F60015796A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		CEF696E5176312F60015796A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		CEF696E7176312F60015796A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CEF696E8176312F60015796A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CEF696E8176312F60015796A /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		CEF696F1176315FD0015796A /* ContacListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContacListTableViewController.h; sourceTree = "<group>"; };
 		CEF696F2176315FD0015796A /* ContacListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContacListTableViewController.m; sourceTree = "<group>"; };
 		CEF696F6176317030015796A /* ContactListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewCell.h; sourceTree = "<group>"; };
@@ -172,6 +190,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CEE249F81764C4C40052C76A /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				CEE249F91764C4E40052C76A /* InputContactSegue.h */,
+				CEE249FA1764C4E40052C76A /* InputContactSegue.mm */,
+				CEE24A0A1764DFA40052C76A /* MyContactInfoSegue.h */,
+				CEE24A0B1764DFA40052C76A /* MyContactInfoSegue.m */,
+			);
+			name = Segues;
+			sourceTree = "<group>";
+		};
+		CEE249FC1764CE0A0052C76A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CEF696F6176317030015796A /* ContactListTableViewCell.h */,
+				CEF696F7176317040015796A /* ContactListTableViewCell.m */,
+				CEE249FD1764CE380052C76A /* ContactDetailsTableViewCell.h */,
+				CEE249FE1764CE380052C76A /* ContactDetailsTableViewCell.m */,
+				CEE24A001764D1BF0052C76A /* InputInfoTableViewCell.h */,
+				CEE24A011764D1BF0052C76A /* InputInfoTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		CEEF6CD717647C360029BD76 /* qrencode */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,7 +321,7 @@
 				CEF696D8176312F60015796A /* AppDelegate.h */,
 				CEF696D9176312F60015796A /* AppDelegate.m */,
 				CEF696E7176312F60015796A /* ViewController.h */,
-				CEF696E8176312F60015796A /* ViewController.m */,
+				CEF696E8176312F60015796A /* ViewController.mm */,
 				CEEF6CF117647C3F0029BD76 /* Libs */,
 				CEFE02EF1763613E006D5BD9 /* usingIcons */,
 				CEF696D0176312F60015796A /* Supporting Files */,
@@ -313,6 +355,8 @@
 		CEF696F5176316230015796A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				CEE249FC1764CE0A0052C76A /* Cells */,
+				CEE249F81764C4C40052C76A /* Segues */,
 				CEEF6D091764851F0029BD76 /* Constants.h */,
 				CEEF6D0A1764851F0029BD76 /* FileManager.h */,
 				CEEF6D0B1764851F0029BD76 /* FileManager.mm */,
@@ -320,8 +364,6 @@
 				CEEF6D0D1764851F0029BD76 /* Utilities.mm */,
 				CEF696F1176315FD0015796A /* ContacListTableViewController.h */,
 				CEF696F2176315FD0015796A /* ContacListTableViewController.m */,
-				CEF696F6176317030015796A /* ContactListTableViewCell.h */,
-				CEF696F7176317040015796A /* ContactListTableViewCell.m */,
 				CEC50E0017636C6700AC818E /* ScanViewController.h */,
 				CEC50E0117636C6700AC818E /* ScanViewController.mm */,
 				CEC50E0517636CC400AC818E /* ScanView.h */,
@@ -330,6 +372,10 @@
 				CEC50E0917636E6000AC818E /* ScanResultViewController.m */,
 				CEEF6C69176451390029BD76 /* ContactDetailsViewController.h */,
 				CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */,
+				CEE249EE1764BDDB0052C76A /* InputNewContactViewController.h */,
+				CEE249EF1764BDDB0052C76A /* InputNewContactViewController.m */,
+				CEE24A071764DF580052C76A /* MyContactInfoViewController.h */,
+				CEE24A081764DF590052C76A /* MyContactInfoViewController.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -444,7 +490,7 @@
 			files = (
 				CEF696D6176312F60015796A /* main.m in Sources */,
 				CEF696DA176312F60015796A /* AppDelegate.m in Sources */,
-				CEF696E9176312F60015796A /* ViewController.m in Sources */,
+				CEF696E9176312F60015796A /* ViewController.mm in Sources */,
 				CEF696F3176315FD0015796A /* ContacListTableViewController.m in Sources */,
 				CEF696F8176317040015796A /* ContactListTableViewCell.m in Sources */,
 				CEC50E0317636C6700AC818E /* ScanViewController.mm in Sources */,
@@ -461,6 +507,12 @@
 				CEEF6CF017647C360029BD76 /* QRCodeGenerator.m in Sources */,
 				CEEF6D0E1764851F0029BD76 /* FileManager.mm in Sources */,
 				CEEF6D0F1764851F0029BD76 /* Utilities.mm in Sources */,
+				CEE249F01764BDDB0052C76A /* InputNewContactViewController.m in Sources */,
+				CEE249FB1764C4E40052C76A /* InputContactSegue.mm in Sources */,
+				CEE249FF1764CE380052C76A /* ContactDetailsTableViewCell.m in Sources */,
+				CEE24A021764D1BF0052C76A /* InputInfoTableViewCell.m in Sources */,
+				CEE24A091764DF5A0052C76A /* MyContactInfoViewController.m in Sources */,
+				CEE24A0C1764DFA50052C76A /* MyContactInfoSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

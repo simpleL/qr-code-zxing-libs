@@ -98,4 +98,40 @@
     return dict;
 }
 
+
+
++(void)insertNewContact:(NSDictionary *)dict withImage:(UIImage *)image
+{
+    NSMutableArray * contactsData = [FileManager getContactsData];
+    if(contactsData==nil)
+    {
+        contactsData = [[NSMutableArray alloc] init];
+    }
+    // save the picture
+    NSString * imgName = [FileManager saveCapturedImage:image];
+    // add new dict into contact list
+    NSMutableDictionary * saveDict = [[NSMutableDictionary alloc] init];
+    [saveDict setObject:dict forKey:kContactInfo];
+    [saveDict setObject:imgName forKey:kImageName];
+    [contactsData addObject:saveDict];
+    
+    // save the contacts list to file
+    NSMutableDictionary * contacts = [[NSMutableDictionary alloc] init];
+    [contacts setObject:contactsData forKey:kContactsData];
+    [FileManager saveDictionary:contacts];
+}
+
++(void)deleteAtIndex:(int)index
+{
+    NSMutableArray * contactsData = [FileManager getContactsData];
+    if(index < contactsData.count)
+    {
+        [contactsData removeObjectAtIndex:index];
+        // save the contacts list to file
+        NSMutableDictionary * contacts = [[NSMutableDictionary alloc] init];
+        [contacts setObject:contactsData forKey:kContactsData];
+        [FileManager saveDictionary:contacts];
+    }
+}
+
 @end
