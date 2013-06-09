@@ -22,18 +22,19 @@
 		CEEF6D051764845F0029BD76 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6CF817647C520029BD76 /* libZXingWidget.a */; };
 		CEEF6D0E1764851F0029BD76 /* FileManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6D0B1764851F0029BD76 /* FileManager.mm */; };
 		CEEF6D0F1764851F0029BD76 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6D0D1764851F0029BD76 /* Utilities.mm */; };
-		CEEF6D201764877E0029BD76 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D1C176487300029BD76 /* AddressBook.framework */; };
-		CEEF6D211764877E0029BD76 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D1D176487310029BD76 /* AddressBookUI.framework */; };
-		CEEF6D221764877E0029BD76 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D1A176487200029BD76 /* AudioToolbox.framework */; };
-		CEEF6D231764877E0029BD76 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D18176487180029BD76 /* AVFoundation.framework */; };
-		CEEF6D241764877E0029BD76 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D10176487020029BD76 /* CoreImage.framework */; };
-		CEEF6D251764877E0029BD76 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D11176487030029BD76 /* CoreVideo.framework */; };
-		CEEF6D261764877E0029BD76 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D12176487030029BD76 /* MobileCoreServices.framework */; };
-		CEEF6D271764877E0029BD76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D13176487030029BD76 /* QuartzCore.framework */; };
 		CEEF6D281764877E0029BD76 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D07176484970029BD76 /* libiconv.dylib */; };
+		CEEF6D3017648CF90029BD76 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D13176487030029BD76 /* QuartzCore.framework */; };
+		CEEF6D3117648D070029BD76 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D18176487180029BD76 /* AVFoundation.framework */; };
+		CEEF6D3217648D1A0029BD76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CD176312F60015796A /* CoreGraphics.framework */; };
+		CEEF6D3317648D2A0029BD76 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D11176487030029BD76 /* CoreVideo.framework */; };
+		CEEF6D3417648D3F0029BD76 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D2917648BE20029BD76 /* ImageIO.framework */; };
+		CEEF6D3517648D4B0029BD76 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D10176487020029BD76 /* CoreImage.framework */; };
+		CEEF6D3617648D6F0029BD76 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D2C17648C530029BD76 /* MediaPlayer.framework */; };
+		CEEF6D3717648D6F0029BD76 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D2E17648C5E0029BD76 /* MediaToolbox.framework */; };
+		CEEF6D3917648D6F0029BD76 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF6D3817648D6F0029BD76 /* CoreMedia.framework */; };
+		CEEF6D3C176497100029BD76 /* sample.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CEEF6D3B176497100029BD76 /* sample.jpeg */; };
 		CEF696CA176312F60015796A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696C9176312F60015796A /* UIKit.framework */; };
 		CEF696CC176312F60015796A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CB176312F60015796A /* Foundation.framework */; };
-		CEF696CE176312F60015796A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CD176312F60015796A /* CoreGraphics.framework */; };
 		CEF696D4176312F60015796A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF696D2176312F60015796A /* InfoPlist.strings */; };
 		CEF696D6176312F60015796A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696D5176312F60015796A /* main.m */; };
 		CEF696DA176312F60015796A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF696D9176312F60015796A /* AppDelegate.m */; };
@@ -115,6 +116,11 @@
 		CEEF6D1A176487200029BD76 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CEEF6D1C176487300029BD76 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		CEEF6D1D176487310029BD76 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		CEEF6D2917648BE20029BD76 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		CEEF6D2C17648C530029BD76 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		CEEF6D2E17648C5E0029BD76 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
+		CEEF6D3817648D6F0029BD76 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		CEEF6D3B176497100029BD76 /* sample.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sample.jpeg; path = ../../../../sample.jpeg; sourceTree = "<group>"; };
 		CEF696C6176312F60015796A /* QRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF696C9176312F60015796A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF696CB176312F60015796A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -147,19 +153,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEF6D3917648D6F0029BD76 /* CoreMedia.framework in Frameworks */,
+				CEEF6D3617648D6F0029BD76 /* MediaPlayer.framework in Frameworks */,
+				CEEF6D3717648D6F0029BD76 /* MediaToolbox.framework in Frameworks */,
+				CEEF6D3517648D4B0029BD76 /* CoreImage.framework in Frameworks */,
+				CEEF6D3417648D3F0029BD76 /* ImageIO.framework in Frameworks */,
+				CEEF6D3317648D2A0029BD76 /* CoreVideo.framework in Frameworks */,
+				CEEF6D3217648D1A0029BD76 /* CoreGraphics.framework in Frameworks */,
+				CEEF6D3117648D070029BD76 /* AVFoundation.framework in Frameworks */,
+				CEEF6D3017648CF90029BD76 /* QuartzCore.framework in Frameworks */,
 				CEEF6D051764845F0029BD76 /* libZXingWidget.a in Frameworks */,
 				CEF696CA176312F60015796A /* UIKit.framework in Frameworks */,
 				CEF696CC176312F60015796A /* Foundation.framework in Frameworks */,
-				CEEF6D201764877E0029BD76 /* AddressBook.framework in Frameworks */,
-				CEEF6D211764877E0029BD76 /* AddressBookUI.framework in Frameworks */,
-				CEEF6D221764877E0029BD76 /* AudioToolbox.framework in Frameworks */,
-				CEEF6D231764877E0029BD76 /* AVFoundation.framework in Frameworks */,
-				CEEF6D241764877E0029BD76 /* CoreImage.framework in Frameworks */,
-				CEEF6D251764877E0029BD76 /* CoreVideo.framework in Frameworks */,
-				CEEF6D261764877E0029BD76 /* MobileCoreServices.framework in Frameworks */,
-				CEEF6D271764877E0029BD76 /* QuartzCore.framework in Frameworks */,
 				CEEF6D281764877E0029BD76 /* libiconv.dylib in Frameworks */,
-				CEF696CE176312F60015796A /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,9 +222,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CEEF6D3A176497000029BD76 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEEF6D3B176497100029BD76 /* sample.jpeg */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		CEF696BD176312F60015796A = {
 			isa = PBXGroup;
 			children = (
+				CEEF6D3817648D6F0029BD76 /* CoreMedia.framework */,
+				CEEF6D2E17648C5E0029BD76 /* MediaToolbox.framework */,
+				CEEF6D2C17648C530029BD76 /* MediaPlayer.framework */,
 				CEF696CF176312F60015796A /* QRCode */,
 				CEF696C8176312F60015796A /* Frameworks */,
 				CEF696C7176312F60015796A /* Products */,
@@ -236,6 +253,7 @@
 		CEF696C8176312F60015796A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEEF6D2917648BE20029BD76 /* ImageIO.framework */,
 				CEEF6D1C176487300029BD76 /* AddressBook.framework */,
 				CEEF6D1D176487310029BD76 /* AddressBookUI.framework */,
 				CEEF6D1A176487200029BD76 /* AudioToolbox.framework */,
@@ -255,6 +273,7 @@
 		CEF696CF176312F60015796A /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
+				CEEF6D3A176497000029BD76 /* Resources */,
 				CEF696F5176316230015796A /* src */,
 				CEF696F41763160F0015796A /* UI */,
 				CEF696D8176312F60015796A /* AppDelegate.h */,
@@ -412,6 +431,7 @@
 				CEFE02F51763613E006D5BD9 /* home_3232.png in Resources */,
 				CEFE02F61763613E006D5BD9 /* phone_3232.png in Resources */,
 				CEFE02F71763613E006D5BD9 /* user_4848.png in Resources */,
+				CEEF6D3C176497100029BD76 /* sample.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
