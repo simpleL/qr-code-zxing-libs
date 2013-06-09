@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DecoderDelegate.h>
 
-@interface ScanViewController : UIViewController
+@interface ScanViewController : UIViewController<DecoderDelegate>
 {
-    UINavigationController * nav;    
+    UINavigationController * nav;
+    
+    NSSet               *_readers;
+    NSMutableArray      *_points;
+    Decoder             *_decoder;
 }
 
 +(BOOL)isFound;

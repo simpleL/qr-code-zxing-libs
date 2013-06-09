@@ -41,11 +41,38 @@
                             <constraint firstItem="A2d-JI-6sc" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="sg9-ys-ZMl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main" id="XpZ-7u-9QI"/>
+                    <navigationItem key="navigationItem" title="Main" id="XpZ-7u-9QI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ehh-i2-53E">
+                            <connections>
+                                <segue destination="Y5I-Gl-qw8" kind="push" id="DaG-zU-5Er"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="511" y="35"/>
+            <point key="canvasLocation" x="435" y="-318"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rsY-Jx-f8F">
+            <objects>
+                <viewController id="Y5I-Gl-qw8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aJz-kV-HeL">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TSW-et-2Uh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="O6B-RB-Q1y">
+                            <connections>
+                                <segue destination="HUn-SL-sa9" kind="push" id="K4y-bn-Y7H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xmi-iW-pOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1034" y="-659"/>
         </scene>
         <!--Scan View Controller-->
         <scene sceneID="4RA-rG-Qzi">
@@ -83,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKD-1I-kmU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="-671"/>
+            <point key="canvasLocation" x="1034" y="-1395"/>
         </scene>
         <!--Scan Result View Controller-->
         <scene sceneID="ujR-RS-ahS">
@@ -124,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dlf-qq-CpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="-671"/>
+            <point key="canvasLocation" x="1508" y="-1395"/>
         </scene>
         <!--Contac List Table View Controller - Contact List-->
         <scene sceneID="PIj-2q-2CU">
@@ -488,7 +515,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1516" y="35"/>
+            <point key="canvasLocation" x="1612" y="-365"/>
         </scene>
         <!--View Controller - My Information-->
         <scene sceneID="OX2-zM-8iP">
@@ -532,7 +559,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hC-8n-tOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="35"/>
+            <point key="canvasLocation" x="-75" y="-318"/>
         </scene>
     </scenes>
     <resources>
@@ -541,9 +568,57 @@
         <image name="phone_3232.png" width="32" height="32"/>
         <image name="user_4848.png" width="48" height="48"/>
     </resources>
+    <classes>
+        <class className="ContacListTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContacListTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="_tableViewListContacts" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ContactDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactDetailsViewController.h"/>
+        </class>
+        <class className="ContactListTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactListTableViewCell.h"/>
+            <relationships>
+                <relationship kind="action" name="btnClicked:"/>
+                <relationship kind="outlet" name="_btnCall" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="_btnGoToSite" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="_btnMailTo" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="_lbEmail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="_lbFullName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="_lbPersonalSite" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="_lbPhoneNumber" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="_tvAddress" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ScanResultViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScanResultViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnClicked:"/>
+                <relationship kind="outlet" name="btnContinueScan" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="btnSave" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="ScanViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScanViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="btnClicked:"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="K4y-bn-Y7H"/>
+    </inferredMetricsTieBreakers>
 </document>

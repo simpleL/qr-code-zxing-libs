@@ -8,6 +8,9 @@
 
 #import "ScanViewController.h"
 #import "ScanResultViewController.h"
+#import <QRCodeReader.h>
+#import <Decoder.h>
+#import <TwoDDecoderResult.h>
 
 @interface ScanViewController ()
 
@@ -59,7 +62,14 @@ static BOOL isFound = NO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Custom initialization
+    QRCodeReader * reader = [[QRCodeReader alloc] init];
+    _readers = [[NSSet alloc] initWithObjects:reader,nil];
+    [reader release];
+    
+//    safeRelease(_decoder);
+    _decoder = [[Decoder alloc] init];
+    [_decoder setDelegate:self];
+    [_decoder setReaders:_readers];
 }
 
 -(void)viewDidAppear:(BOOL)animated
