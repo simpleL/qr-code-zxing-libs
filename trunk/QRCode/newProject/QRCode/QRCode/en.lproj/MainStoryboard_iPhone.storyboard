@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Main-->
+        <!--View Controller - My QR Code-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <constraint firstItem="XDd-K5-x4E" firstAttribute="centerX" secondItem="A2d-JI-6sc" secondAttribute="centerX" type="default" id="vKg-4V-VUJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main" id="XpZ-7u-9QI">
+                    <navigationItem key="navigationItem" title="My QR Code" id="XpZ-7u-9QI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ehh-i2-53E">
                             <connections>
                                 <segue destination="Y5I-Gl-qw8" kind="push" id="DaG-zU-5Er"/>
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmi-iW-pOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="-689"/>
+            <point key="canvasLocation" x="1094" y="-719"/>
         </scene>
         <!--Scan View Controller-->
         <scene sceneID="4RA-rG-Qzi">
@@ -322,7 +322,8 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="HUn-SL-sa9" kind="push" id="TTY-1p-aEK"/>
+                                                        <action selector="btnClicked:" destination="0AC-Fy-sl0" eventType="touchUpInside" id="65M-Op-Fwi"/>
+                                                        <segue destination="HUn-SL-sa9" kind="custom" customClass="ContactDetailsClickSegue" id="qt9-4Q-crm"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKI-NV-YXU">
@@ -386,6 +387,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="_btnCall" destination="YpU-SM-L0M" id="H0P-af-UOq"/>
+                                            <outlet property="_btnDetails" destination="l7g-tR-ysK" id="ofb-44-aPm"/>
                                             <outlet property="_btnGoToSite" destination="ZKI-NV-YXU" id="1Sl-Tn-RzC"/>
                                             <outlet property="_btnMailTo" destination="Bvk-mq-VQr" id="74J-S5-3Ro"/>
                                             <outlet property="_lbEmail" destination="20t-vc-ErZ" id="zI1-9w-dcl"/>
@@ -419,7 +421,13 @@
                             <constraint firstItem="kGt-DX-PiO" firstAttribute="top" secondItem="mgu-MQ-VDQ" secondAttribute="bottom" type="default" id="ssm-Vl-DX4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contact List" id="uqP-bk-e0T"/>
+                    <navigationItem key="navigationItem" title="Contact List" id="uqP-bk-e0T">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kLL-0c-QFM">
+                            <connections>
+                                <segue destination="Y5I-Gl-qw8" kind="push" id="aAo-D2-K2B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="_tableViewListContacts" destination="kGt-DX-PiO" id="fpc-l5-Hcw"/>
                         <outlet property="searchDisplayController" destination="M1q-ji-aJI" id="Bon-z2-yKi"/>
@@ -812,21 +820,14 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="478" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2vM-rX-DbC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="476" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2vM-rX-DbC">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Address of this contact" id="KIC-fK-b7P">
-                                    <rect key="frame" x="0.0" y="500" width="320" height="72"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="scanResultTableViewCell" rowHeight="478" id="8uz-NV-XTO">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="478"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="scanResultTableViewCell" rowHeight="476" id="8uz-NV-XTO" customClass="ScanResultTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="476"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="477"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Full name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxS-Vv-zjE">
@@ -872,6 +873,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnClicked:" destination="8uz-NV-XTO" eventType="touchUpInside" id="peZ-Fi-2gu"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TqZ-ws-UCm">
                                                     <constraints>
@@ -885,6 +889,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnClicked:" destination="8uz-NV-XTO" eventType="touchUpInside" id="69Z-na-NvH"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4e-Ol-nBz">
                                                     <constraints>
@@ -898,6 +905,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnClicked:" destination="8uz-NV-XTO" eventType="touchUpInside" id="30u-j2-tYn"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QH5-wu-vPR">
                                                     <constraints>
@@ -905,31 +915,54 @@
                                                         <constraint firstAttribute="height" constant="210" id="tLh-Jc-UYi"/>
                                                     </constraints>
                                                 </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="address" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-j4-umz">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="ARa-Gk-nrN"/>
+                                                        <constraint firstAttribute="width" constant="261" id="tev-xg-KQh"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.25307319210000001" green="0.34020886480000001" blue="0.62253736410000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="Y4e-Ol-nBz" firstAttribute="trailing" secondItem="QBB-j4-umz" secondAttribute="trailing" type="default" id="13q-te-wsI"/>
                                             <constraint firstItem="l1q-9L-WCh" firstAttribute="leading" secondItem="XPW-s7-acI" secondAttribute="leading" type="default" id="2BR-1q-neF"/>
-                                            <constraint firstAttribute="bottom" secondItem="qYd-at-nyE" secondAttribute="bottom" constant="90" id="5Ra-H4-YWz"/>
                                             <constraint firstItem="TqZ-ws-UCm" firstAttribute="leading" secondItem="XPW-s7-acI" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="6Su-4E-B9k"/>
                                             <constraint firstItem="Y4e-Ol-nBz" firstAttribute="leading" secondItem="qYd-at-nyE" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="6iA-WC-qUc"/>
                                             <constraint firstItem="Y4e-Ol-nBz" firstAttribute="trailing" secondItem="TqZ-ws-UCm" secondAttribute="trailing" type="default" id="ABG-lG-PnX"/>
-                                            <constraint firstItem="l1q-9L-WCh" firstAttribute="leading" secondItem="8uz-NV-XTO" secondAttribute="leading" constant="35" id="Fa4-eT-zzZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="QBB-j4-umz" secondAttribute="bottom" constant="21" id="ENE-ro-XeB"/>
+                                            <constraint firstAttribute="bottom" secondItem="l1q-9L-WCh" secondAttribute="bottom" constant="177" id="F1C-Ge-cx1"/>
                                             <constraint firstAttribute="trailing" secondItem="CxS-Vv-zjE" secondAttribute="trailing" constant="20" type="default" id="GH1-qh-WUY"/>
                                             <constraint firstItem="Y4e-Ol-nBz" firstAttribute="leading" secondItem="TqZ-ws-UCm" secondAttribute="leading" type="default" id="GOn-pp-tta"/>
                                             <constraint firstItem="XPW-s7-acI" firstAttribute="leading" secondItem="qYd-at-nyE" secondAttribute="leading" type="default" id="Pb7-Uq-Khz"/>
                                             <constraint firstItem="TqZ-ws-UCm" firstAttribute="trailing" secondItem="0zu-WL-qCU" secondAttribute="trailing" type="default" id="Qh6-Ve-Ryb"/>
-                                            <constraint firstAttribute="bottom" secondItem="TqZ-ws-UCm" secondAttribute="bottom" constant="122" id="QhM-7p-S7P"/>
+                                            <constraint firstAttribute="bottom" secondItem="XPW-s7-acI" secondAttribute="bottom" constant="141" id="RCv-qc-PE6"/>
                                             <constraint firstItem="0zu-WL-qCU" firstAttribute="leading" secondItem="TqZ-ws-UCm" secondAttribute="leading" type="default" id="SzC-TT-5oq"/>
-                                            <constraint firstAttribute="bottom" secondItem="l1q-9L-WCh" secondAttribute="bottom" constant="164" id="Xyn-DB-5Hx"/>
                                             <constraint firstItem="QH5-wu-vPR" firstAttribute="centerX" secondItem="8uz-NV-XTO" secondAttribute="centerX" type="default" id="Y9N-bp-BfC"/>
-                                            <constraint firstAttribute="bottom" secondItem="Y4e-Ol-nBz" secondAttribute="bottom" constant="84" id="dMo-jY-zWr"/>
+                                            <constraint firstAttribute="bottom" secondItem="0zu-WL-qCU" secondAttribute="bottom" constant="171" id="bJi-8A-Pi6"/>
+                                            <constraint firstAttribute="bottom" secondItem="qYd-at-nyE" secondAttribute="bottom" constant="103" id="cT9-yq-EUG"/>
                                             <constraint firstItem="QH5-wu-vPR" firstAttribute="top" secondItem="8uz-NV-XTO" secondAttribute="top" constant="14" id="dbM-mN-jLJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="0zu-WL-qCU" secondAttribute="bottom" constant="158" id="fBI-DY-a5c"/>
-                                            <constraint firstAttribute="bottom" secondItem="XPW-s7-acI" secondAttribute="bottom" constant="128" id="gIQ-lX-of4"/>
+                                            <constraint firstAttribute="bottom" secondItem="Y4e-Ol-nBz" secondAttribute="bottom" constant="97" id="hcF-VO-G60"/>
+                                            <constraint firstAttribute="bottom" secondItem="TqZ-ws-UCm" secondAttribute="bottom" constant="135" id="hjO-tM-TS2"/>
                                             <constraint firstItem="CxS-Vv-zjE" firstAttribute="top" secondItem="QH5-wu-vPR" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vmX-EM-B5F"/>
+                                            <constraint firstItem="QBB-j4-umz" firstAttribute="leading" secondItem="8uz-NV-XTO" secondAttribute="leading" constant="25" id="zij-WP-vhw"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="address" destination="QBB-j4-umz" id="TJ7-uW-guJ"/>
+                                            <outlet property="btnCall" destination="0zu-WL-qCU" id="oNl-dl-vmm"/>
+                                            <outlet property="btnEmail" destination="Y4e-Ol-nBz" id="K4l-Cw-uxZ"/>
+                                            <outlet property="btnGoToSite" destination="TqZ-ws-UCm" id="ZH5-oL-uXv"/>
+                                            <outlet property="email" destination="qYd-at-nyE" id="3DI-24-UUL"/>
+                                            <outlet property="fullName" destination="CxS-Vv-zjE" id="hJj-EL-3Kh"/>
+                                            <outlet property="image" destination="QH5-wu-vPR" id="RcP-4T-Eec"/>
+                                            <outlet property="personalSite" destination="XPW-s7-acI" id="sfT-V3-cr2"/>
+                                            <outlet property="phoneNumber" destination="l1q-9L-WCh" id="amb-hS-ale"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -957,9 +990,9 @@
                         <constraints>
                             <constraint firstItem="pIM-bl-zdD" firstAttribute="bottom" secondItem="w0G-a2-RHb" secondAttribute="bottom" type="default" id="BaV-Sq-aaj"/>
                             <constraint firstItem="2vM-rX-DbC" firstAttribute="top" secondItem="w0G-a2-RHb" secondAttribute="top" type="default" id="Oq9-7U-RGs"/>
+                            <constraint firstItem="pIM-bl-zdD" firstAttribute="top" secondItem="2vM-rX-DbC" secondAttribute="bottom" type="default" id="Vcc-Qh-fUt"/>
                             <constraint firstItem="pIM-bl-zdD" firstAttribute="trailing" secondItem="w0G-a2-RHb" secondAttribute="trailing" type="default" id="adl-Bq-fYQ"/>
                             <constraint firstItem="pIM-bl-zdD" firstAttribute="leading" secondItem="w0G-a2-RHb" secondAttribute="leading" type="default" id="pDc-cA-Uxi"/>
-                            <constraint firstItem="pIM-bl-zdD" firstAttribute="top" secondItem="2vM-rX-DbC" secondAttribute="bottom" type="default" id="qfu-EF-XaW"/>
                             <constraint firstItem="2vM-rX-DbC" firstAttribute="trailing" secondItem="w0G-a2-RHb" secondAttribute="trailing" type="default" id="uxe-sY-tNy"/>
                             <constraint firstItem="2vM-rX-DbC" firstAttribute="leading" secondItem="w0G-a2-RHb" secondAttribute="leading" type="default" id="yEg-2d-G3I"/>
                         </constraints>
@@ -969,6 +1002,7 @@
                         <outlet property="btnContinueScan" destination="fxd-uK-dyl" id="hxV-fm-MOH"/>
                         <outlet property="btnSave" destination="m4u-VG-f6Z" id="acw-gL-DcK"/>
                         <outlet property="searchDisplayController" destination="MGx-5X-6fC" id="ebQ-gg-50Z"/>
+                        <outlet property="table" destination="2vM-rX-DbC" id="Nau-y2-DFF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9A-NY-3lV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1020,6 +1054,7 @@
             <relationships>
                 <relationship kind="action" name="btnClicked:"/>
                 <relationship kind="outlet" name="_btnCall" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="_btnDetails" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="_btnGoToSite" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="_btnMailTo" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="_lbEmail" candidateClass="UILabel"/>
@@ -1048,12 +1083,28 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="ScanResultTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScanResultTableViewCell.h"/>
+            <relationships>
+                <relationship kind="action" name="btnClicked:"/>
+                <relationship kind="outlet" name="address" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="btnCall" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnEmail" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnGoToSite" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fullName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="personalSite" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneNumber" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="ScanResultViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ScanResultViewController.h"/>
             <relationships>
                 <relationship kind="action" name="btnClicked:"/>
                 <relationship kind="outlet" name="btnContinueScan" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="btnSave" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="table" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="ScanViewController" superclassName="UIViewController">
@@ -1076,6 +1127,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="XFw-xc-gWj"/>
-        <segue reference="K4y-bn-Y7H"/>
+        <segue reference="qt9-4Q-crm"/>
     </inferredMetricsTieBreakers>
 </document>

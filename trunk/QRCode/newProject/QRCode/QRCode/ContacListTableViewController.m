@@ -8,6 +8,10 @@
 
 #import "ContacListTableViewController.h"
 #import "ContactListTableViewCell.h"
+#import "FileManager.h"
+#import "Constants.h"
+#import "Utilities.h"
+
 
 @interface ContacListTableViewController ()
 
@@ -15,22 +19,62 @@
 
 @implementation ContacListTableViewController
 
-//
+static int selectedIndex = 0;
++(int)selectedIndex
+{
+    return selectedIndex;
+}
+
+-(id)init
+{
+    self = [super init];
+    _contactsData = [[FileManager getContactsData] retain];
+    if (_contactsData==nil)
+    {
+        _contactsData = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+
+{
+    self = [super initWithCoder:aDecoder];
+    _contactsData = [[FileManager getContactsData] retain];
+    if (_contactsData==nil)
+    {
+        _contactsData = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    _contactsData = [[FileManager getContactsData] retain];
+    if (_contactsData==nil)
+    {
+        _contactsData = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 -(void)loadView
 {
-    [super loadView];
+    [super loadView];    
 }
 
 - (void)viewDidLoad
-{
+{    
     [super viewDidLoad];
+}
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    safeRelease(_contactsData);
+    _contactsData = [[FileManager getContactsData] retain];
+    [_tableViewListContacts reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,17 +94,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 10;
+    return _contactsData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = nil;
+    ContactListTableViewCell * cell = nil;
     static NSString *CellIdentifier = @"contactListTableViewCell";
     cell = [_tableViewListContacts dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (tableView == _tableViewListContacts)
     {
         //TODO: configurate
+        NSDictionary * dict = [[_contactsData objectAtIndex:indexPath.row] objectForKey:kContactInfo];
+        [cell setInfoWithFullName:[dict objectForKey:kFullName] phoneNumber:[dict objectForKey:kPhoneNumber] email:[dict objectForKey:kEmail] personalSite:[dict objectForKey:kPersonalSite] address:[dict objectForKey:kAddress]];
+        cell.row = indexPath.row;
     }else
     {
         //TODO: configurate
@@ -90,7 +137,10 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [FileManager deleteAtIndex:indexPath.row];
+        safeRelease(_contactsData);
+        _contactsData = [[FileManager getContactsData] retain];
+        [tableView reloadData];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -117,16 +167,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    
 }
 
-#pragma mark search display delegate
 
 @end

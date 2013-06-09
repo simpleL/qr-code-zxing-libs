@@ -19,8 +19,10 @@
     IBOutlet UIButton       *_btnCall;
     IBOutlet UIButton       *_btnGoToSite;
     IBOutlet UIButton       *_btnMailTo;
+    IBOutlet UIButton       *_btnDetails;
 }
-
+@property int row;
++(int)getRow;
 -(void) setInfoWithFullName:(NSString*)fullName phoneNumber:(NSString*)phoneNumber email:(NSString*)email personalSite:(NSString*)personalSite address:(NSString*)address;
 -(IBAction)btnClicked:(id)sender;
 

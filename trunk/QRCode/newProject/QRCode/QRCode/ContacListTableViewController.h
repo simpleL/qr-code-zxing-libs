@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContacListTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
+@interface ContacListTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UITableView             *_tableViewListContacts;
+    NSMutableArray                  *_contactsData;
 }
+
++(int)selectedIndex;
 
 @end

@@ -21,6 +21,8 @@
     AVCaptureSession    *_session;
     
     BOOL                _isDecoding;
+    NSDictionary        *_resultDict;
+    UIImage             *_resultImage;
 }
 
 +(BOOL)isFound;

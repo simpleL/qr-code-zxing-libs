@@ -10,12 +10,15 @@
 		CEC50E0317636C6700AC818E /* ScanViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0117636C6700AC818E /* ScanViewController.mm */; };
 		CEC50E0717636CC400AC818E /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0617636CC400AC818E /* ScanView.m */; };
 		CEC50E0A17636E6000AC818E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0917636E6000AC818E /* ScanResultViewController.m */; };
+		CECD5DEF1765000900B32DC7 /* ScanResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CECD5DEE1765000900B32DC7 /* ScanResultTableViewCell.m */; };
+		CECD5DF21765058200B32DC7 /* sample2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CECD5DF11765058200B32DC7 /* sample2.jpeg */; };
 		CEE249F01764BDDB0052C76A /* InputNewContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE249EF1764BDDB0052C76A /* InputNewContactViewController.m */; };
 		CEE249FB1764C4E40052C76A /* InputContactSegue.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEE249FA1764C4E40052C76A /* InputContactSegue.mm */; };
 		CEE249FF1764CE380052C76A /* ContactDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE249FE1764CE380052C76A /* ContactDetailsTableViewCell.m */; };
 		CEE24A021764D1BF0052C76A /* InputInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A011764D1BF0052C76A /* InputInfoTableViewCell.m */; };
 		CEE24A091764DF5A0052C76A /* MyContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A081764DF590052C76A /* MyContactInfoViewController.m */; };
 		CEE24A0C1764DFA50052C76A /* MyContactInfoSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A0B1764DFA40052C76A /* MyContactInfoSegue.m */; };
+		CEE24A0F1764F3BA0052C76A /* ContactDetailsClickSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE24A0E1764F3BA0052C76A /* ContactDetailsClickSegue.m */; };
 		CEEF6C6B176451390029BD76 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */; };
 		CEEF6CE917647C360029BD76 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6CD917647C360029BD76 /* bitstream.c */; };
 		CEEF6CEA17647C360029BD76 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6CDB17647C360029BD76 /* mask.c */; };
@@ -89,6 +92,9 @@
 		CEC50E0617636CC400AC818E /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
 		CEC50E0817636E6000AC818E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		CEC50E0917636E6000AC818E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		CECD5DED1765000800B32DC7 /* ScanResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultTableViewCell.h; sourceTree = "<group>"; };
+		CECD5DEE1765000900B32DC7 /* ScanResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultTableViewCell.m; sourceTree = "<group>"; };
+		CECD5DF11765058200B32DC7 /* sample2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample2.jpeg; sourceTree = "<group>"; };
 		CEE249EE1764BDDB0052C76A /* InputNewContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNewContactViewController.h; sourceTree = "<group>"; };
 		CEE249EF1764BDDB0052C76A /* InputNewContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputNewContactViewController.m; sourceTree = "<group>"; };
 		CEE249F91764C4E40052C76A /* InputContactSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputContactSegue.h; sourceTree = "<group>"; };
@@ -101,6 +107,8 @@
 		CEE24A081764DF590052C76A /* MyContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactInfoViewController.m; sourceTree = "<group>"; };
 		CEE24A0A1764DFA40052C76A /* MyContactInfoSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyContactInfoSegue.h; sourceTree = "<group>"; };
 		CEE24A0B1764DFA40052C76A /* MyContactInfoSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyContactInfoSegue.m; sourceTree = "<group>"; };
+		CEE24A0D1764F3BA0052C76A /* ContactDetailsClickSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsClickSegue.h; sourceTree = "<group>"; };
+		CEE24A0E1764F3BA0052C76A /* ContactDetailsClickSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsClickSegue.m; sourceTree = "<group>"; };
 		CEEF6C69176451390029BD76 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
 		CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		CEEF6CD917647C360029BD76 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
@@ -197,6 +205,8 @@
 				CEE249FA1764C4E40052C76A /* InputContactSegue.mm */,
 				CEE24A0A1764DFA40052C76A /* MyContactInfoSegue.h */,
 				CEE24A0B1764DFA40052C76A /* MyContactInfoSegue.m */,
+				CEE24A0D1764F3BA0052C76A /* ContactDetailsClickSegue.h */,
+				CEE24A0E1764F3BA0052C76A /* ContactDetailsClickSegue.m */,
 			);
 			name = Segues;
 			sourceTree = "<group>";
@@ -210,6 +220,8 @@
 				CEE249FE1764CE380052C76A /* ContactDetailsTableViewCell.m */,
 				CEE24A001764D1BF0052C76A /* InputInfoTableViewCell.h */,
 				CEE24A011764D1BF0052C76A /* InputInfoTableViewCell.m */,
+				CECD5DED1765000800B32DC7 /* ScanResultTableViewCell.h */,
+				CECD5DEE1765000900B32DC7 /* ScanResultTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -267,6 +279,7 @@
 		CEEF6D3A176497000029BD76 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CECD5DF11765058200B32DC7 /* sample2.jpeg */,
 				CEEF6D3B176497100029BD76 /* sample.jpeg */,
 			);
 			name = Resources;
@@ -478,6 +491,7 @@
 				CEFE02F61763613E006D5BD9 /* phone_3232.png in Resources */,
 				CEFE02F71763613E006D5BD9 /* user_4848.png in Resources */,
 				CEEF6D3C176497100029BD76 /* sample.jpeg in Resources */,
+				CECD5DF21765058200B32DC7 /* sample2.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +527,8 @@
 				CEE24A021764D1BF0052C76A /* InputInfoTableViewCell.m in Sources */,
 				CEE24A091764DF5A0052C76A /* MyContactInfoViewController.m in Sources */,
 				CEE24A0C1764DFA50052C76A /* MyContactInfoSegue.m in Sources */,
+				CEE24A0F1764F3BA0052C76A /* ContactDetailsClickSegue.m in Sources */,
+				CECD5DEF1765000900B32DC7 /* ScanResultTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

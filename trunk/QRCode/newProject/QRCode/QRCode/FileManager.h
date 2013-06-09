@@ -23,4 +23,10 @@
 +(void)insertNewContact:(NSDictionary*)dict withImage:(UIImage*)image;
 +(void)deleteAtIndex:(int)index;
 
+
+
++(void)callTo:(NSString*)number;
++(void)goToSite:(NSString*)url;
++(void)mailTo:(NSString*)email;
+
 @end

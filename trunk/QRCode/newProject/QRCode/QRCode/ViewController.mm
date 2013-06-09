@@ -18,7 +18,6 @@
 
 @synthesize imageView;
 
-static UIImage * _image = nil;
 +(void)setImage:(UIImage *)image
 {
 }
