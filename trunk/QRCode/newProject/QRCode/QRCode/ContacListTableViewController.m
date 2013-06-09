@@ -54,42 +54,48 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
+    UITableViewCell * cell = nil;
     static NSString *CellIdentifier = @"contactListTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    if (cell==nil)
+    cell = [_tableViewListContacts dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (tableView == _tableViewListContacts)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchCell"];
+        //TODO: configurate
+    }else
+    {
+        //TODO: configurate
     }
     
+    
     // configurate the cell informations
-    ContactListTableViewCell * contactCell = (ContactListTableViewCell*)cell;
-    [contactCell setInfoWithFullName:@"Nguyen Ba Phuoc" phoneNumber:@"01689971684" email:@"baphuoc231990@gmail.com" personalSite:@"http://mysite.co" address:@"from the moon!"];
     return cell;
 }
 
-/*
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 287;
+}
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -120,5 +126,7 @@
      [detailViewController release];
      */
 }
+
+#pragma mark search display delegate
 
 @end

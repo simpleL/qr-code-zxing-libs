@@ -66,7 +66,6 @@ static BOOL isFound = NO;
 {
     [super viewDidAppear:animated];
     nav = self.navigationController;
-//    [nav popViewControllerAnimated:YES];    
 }
 
 
