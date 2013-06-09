@@ -10,6 +10,7 @@
 		CEC50E0317636C6700AC818E /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0117636C6700AC818E /* ScanViewController.m */; };
 		CEC50E0717636CC400AC818E /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0617636CC400AC818E /* ScanView.m */; };
 		CEC50E0A17636E6000AC818E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC50E0917636E6000AC818E /* ScanResultViewController.m */; };
+		CEEF6C6B176451390029BD76 /* ContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */; };
 		CEF696CA176312F60015796A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696C9176312F60015796A /* UIKit.framework */; };
 		CEF696CC176312F60015796A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CB176312F60015796A /* Foundation.framework */; };
 		CEF696CE176312F60015796A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF696CD176312F60015796A /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 		CEC50E0617636CC400AC818E /* ScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanView.m; sourceTree = "<group>"; };
 		CEC50E0817636E6000AC818E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		CEC50E0917636E6000AC818E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		CEEF6C69176451390029BD76 /* ContactDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailsViewController.h; sourceTree = "<group>"; };
+		CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailsViewController.m; sourceTree = "<group>"; };
 		CEF696C6176312F60015796A /* QRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF696C9176312F60015796A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEF696CB176312F60015796A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -156,6 +159,8 @@
 				CEC50E0617636CC400AC818E /* ScanView.m */,
 				CEC50E0817636E6000AC818E /* ScanResultViewController.h */,
 				CEC50E0917636E6000AC818E /* ScanResultViewController.m */,
+				CEEF6C69176451390029BD76 /* ContactDetailsViewController.h */,
+				CEEF6C6A176451390029BD76 /* ContactDetailsViewController.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				CEC50E0317636C6700AC818E /* ScanViewController.m in Sources */,
 				CEC50E0717636CC400AC818E /* ScanView.m in Sources */,
 				CEC50E0A17636E6000AC818E /* ScanResultViewController.m in Sources */,
+				CEEF6C6B176451390029BD76 /* ContactDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

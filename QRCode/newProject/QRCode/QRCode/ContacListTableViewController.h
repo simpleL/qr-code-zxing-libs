@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContacListTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ContacListTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
+{
+    IBOutlet UITableView             *_tableViewListContacts;
+}
 
 @end
