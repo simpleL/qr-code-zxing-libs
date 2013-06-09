@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <DecoderDelegate.h>
+#import <AVFoundation/AVFoundation.h>
+@class Decoder;
 
-@interface ScanViewController : UIViewController<DecoderDelegate>
+@interface ScanViewController : UIViewController
 {
     UINavigationController * nav;
     
     NSSet               *_readers;
     NSMutableArray      *_points;
     Decoder             *_decoder;
+    
+    AVCaptureSession    *_session;
+    
+    BOOL                _isDecoding;
 }
 
 +(BOOL)isFound;

@@ -9,7 +9,7 @@
 #import "ScanResultViewController.h"
 #import "ScanViewController.h"
 
-@interface ScanResultViewController ()
+@interface ScanResultViewController (tableViewMethods)<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -84,6 +84,43 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+@end
+
+
+@implementation ScanResultViewController(tableViewMethods)
+
+#pragma mark Datasource delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"scanResultTableViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (cell==nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchCell"];
+    }
+    
+    // configurate the cell informations
+    return cell;
+}
+
+#pragma mark table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 @end
