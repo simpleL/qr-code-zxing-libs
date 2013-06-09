@@ -74,7 +74,7 @@ static BOOL isFound = NO;
 {
 //    [nav popViewControllerAnimated:YES];
 //    isFound = YES;
-    UIImage * image = [UIImage imageNamed:@"sample.jpeg"];
+    UIImage * image = [UIImage imageNamed:@"sample2.jpeg"];
     [self decodeImage:image];
 }
 
@@ -121,7 +121,15 @@ static BOOL isFound = NO;
         if (finished && isFound)
         {
             UIStoryboard * storyBoard = self.storyboard;
-            UIViewController * result = [storyBoard instantiateViewControllerWithIdentifier:@"resultViewController"];
+            ScanResultViewController * result = [storyBoard instantiateViewControllerWithIdentifier:@"resultViewController"];
+            
+            result.fullName = [_resultDict objectForKey:kFullName];
+            result.phoneNumber = [_resultDict objectForKey:kPhoneNumber];
+            result.email = [_resultDict objectForKey:kEmail];
+            result.personalSite = [_resultDict objectForKey:kPersonalSite];
+            result.address = [_resultDict objectForKey:kAddress];
+            result.image = _resultImage;
+            
             [nav pushViewController:result animated:YES];
         }
     }];
@@ -300,12 +308,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if (dict)
     {
         //TODO: correct format ==> show it to the result view
+        _resultDict = [dict retain];
+        _resultImage = [image retain];
         [nav popViewControllerAnimated:YES];
         isFound = YES;
     }
     else
     {
         //TODO: unknown format ==> continue scanning or show the data in a text view only
+        _resultImage = [image retain];
         [nav popViewControllerAnimated:YES];
         isFound = YES;
     }

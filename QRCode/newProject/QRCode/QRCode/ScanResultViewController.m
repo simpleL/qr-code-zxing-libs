@@ -8,6 +8,10 @@
 
 #import "ScanResultViewController.h"
 #import "ScanViewController.h"
+#import "ScanResultTableViewCell.h"
+#import "FileManager.h"
+#import "Utilities.h"
+#import "Constants.h"
 
 @interface ScanResultViewController (tableViewMethods)<UITableViewDataSource, UITableViewDelegate>
 
@@ -15,7 +19,7 @@
 
 @implementation ScanResultViewController
 
-@synthesize btnSave, btnContinueScan;
+@synthesize btnSave, btnContinueScan, table, fullName, phoneNumber, email, personalSite, address, image;
 
 -(id)init
 {
@@ -53,6 +57,13 @@
     if (btn == btnSave)
     {
         NSLog(@"save the result");
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:fullName forKey:kFullName];
+        [dict setObject:phoneNumber forKey:kPhoneNumber];
+        [dict setObject:email forKey:kEmail];
+        [dict setObject:personalSite forKey:kPersonalSite];
+        [dict setObject:address forKey:kAddress];
+        [FileManager insertNewContact:dict withImage:image];
     }
     if (btn == btnContinueScan)
     {        
@@ -107,11 +118,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"scanResultTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    if (cell==nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchCell"];
-    }
+    ScanResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.fullName.text = fullName;
+    cell.phoneNumber.text = phoneNumber;
+    cell.email.text = email;
+    cell.personalSite.text = personalSite;
+    cell.address.text = address;
+    [cell.image setImage:image];
     
     // configurate the cell informations
     return cell;

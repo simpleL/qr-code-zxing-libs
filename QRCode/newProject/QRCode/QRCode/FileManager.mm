@@ -134,4 +134,20 @@
     }
 }
 
+
++(void)callTo:(NSString *)number
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", number]]];
+}
+
++(void)goToSite:(NSString*)url
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", url]]];
+}
+
++(void)mailTo:(NSString*)email
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@", email]]];
+}
+
 @end

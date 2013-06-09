@@ -7,10 +7,15 @@
 //
 
 #import "ContactListTableViewCell.h"
+#import "FileManager.h"
 
 @implementation ContactListTableViewCell
-
-
+@synthesize row;
+static int _row = 0;
++(int)getRow
+{
+    return _row;
+}
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -47,14 +52,23 @@
     if (btn == _btnCall)
     {
         NSLog(@"call to number %@", _lbPhoneNumber.text);
+        [FileManager callTo:_lbPhoneNumber.text];
     }
     if (btn == _btnGoToSite)
     {
         NSLog(@"go to site %@", _lbPersonalSite.text);
+        [FileManager goToSite:_lbPersonalSite.text];
     }
     if (btn == _btnMailTo)
     {
         NSLog(@"mail to %@", _lbEmail.text);
+        [FileManager mailTo:_lbEmail.text];
+    }
+    if(btn == _btnDetails)
+    {
+        NSLog(@"details at %d", row);
+        
+        _row = row;
     }
 }
 

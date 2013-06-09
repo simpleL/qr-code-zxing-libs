@@ -8,6 +8,7 @@
 
 #import "ContactDetailsViewController.h"
 #import "ContactDetailsTableViewCell.h"
+#import "FileManager.h"
 
 @interface ContactDetailsViewController ()
 
@@ -15,7 +16,7 @@
 
 @implementation ContactDetailsViewController
 
-@synthesize fullName, phoneNumber, email, personalSite, address;
+@synthesize fullName, phoneNumber, email, personalSite, address, imageName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,7 +61,7 @@
     cell.email.text = email;
     cell.personalSite.text = personalSite;
     cell.address.text = address;
-    
+    [cell.image setImage:[FileManager getCapturedImage:imageName]];
     // configurate the cell informations
     return cell;
 }
