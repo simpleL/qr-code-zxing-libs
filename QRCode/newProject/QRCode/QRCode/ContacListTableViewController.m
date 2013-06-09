@@ -54,7 +54,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     UITableViewCell * cell = nil;
     static NSString *CellIdentifier = @"contactListTableViewCell";
     cell = [_tableViewListContacts dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];

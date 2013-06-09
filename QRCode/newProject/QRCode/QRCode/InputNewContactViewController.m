@@ -1,27 +1,45 @@
 //
-//  ContactDetailsViewController.m
+//  InputNewContactViewController.m
 //  QRCode
 //
 //  Created by Nguyen Ba Phuoc on 09/06/2013.
 //  Copyright (c) 2013 Nguyen Ba Phuoc. All rights reserved.
-//
+// inputNewContactTableViewCell
 
-#import "ContactDetailsViewController.h"
-#import "ContactDetailsTableViewCell.h"
+#import "InputNewContactViewController.h"
+#import "InputInfoTableViewCell.h"
 
-@interface ContactDetailsViewController ()
+@interface InputNewContactViewController (tableViewMethods)<UITableViewDelegate, UITableViewDataSource>
 
 @end
 
-@implementation ContactDetailsViewController
+@implementation InputNewContactViewController
 
+@synthesize table, isAddNew;
 @synthesize fullName, phoneNumber, email, personalSite, address;
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        isAddNew = YES;
+    }
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    isAddNew = YES;
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        isAddNew = YES;
     }
     return self;
 }
@@ -32,11 +50,21 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+@end
+
+@implementation InputNewContactViewController(tableViewMethods)
 
 #pragma mark Datasource delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -53,8 +81,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"contactDetailsTableViewCell";
-    ContactDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"inputNewContactTableViewCell";
+    InputInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
     cell.fullName.text = fullName;
     cell.phoneNumber.text = phoneNumber;
     cell.email.text = email;
@@ -66,14 +95,14 @@
 }
 
 #pragma mark table view delegate
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 @end

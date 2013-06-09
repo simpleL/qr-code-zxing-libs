@@ -75,6 +75,7 @@
 		CEBF59FF1722BCF300307DE0 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBF59FE1722BCF300307DE0 /* libiconv.dylib */; };
 		CED4707917239F2500115CC1 /* FileManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = CED4707817239F2500115CC1 /* FileManager.mm */; };
 		CED4707C1723A18100115CC1 /* CustomeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CED4707B1723A18100115CC1 /* CustomeImageView.m */; };
+		CEE249F71764C46D0052C76A /* InputContactSaveSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE249F61764C46D0052C76A /* InputContactSaveSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,8 @@
 		CED4707817239F2500115CC1 /* FileManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileManager.mm; sourceTree = "<group>"; };
 		CED4707A1723A18100115CC1 /* CustomeImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomeImageView.h; sourceTree = "<group>"; };
 		CED4707B1723A18100115CC1 /* CustomeImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomeImageView.m; sourceTree = "<group>"; };
+		CEE249F51764C46D0052C76A /* InputContactSaveSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputContactSaveSegue.h; sourceTree = "<group>"; };
+		CEE249F61764C46D0052C76A /* InputContactSaveSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputContactSaveSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +343,7 @@
 		CEBF436517227E9900307DE0 /* scr */ = {
 			isa = PBXGroup;
 			children = (
+				CEE249F31764C44D0052C76A /* Segues */,
 				CEBF436617227E9900307DE0 /* AppDelegate.h */,
 				CEBF436717227E9900307DE0 /* AppDelegate.mm */,
 				CEBF436817227E9900307DE0 /* ViewController.h */,
@@ -415,6 +419,15 @@
 				CEBF59EB1722B9D000307DE0 /* QRcodeINDIA.gif */,
 			);
 			path = testData;
+			sourceTree = "<group>";
+		};
+		CEE249F31764C44D0052C76A /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				CEE249F51764C46D0052C76A /* InputContactSaveSegue.h */,
+				CEE249F61764C46D0052C76A /* InputContactSaveSegue.m */,
+			);
+			name = Segues;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,6 +570,7 @@
 				630D0CDC1733694D00AF74A3 /* ScanView.m in Sources */,
 				6351441A1739747600E2D1F8 /* QRCodeView.m in Sources */,
 				63F5814F174A81D8004F8D61 /* CustomScrollView.m in Sources */,
+				CEE249F71764C46D0052C76A /* InputContactSaveSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

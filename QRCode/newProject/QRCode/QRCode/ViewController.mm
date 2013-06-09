@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Utilities.h"
+#import "FileManager.h"
 
 @interface ViewController ()
 
@@ -14,10 +16,27 @@
 
 @implementation ViewController
 
+@synthesize imageView;
+
+static UIImage * _image = nil;
++(void)setImage:(UIImage *)image
+{
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+        
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{    
+    NSDictionary * dict = [FileManager getMyContactInfo];
+    if(dict)
+    {
+        [imageView setImage:encode(dict)];
+    }
 }
 
 - (void)didReceiveMemoryWarning
