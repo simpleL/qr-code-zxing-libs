@@ -1,0 +1,1 @@
+build an app to generate and read QR code on iOS using zxing library
